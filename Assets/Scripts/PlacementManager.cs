@@ -10,6 +10,7 @@ public class PlacementManager : MonoBehaviour
 {
     public GameObject placementIndicator;
     public GameObject objectToPlace;
+    [SerializeField] private int rotationOffset = 180;
 
     [SerializeField] private XROrigin sessionOrigin;
     [SerializeField] private ARRaycastManager raycastManager;
@@ -68,6 +69,9 @@ public class PlacementManager : MonoBehaviour
 
     private void PlaceObject()
     {
-        Instantiate(objectToPlace, placementPose.position, placementPose.rotation);
+        Quaternion rotationOffsetPose = Quaternion.Euler(0, rotationOffset, 0);
+        Quaternion newRotation = placementPose.rotation * rotationOffsetPose;
+
+        Instantiate(objectToPlace, placementPose.position, newRotation);
     }
 }
