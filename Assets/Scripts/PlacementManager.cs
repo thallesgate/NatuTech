@@ -5,25 +5,20 @@ using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
-
+using UnityEngine.InputSystem;
 public class PlacementManager : MonoBehaviour
 {
     public GameObject placementIndicator;
+    public GameObject objectToPlace;
 
-    [SerializeField]
-    private XROrigin sessionOrigin;
-    [SerializeField]
-    private ARRaycastManager raycastManager;
+    [SerializeField] private XROrigin sessionOrigin;
+    [SerializeField] private ARRaycastManager raycastManager;
 
     private Pose placementPose;
     private bool isPlacementPoseValid = false;
 
-    [SerializeField]
-    TrackableType trackableType = TrackableType.Planes;
-
-    public GameObject objectToPlace;
-
-    // Start is called before the first frame update
+    [SerializeField] TrackableType trackableType = TrackableType.Planes;
+    [SerializeField] InputActionReference tap;
     void Start()
     {
 
@@ -34,8 +29,7 @@ public class PlacementManager : MonoBehaviour
     {
         UpdatePlacementPose();
         UpdatePlacementIndicator();
-
-        if (isPlacementPoseValid && Input.touchCount > 0 && Input.GetMouseButtonDown(0))
+        if (isPlacementPoseValid && (Pointer.current.press.value > 0))
         {
             PlaceObject();
         }
