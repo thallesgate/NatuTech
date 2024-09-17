@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2581614875303485468}
   - component: {fileID: 303793160071730390}
   - component: {fileID: 2249466876737058048}
+  - component: {fileID: 1607133729512949053}
   m_Layer: 0
   m_Name: Tree_Carvalho_1
   m_TagString: Tree
@@ -106,3 +107,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3015167987163436581, guid: ddd36401006c8654eae1d9a6bcd6380d, type: 3}
+--- !u!114 &1607133729512949053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2249466876737058051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b89aff764436eb046928f49d3fbec10c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treeHealth: 100
