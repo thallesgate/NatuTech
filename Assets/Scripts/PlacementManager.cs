@@ -20,6 +20,10 @@ public class PlacementManager : MonoBehaviour
 
     [SerializeField] TrackableType trackableType = TrackableType.Planes;
     [SerializeField] InputActionReference tap;
+
+    private float placementCooldown = 2f; // Cooldown period in seconds
+    private float lastPlacementTime = -2f; // Initialize to -2 so that the first placement is allowed immediately
+
     void Start()
     {
 
@@ -30,9 +34,14 @@ public class PlacementManager : MonoBehaviour
     {
         UpdatePlacementPose();
         UpdatePlacementIndicator();
-        if (isPlacementPoseValid && (Pointer.current.press.value > 0))
+        if (isPlacementPoseValid && (tap.action.inProgress)) //.ReadValue<Vector2>()))
         {
-            PlaceObject();
+            // Check if cooldown period has passed
+            if (Time.time - lastPlacementTime >= placementCooldown)
+            {
+                PlaceObject();
+                lastPlacementTime = Time.time; // Update the last placement time
+            }
         }
     }
 
