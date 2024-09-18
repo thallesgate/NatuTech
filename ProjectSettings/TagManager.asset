@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - TrajectoryPoint
+  - Tree
+  - Enemy
+  - TrajectoryPointProjectile
   layers:
   - Default
   - TransparentFX
@@ -12,7 +15,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Floor
   - 
   - 
   - 
