@@ -45,9 +45,12 @@ public class TurnManager : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
-        Debug.Log("Turno dos inimigos");
+        Debug.Log("Enemy's Turn");
 
-        // Loop por todos os inimigos e faça-os agir (movimentar ou atacar)
+        // Limpa a lista de árvores
+        trees.RemoveAll(tree => tree == null);
+
+        // Loop por todos os inimigos e faça-os agir
         foreach (GameObject enemy in enemies)
         {
             if (enemy != null)
@@ -55,13 +58,13 @@ public class TurnManager : MonoBehaviour
                 EnemyEngine enemyEngine = enemy.GetComponent<EnemyEngine>();
                 if (enemyEngine != null)
                 {
-                    // Passa a lista de árvores para o inimigo
                     enemyEngine.StartTurn(trees);
                 }
             }
-            yield return new WaitForSeconds(0.5f); // Intervalo entre ações dos inimigos
+            yield return new WaitForSeconds(0.5f);
         }
     }
+
 
     IEnumerator TreeTurn()
     {

@@ -3,7 +3,11 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     public GameObject mapArea; // Referência para o objeto plano do mapa
+<<<<<<< Updated upstream
 
+=======
+    public GridManager gridManager;
+>>>>>>> Stashed changes
     public int gridSizeX = 10;
     public int gridSizeY = 10;
     public GameObject treePrefab;
@@ -37,29 +41,29 @@ public class GridManager : MonoBehaviour
 
     void CreateGrid()
     {
-        // Pega o tamanho da área do mapa com base na escala do plano
+        // Get the size of the map area based on the plane's scale
         float mapWidth = mapArea.transform.localScale.x;
         float mapHeight = mapArea.transform.localScale.z;
 
-        // Calcula o tamanho das células do grid com base no tamanho do plano
+        // Calculate the size of the grid cells based on the plane size
         cellSize = mapWidth / gridSizeX;
 
-        // Cria a matriz para armazenar as posições das células do grid
+        // Create the array to store the grid cell positions
         grid = new Vector3[gridSizeX, gridSizeY];
 
-        // Cria a matriz de transformação baseada na posição, rotação e escala do mapArea
+        // Create the transformation matrix based on the mapArea's position, rotation, and scale
         Matrix4x4 mapMatrix = Matrix4x4.TRS(mapArea.transform.position, mapArea.transform.rotation, Vector3.one);
 
         for (int x = 0; x < gridSizeX; x++)
         {
             for (int y = 0; y < gridSizeY; y++)
             {
-                // Calcula a posição local de cada célula dentro do mapa
+                // Calcule a posição local de cada célula dentro do mapa
                 float posX = (x * cellSize) - mapWidth / 2 + cellSize / 2;
                 float posZ = (y * cellSize) - mapHeight / 2 + cellSize / 2;
-                Vector3 localPosition = new Vector3(posX, 0, posZ); // Posicionamos no plano Y=0
+                Vector3 localPosition = new Vector3(posX, 0, posZ);
 
-                // Aplica a matriz de transformação para obter a posição global rotacionada
+                // Aplique a matriz de transformação para obter a posição global
                 grid[x, y] = mapMatrix.MultiplyPoint3x4(localPosition);
             }
         }
@@ -73,6 +77,12 @@ public class GridManager : MonoBehaviour
             Vector3 position = GetRandomGridPosition();
             GameObject tree = Instantiate(treePrefab, position, Quaternion.identity);
             tree.transform.localScale *= 0.1f;
+<<<<<<< Updated upstream
+=======
+            tree.transform.SetParent(gridManager.transform);
+            // Registra a árvore no TurnManager
+            turnManager.RegisterTree(tree);
+>>>>>>> Stashed changes
 
             // Registra a árvore no TurnManager
             FindObjectOfType<TurnManager>().RegisterTree(tree);
@@ -85,19 +95,30 @@ public class GridManager : MonoBehaviour
         {
             Vector3 position = GetRandomGridPosition();
             GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity);
+<<<<<<< Updated upstream
+=======
+            if (enemy == null)
+            {
+                Debug.LogError("Enemy instantiation failed!");
+            }
+>>>>>>> Stashed changes
             enemy.transform.localScale *= 0.1f;
 
-            // Inicializa o grid no inimigo
             EnemyEngine enemyEngine = enemy.GetComponent<EnemyEngine>();
             if (enemyEngine != null)
             {
-                enemyEngine.InitializeGrid(grid);
+                enemyEngine.InitializeGrid(grid, cellSize); // Passa o cellSize aqui
             }
 
+<<<<<<< Updated upstream
             // Registra o inimigo no TurnManager
             FindObjectOfType<TurnManager>().RegisterEnemy(enemy);
+=======
+            // Register the enemy in the TurnManager
+            turnManager.RegisterEnemy(enemy);
+>>>>>>> Stashed changes
 
-            enemy.transform.SetParent(mapArea.transform);
+            enemy.transform.SetParent(gridManager.transform);
         }
     }
 
@@ -111,16 +132,14 @@ public class GridManager : MonoBehaviour
     // Desenha o grid no editor para propósitos de debug
     void OnDrawGizmos()
     {
-        if (showGridLines && grid != null)
+        if (grid != null)
         {
             Gizmos.color = Color.red;
 
-            // Desenha linhas de grid
             for (int x = 0; x < gridSizeX; x++)
             {
                 for (int y = 0; y < gridSizeY; y++)
                 {
-                    // Desenha um cubo wireframe representando cada célula do grid
                     Gizmos.DrawWireCube(grid[x, y], new Vector3(cellSize, 0.01f, cellSize));
                 }
             }
