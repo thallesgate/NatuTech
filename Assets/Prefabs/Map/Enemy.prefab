@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36c1e394628a294085677195531fe50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 30
+  attackDamage: 50
   movementStep: 1
   enemyHealth: 0
 --- !u!4 &6837052860878259232 stripped

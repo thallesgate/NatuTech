@@ -1,26 +1,29 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyEngine : MonoBehaviour
 {
     public int attackDamage = 10;
-    public float movementStep = 1.0f;  // Tamanho do movimento em uma célula do grid
+    private float movementStep;  // Será inicializado com o tamanho da célula do grid
 
     private GameObject targetTree;      // A árvore alvo mais próxima
-    private bool isMoving = false;
     private Vector3[,] gridPositions;   // Grid de posições do tabuleiro
-    [SerializeField] private int enemyHealth;
+    private float cellSize;             // Tamanho da célula do grid
+    [SerializeField] private int enemyHealth = 100;
 
     // Inicializa o grid no inimigo (chamado pelo GridManager)
-    public void InitializeGrid(Vector3[,] grid)
+    public void InitializeGrid(Vector3[,] grid, float cellSize)
     {
         gridPositions = grid;
+        this.cellSize = cellSize;
+        movementStep = cellSize; // Garantir que o movimento corresponde ao tamanho da célula
     }
 
     // Método para iniciar o turno do inimigo
     public void StartTurn(List<GameObject> trees)
     {
+        Debug.Log("Inimigo iniciando turno.");
+
         // Se o alvo anterior foi destruído ou não existe, procure uma nova árvore
         if (targetTree == null || !targetTree.activeInHierarchy)
         {
@@ -38,70 +41,6 @@ public class EnemyEngine : MonoBehaviour
             // Se não houver, mova-se em direção à árvore alvo
             MoveTowardsTree();
         }
-    }
-
-    // Verifica se existe uma árvore adjacente ao inimigo
-    bool IsTreeNearby()
-    {
-        if (targetTree == null)
-            return false;
-
-        // Verifica se a distância entre o inimigo e a árvore é de 1 célula (adjacente)
-        float distance = Vector3.Distance(transform.position, targetTree.transform.position);
-        return distance <= movementStep;  // Considera adjacente se estiver a uma célula de distância ou menos
-    }
-
-    // Método para atacar a árvore
-    void AttackTree()
-    {
-        if (targetTree != null)
-        {
-            TreeEngine treeEngine = targetTree.GetComponent<TreeEngine>();
-            if (treeEngine != null)
-            {
-                treeEngine.TakeDamage(attackDamage);
-                Debug.Log("Inimigo atacou a árvore causando " + attackDamage + " de dano.");
-            }
-        }
-    }
-
-    // Método para mover o inimigo em direção à árvore alvo
-    void MoveTowardsTree()
-    {
-        if (targetTree != null && gridPositions != null)
-        {
-            // Calcula a direção para a árvore
-            Vector3 direction = (targetTree.transform.position - transform.position).normalized;
-
-            // Arredonda a direção para garantir que o inimigo se mova em uma célula exata
-            Vector3 movement = new Vector3(Mathf.Round(direction.x), 0, Mathf.Round(direction.z));
-
-            // Calcula a nova posição no grid
-            Vector3 nextPosition = transform.position + movement * movementStep;
-
-            // Limita a posição para estar dentro dos limites do grid
-            nextPosition = ClampPositionToGrid(nextPosition);
-
-            // Atualiza a posição do inimigo para a nova célula
-            transform.position = nextPosition;
-
-            Debug.Log("Inimigo moveu-se para a célula: " + nextPosition);
-        }
-    }
-
-    // Método para garantir que o inimigo não saia dos limites do tabuleiro
-    Vector3 ClampPositionToGrid(Vector3 position)
-    {
-        // Obtemos os limites do grid
-        float minX = gridPositions[0, 0].x;
-        float maxX = gridPositions[gridPositions.GetLength(0) - 1, 0].x;
-        float minZ = gridPositions[0, 0].z;
-        float maxZ = gridPositions[0, gridPositions.GetLength(1) - 1].z;
-
-        // Limitamos a posição do inimigo para que esteja sempre dentro do tabuleiro
-        float clampedX = Mathf.Clamp(position.x, minX, maxX);
-        float clampedZ = Mathf.Clamp(position.z, minZ, maxZ);
-        return new Vector3(clampedX, position.y, clampedZ);
     }
 
     // Método para encontrar a árvore mais próxima
@@ -126,29 +65,130 @@ public class EnemyEngine : MonoBehaviour
         return closestTree;
     }
 
+    // Verifica se existe uma árvore adjacente ao inimigo
+    bool IsTreeNearby()
+    {
+        if (targetTree == null || gridPositions == null)
+            return false;
+
+        // Obtemos os índices do inimigo e da árvore
+        Vector2Int enemyGridIndex = GetGridIndexFromPosition(transform.position);
+        Vector2Int treeGridIndex = GetGridIndexFromPosition(targetTree.transform.position);
+
+        // Calcula a distância Manhattan entre os índices
+        int distance = Mathf.Abs(enemyGridIndex.x - treeGridIndex.x) + Mathf.Abs(enemyGridIndex.y - treeGridIndex.y);
+
+        // Verifica se a distância é 1 (adjacente)
+        return distance == 1;
+    }
+
+    // Método para atacar a árvore
+    void AttackTree()
+    {
+        if (targetTree != null)
+        {
+            TreeEngine treeEngine = targetTree.GetComponent<TreeEngine>();
+            if (treeEngine != null)
+            {
+                treeEngine.TakeDamage(attackDamage);
+                Debug.Log("Inimigo atacou a árvore causando " + attackDamage + " de dano.");
+            }
+        }
+    }
+
+    // Método para mover o inimigo em direção à árvore alvo
+    void MoveTowardsTree()
+    {
+        if (targetTree != null && gridPositions != null)
+        {
+            // Converte as posições em índices do grid
+            Vector2Int enemyGridIndex = GetGridIndexFromPosition(transform.position);
+            Vector2Int treeGridIndex = GetGridIndexFromPosition(targetTree.transform.position);
+
+            // Calcula a diferença nos índices
+            int deltaX = treeGridIndex.x - enemyGridIndex.x;
+            int deltaY = treeGridIndex.y - enemyGridIndex.y;
+
+            Vector2Int movement = Vector2Int.zero;
+
+            if (Mathf.Abs(deltaX) > Mathf.Abs(deltaY))
+            {
+                movement.x = Mathf.Clamp(deltaX, -1, 1);
+            }
+            else if (deltaY != 0)
+            {
+                movement.y = Mathf.Clamp(deltaY, -1, 1);
+            }
+
+            // Atualiza os índices do inimigo
+            enemyGridIndex += movement;
+
+            // Garante que os índices estão dentro dos limites do grid
+            enemyGridIndex = ClampGridIndex(enemyGridIndex);
+
+            // Atualiza a posição do inimigo com base nos novos índices
+            Vector3 nextPosition = gridPositions[enemyGridIndex.x, enemyGridIndex.y];
+            transform.position = nextPosition;
+
+            Debug.Log("Inimigo moveu-se para a posição: " + nextPosition);
+        }
+    }
+
+    // Converte uma posição no espaço mundial em um índice do grid
+    Vector2Int GetGridIndexFromPosition(Vector3 position)
+    {
+        int closestX = 0;
+        int closestY = 0;
+        float minDistance = Mathf.Infinity;
+
+        for (int x = 0; x < gridPositions.GetLength(0); x++)
+        {
+            for (int y = 0; y < gridPositions.GetLength(1); y++)
+            {
+                float distance = Vector3.Distance(position, gridPositions[x, y]);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    closestX = x;
+                    closestY = y;
+                }
+            }
+        }
+
+        return new Vector2Int(closestX, closestY);
+    }
+
+    // Garante que os índices estão dentro dos limites do grid
+    Vector2Int ClampGridIndex(Vector2Int index)
+    {
+        int clampedX = Mathf.Clamp(index.x, 0, gridPositions.GetLength(0) - 1);
+        int clampedY = Mathf.Clamp(index.y, 0, gridPositions.GetLength(1) - 1);
+        return new Vector2Int(clampedX, clampedY);
+    }
+
     public void TakeDamage(int damageAmount)
     {
         enemyHealth -= damageAmount;
         Debug.Log("O Inimigo tomou dano. Vida restante: " + enemyHealth);
 
-        // Verifica se a vida da árvore chegou a zero ou menos
+        // Verifica se a vida do inimigo chegou a zero ou menos
         if (enemyHealth <= 0)
         {
             DestroyEnemy();
         }
     }
 
-    // Método para destruir a árvore
+    // Método para destruir o inimigo
     void DestroyEnemy()
     {
         Debug.Log("O inimigo foi destruído!");
 
-        // Notifica o TurnManager que esta árvore foi destruída
+        // Notifica o TurnManager que este inimigo foi destruído
         TurnManager turnManager = FindObjectOfType<TurnManager>();
-        //if (turnManager != null)
-        //{
-        //    turnManager.RemoveTree(gameObject); // Remove a árvore da lista de árvores
-        //}
+        if (turnManager != null)
+        {
+            turnManager.RemoveEnemy(gameObject); // Remove o inimigo da lista de inimigos
+        }
 
         Destroy(gameObject); // Remove o objeto da cena
     }

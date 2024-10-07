@@ -116,7 +116,7 @@ public class GridManager : MonoBehaviour
             EnemyEngine enemyEngine = enemy.GetComponent<EnemyEngine>();
             if (enemyEngine != null)
             {
-                enemyEngine.InitializeGrid(grid);
+                enemyEngine.InitializeGrid(grid, cellSize);
             }
             else
             {

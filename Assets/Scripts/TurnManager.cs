@@ -9,6 +9,7 @@ public class TurnManager : MonoBehaviour
     private List<GameObject> enemies; // Lista de inimigos no mapa
     private List<GameObject> trees;   // Lista de árvores no mapa
     private bool isEnemyTurn = false;
+    private bool isGameOver = false;  // Variável para controlar o estado do jogo
 
     void Start()
     {
@@ -22,7 +23,7 @@ public class TurnManager : MonoBehaviour
 
     IEnumerator NextTurn()
     {
-        while (true)
+        while (!isGameOver)
         {
             // Alterna entre turnos de inimigos e outros (por exemplo, jogador)
             if (isEnemyTurn)
@@ -99,6 +100,8 @@ public class TurnManager : MonoBehaviour
     void GameOver()
     {
         Debug.Log("Game Over! Todas as árvores foram destruídas.");
+
+        isGameOver = true;
 
         // Aqui você pode implementar o que acontecerá no Game Over:
         // - Mostrar uma tela de game over

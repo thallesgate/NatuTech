@@ -64,7 +64,7 @@ public class PlacementLaunchManager : MonoBehaviour
                 {
                     plane.gameObject.SetActive(false);
                 }
-                Debug.Log("All AR planes hidden.");
+                //Debug.Log("All AR planes hidden.");
             }
         }
         
@@ -128,12 +128,12 @@ public class PlacementLaunchManager : MonoBehaviour
                 // Optional: Output the hit position to the console for debugging
                 //Debug.Log("Hit Position: " + hitPosition);
                 placementPose = new Pose(hitPosition + placeOffset, Quaternion.identity);
-                Debug.Log("Hit: " + hitInfo.collider.name);
+                //Debug.Log("Hit: " + hitInfo.collider.name);
                 isPlacementPoseValid = true;
             }
             else
             {
-                Debug.Log("No hit");
+                //Debug.Log("No hit");
                 isPlacementPoseValid = false;
             }
         }
