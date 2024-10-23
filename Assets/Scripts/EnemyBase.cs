@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public abstract class EnemyBase : MonoBehaviour
 {
@@ -7,10 +7,11 @@ public abstract class EnemyBase : MonoBehaviour
     protected float movementStep;
     protected Vector3[,] gridPositions;
     protected float cellSize;
-    public int enemyHealth = 100;
+    protected int enemyHealth = 100;
     protected GameObject targetTree;
 
-    // Inicializa o grid no inimigo (chamado pelo GridManager)
+    public SummonableEnemy summonableEnemyType;
+
     public virtual void InitializeGrid(Vector3[,] grid, float cellSize)
     {
         gridPositions = grid;
@@ -18,13 +19,11 @@ public abstract class EnemyBase : MonoBehaviour
         movementStep = cellSize;
     }
 
-    // Método para iniciar o turno do inimigo
     public virtual void StartTurn(List<GameObject> trees)
     {
-        // Implementação base ou abstrata
+        // Implementação nas classes derivadas
     }
 
-    // Método para encontrar a árvore mais próxima
     protected GameObject FindClosestTree(List<GameObject> trees)
     {
         GameObject closestTree = null;
@@ -46,7 +45,6 @@ public abstract class EnemyBase : MonoBehaviour
         return closestTree;
     }
 
-    // Outros métodos comuns, como TakeDamage e DestroyEnemy
     public virtual void TakeDamage(int damageAmount)
     {
         enemyHealth -= damageAmount;
@@ -65,7 +63,13 @@ public abstract class EnemyBase : MonoBehaviour
         TurnManager turnManager = FindObjectOfType<TurnManager>();
         if (turnManager != null)
         {
-            turnManager.RemoveEnemy(this); // Agora passa 'this' corretamente
+            turnManager.RemoveEnemy(this);
+        }
+
+        ThrazEngine thraz = FindObjectOfType<ThrazEngine>();
+        if (thraz != null && summonableEnemyType != null)
+        {
+            thraz.OnEnemyDestroyed(summonableEnemyType);
         }
 
         Destroy(gameObject);

@@ -1,11 +1,11 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class RetroescavadeiraEnemy : EnemyBase
 {
     public override void StartTurn(List<GameObject> trees)
     {
-        Debug.Log("Retroescavadeira iniciando turno."); 
+        Debug.Log("Retroescavadeira iniciando turno.");
 
         if (targetTree == null || !targetTree.activeInHierarchy)
         {

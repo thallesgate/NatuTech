@@ -18,8 +18,8 @@ public class GridManager : MonoBehaviour
     [SerializeField]
     public int qtd_inimigos; // Quantidade de inimigos a ser gerada
 
-    private Vector3[,] grid; // Mantemos a matriz de posições para armazenar o grid
-    private float cellSize;
+    public Vector3[,] grid { get; private set; } // Mantemos a matriz de posições para armazenar o grid
+    public float cellSize { get; private set; }
 
     private void OnEnable()
     {
@@ -136,7 +136,7 @@ public class GridManager : MonoBehaviour
         return retroescavadeiraPrefab; // Ou helicópteroPrefab, etc.
     }
 
-    Vector3 GetRandomGridPosition()
+    public Vector3 GetRandomGridPosition()
     {
         int x = Random.Range(0, gridSizeX);
         int y = Random.Range(0, gridSizeY);

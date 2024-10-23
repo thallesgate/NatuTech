@@ -2,17 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TurnType
+{
+    Thraz,
+    Enemies,
+    Player
+}
+
 public class TurnManager : MonoBehaviour
 {
+    public GridManager gridManager;
+    public ThrazEngine thrazEngine;
+
     private List<EnemyBase> enemies;
     private List<GameObject> trees;
-    private bool isEnemyTurn = false;
+    private Queue<TurnType> turnQueue;
     private bool isGameOver = false;
+
+    // Adicionamos o contador de rodadas
+    private int roundCounter = 0;
+
+    // Propriedade pública para acessar o roundCounter
+    public int RoundCounter => roundCounter;
 
     void Start()
     {
         enemies = new List<EnemyBase>(FindObjectsOfType<EnemyBase>());
         trees = new List<GameObject>(GameObject.FindGameObjectsWithTag("Tree"));
+
+        if (thrazEngine == null)
+        {
+            thrazEngine = FindObjectOfType<ThrazEngine>();
+            if (thrazEngine == null)
+            {
+                Debug.LogError("ThrazEngine não foi encontrado na cena.");
+            }
+        }
+
+        turnQueue = new Queue<TurnType>();
+        turnQueue.Enqueue(TurnType.Thraz);
+        turnQueue.Enqueue(TurnType.Enemies);
+        turnQueue.Enqueue(TurnType.Player);
 
         StartCoroutine(NextTurn());
     }
@@ -21,19 +51,45 @@ public class TurnManager : MonoBehaviour
     {
         while (!isGameOver)
         {
-            if (isEnemyTurn)
+            TurnType currentTurn = turnQueue.Dequeue();
+
+            switch (currentTurn)
             {
-                yield return EnemyTurn();
-                isEnemyTurn = false;
+                case TurnType.Thraz:
+                    yield return ThrazTurn();
+                    break;
+                case TurnType.Enemies:
+                    yield return EnemyTurn();
+                    break;
+                case TurnType.Player:
+                    yield return PlayerTurn();
+                    break;
             }
-            else
+
+            turnQueue.Enqueue(currentTurn);
+
+            // Incrementa o contador de rodadas após o turno do jogador
+            if (currentTurn == TurnType.Player)
             {
-                yield return TreeTurn();
-                isEnemyTurn = true;
+                roundCounter++;
+                Debug.Log("Iniciando a rodada " + roundCounter);
             }
 
             yield return new WaitForSeconds(1.0f);
         }
+    }
+
+
+    IEnumerator ThrazTurn()
+    {
+        Debug.Log("Turno do Thraz");
+
+        if (thrazEngine != null)
+        {
+            thrazEngine.StartTurn();
+        }
+
+        yield return new WaitForSeconds(1.0f);
     }
 
     IEnumerator EnemyTurn()
@@ -50,9 +106,12 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    IEnumerator TreeTurn()
+    IEnumerator PlayerTurn()
     {
-        Debug.Log("Turno das árvores");
+        Debug.Log("Turno do Jogador");
+
+        // Implementação das ações do jogador
+
         yield return new WaitForSeconds(1.0f);
     }
 
