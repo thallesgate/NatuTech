@@ -105,29 +105,35 @@ public class GridManager : MonoBehaviour
         for (int i = 0; i < enemyCount; i++)
         {
             Vector3 position = GetRandomGridPosition();
-            GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity);
-            if (enemy == null)
-            {
-                Debug.LogError("Instância de inimigo falhou!");
-            }
+
+            // Decidir qual tipo de inimigo criar
+            GameObject enemyPrefabToInstantiate = DecideEnemyPrefab();
+            GameObject enemy = Instantiate(enemyPrefabToInstantiate, position, Quaternion.identity);
+
             enemy.transform.localScale *= 0.1f;
 
-            // Inicializa o grid no inimigo
-            EnemyEngine enemyEngine = enemy.GetComponent<EnemyEngine>();
+            EnemyBase enemyEngine = enemy.GetComponent<EnemyBase>();
             if (enemyEngine != null)
             {
                 enemyEngine.InitializeGrid(grid, cellSize);
             }
             else
             {
-                Debug.LogError("enemyEngine não foi encontrado no prefab!");
+                Debug.LogError("EnemyBase não foi encontrado no prefab!");
             }
-
-            // Registra o inimigo no TurnManager
-            //turnManager.RegisterEnemy(enemy);
 
             enemy.transform.SetParent(mapArea.transform);
         }
+    }
+
+    GameObject DecideEnemyPrefab()
+    {
+        // Lógica para decidir qual prefab de inimigo usar
+        // Pode ser aleatório ou baseado em algum critério
+        // Por exemplo:
+        GameObject retroescavadeiraPrefab = enemyPrefab;
+
+        return retroescavadeiraPrefab; // Ou helicópteroPrefab, etc.
     }
 
     Vector3 GetRandomGridPosition()

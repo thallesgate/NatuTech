@@ -91,7 +91,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ee9024b9ea652f94a841c05cd371a484,
         type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: Excavator
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ee9024b9ea652f94a841c05cd371a484,
         type: 3}
@@ -109,7 +109,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee9024b9ea652f94a841c05cd371a484,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8608356771811783309}
+      addedObject: {fileID: 8091768822726630493}
   m_SourcePrefab: {fileID: 100100000, guid: ee9024b9ea652f94a841c05cd371a484, type: 3}
 --- !u!1 &6172684627179200154 stripped
 GameObject:
@@ -117,7 +117,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6442590750378746827}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8608356771811783309
+--- !u!114 &8091768822726630493
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,12 +126,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6172684627179200154}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d36c1e394628a294085677195531fe50, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c3e47d2ac3f6864dac74298a8f8f3d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 50
-  movementStep: 1
-  enemyHealth: 0
+  attackDamage: 10
+  enemyHealth: 100
 --- !u!4 &6837052860878259232 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ee9024b9ea652f94a841c05cd371a484,

@@ -678,8 +678,13 @@ PrefabInstance:
         type: 3}
       propertyPath: treePrefab
       value: 
-      objectReference: {fileID: 8545987075815595238, guid: bd54cd5082e683b4f8d20cf4f3104e63,
+      objectReference: {fileID: 5574687235492870584, guid: b97127884c3b7fd4b806f7454c0b7caf,
         type: 3}
+    - target: {fileID: 5445928438740283405, guid: 47711bb5f30846e499cb0543f84d2609,
+        type: 3}
+      propertyPath: qtd_inimigos
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6189637735584021051, guid: 47711bb5f30846e499cb0543f84d2609,
         type: 3}
       propertyPath: m_IsActive
@@ -705,7 +710,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3291208565876859000, guid: 47711bb5f30846e499cb0543f84d2609, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

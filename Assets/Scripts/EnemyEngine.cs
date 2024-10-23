@@ -165,7 +165,7 @@ public class EnemyEngine : MonoBehaviour
         int clampedY = Mathf.Clamp(index.y, 0, gridPositions.GetLength(1) - 1);
         return new Vector2Int(clampedX, clampedY);
     }
-
+    /*
     public void TakeDamage(int damageAmount)
     {
         enemyHealth -= damageAmount;
@@ -177,7 +177,7 @@ public class EnemyEngine : MonoBehaviour
             DestroyEnemy();
         }
     }
-
+    
     // Método para destruir o inimigo
     void DestroyEnemy()
     {
@@ -191,5 +191,5 @@ public class EnemyEngine : MonoBehaviour
         }
 
         Destroy(gameObject); // Remove o objeto da cena
-    }
+    }*/
 }
