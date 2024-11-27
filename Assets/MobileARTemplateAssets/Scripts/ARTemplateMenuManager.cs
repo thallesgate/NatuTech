@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Readers;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Samples.ARStarterAssets;
@@ -228,7 +226,7 @@ public class ARTemplateMenuManager : MonoBehaviour
         m_CreateButton.onClick.AddListener(ShowMenu);
         m_CancelButton.onClick.AddListener(HideMenu);
         m_DeleteButton.onClick.AddListener(DeleteFocusedObject);
-        m_PlaneManager.planesChanged += OnPlaneChanged;
+        m_PlaneManager.trackablesChanged.AddListener(OnPlaneChanged);
     }
 
     /// <summary>
@@ -240,7 +238,7 @@ public class ARTemplateMenuManager : MonoBehaviour
         m_CreateButton.onClick.RemoveListener(ShowMenu);
         m_CancelButton.onClick.RemoveListener(HideMenu);
         m_DeleteButton.onClick.RemoveListener(DeleteFocusedObject);
-        m_PlaneManager.planesChanged -= OnPlaneChanged;
+        m_PlaneManager.trackablesChanged.RemoveListener(OnPlaneChanged);
     }
 
     /// <summary>
@@ -507,7 +505,7 @@ public class ARTemplateMenuManager : MonoBehaviour
         }
     }
 
-    void OnPlaneChanged(ARPlanesChangedEventArgs eventArgs)
+    void OnPlaneChanged(ARTrackablesChangedEventArgs<ARPlane> eventArgs)
     {
         if (eventArgs.added.Count > 0)
         {
@@ -525,7 +523,7 @@ public class ARTemplateMenuManager : MonoBehaviour
         {
             foreach (var plane in eventArgs.removed)
             {
-                if (plane.TryGetComponent<ARFeatheredPlaneMeshVisualizerCompanion>(out var visualizer))
+                if (plane.Value != null && plane.Value.TryGetComponent<ARFeatheredPlaneMeshVisualizerCompanion>(out var visualizer))
                     featheredPlaneMeshVisualizerCompanions.Remove(visualizer);
             }
         }

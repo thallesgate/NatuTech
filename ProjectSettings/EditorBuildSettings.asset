@@ -9,13 +9,23 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 4755b35b590504809a7525fd2109c2e2
   - enabled: 1
-    path: Assets/Scenes/DevScene.unity
-    guid: 7807f370031cfcb4191ff3e46d4752e1
+    path: Assets/Scenes/HomeScreenScene.unity
+    guid: acddfe965c43f6844a4405803d03be75
+  - enabled: 1
+    path: Assets/Scenes/PlacementScene.unity
+    guid: 8f0d7c0305a4f8c4e9cb50110220c483
+  - enabled: 1
+    path: Assets/Scenes/TestGameScene.unity
+    guid: 65262ec389ee6c64480163cd1f83e538
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af,
       type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 0465d33c6aee55f44b0237db8b0e0259,
       type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 5f1f5e9043d694745aba0ef7691fbacd,
+      type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: c199e683398494f32b4cde18e73ab731,
       type: 2}
     com.unity.xr.magicleap.magic_leap_settings: {fileID: 11400000, guid: 0b53a025a635a4393ba0b49822242280,
@@ -24,3 +34,4 @@ EditorBuildSettings:
       type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: b07c4ba7650be4c25b3d0c497e7e2bb8,
       type: 2}
+  m_UseUCBPForAssetBundles: 0

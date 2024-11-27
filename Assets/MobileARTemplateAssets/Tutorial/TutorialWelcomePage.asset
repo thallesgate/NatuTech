@@ -29,7 +29,7 @@ MonoBehaviour:
       isn\u2019t  listed, make sure you have the right platform module installed
       by navigating to your project from the Unity Hub Projects tab > Editor Version
       > Add Platform, then select the target Platform Module from the list. <br>\nPlease
-      refer to the <a href=\"https://docs.unity3d.com/Packages/com.unity.template.ar-mobile@1.1\">Quick
+      refer to the <a href=\"https://docs.unity3d.com/Packages/com.unity.template.ar-mobile@2.0\">Quick
       Start Guide</a> for more detailed information on the content and settings used
       in this template. "
   m_Buttons:
