@@ -36,6 +36,9 @@ public class TurnManager : MonoBehaviour
     // Variável para sinalizar o fim do turno do jogador
     private bool playerTurnEnded = false;
 
+    // Variável para controlar se o jogador já agiu no turno
+    public bool HasPlayerActed { get; private set; } = false;
+
     void Start()
     {
         enemies = new List<EnemyBase>(FindObjectsOfType<EnemyBase>());
@@ -146,10 +149,25 @@ public class TurnManager : MonoBehaviour
     {
         Debug.Log("Turno do Jogador");
 
+        // Resetamos a sinalização do fim do turno do jogador
+        playerTurnEnded = false;
+        HasPlayerActed = false;
+
+        // Exibe uma mensagem adicional no HUD
+        if (turnText != null)
+        {
+            turnText.text += " - Faça sua jogada";
+        }
+
         // Aguarda até que o jogador termine sua ação
         yield return StartCoroutine(WaitForPlayerAction());
 
         Debug.Log("Turno do Jogador terminado");
+    }
+
+    public bool CanPlayerAct()
+    {
+        return IsPlayerTurn() && !HasPlayerActed && !isGameOver;
     }
 
     IEnumerator WaitForPlayerAction()
@@ -186,6 +204,7 @@ public class TurnManager : MonoBehaviour
     public void EndPlayerTurn()
     {
         playerTurnEnded = true;
+        HasPlayerActed = true;
     }
 
     public void RegisterEnemy(EnemyBase enemy)

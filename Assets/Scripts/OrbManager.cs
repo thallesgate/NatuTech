@@ -205,10 +205,9 @@ public class OrbManager : MonoBehaviour
 
     private void OnTap(InputAction.CallbackContext context)
     {
-        // Adicionamos a verificação aqui
+        // Verifica se o ponteiro está sobre a UI
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
         {
-            // Se o ponteiro estiver sobre a UI, não faz nada
             return;
         }
 
@@ -219,9 +218,14 @@ public class OrbManager : MonoBehaviour
                 PlaceMap();
                 isMapSpawned = true;
             }
-            else if (turnManager != null && turnManager.IsPlayerTurn() && !isOrbLaunched)
+            else if (turnManager != null && turnManager.CanPlayerAct())
             {
                 LaunchOrb();
+                turnManager.EndPlayerTurn();
+            }
+            else
+            {
+                Debug.Log("Você não pode agir no momento.");
             }
         }
     }
@@ -256,7 +260,8 @@ public class OrbManager : MonoBehaviour
             Orb orbScript = orb.GetComponent<Orb>();
             if (orbScript != null)
             {
-                isOrbLaunched = true;
+                // Remova ou ajuste o uso de isOrbLaunched
+                // isOrbLaunched = true;
 
                 OrbSettings currentSettings = orbSettingsList.Find(o => o.orbType == currentOrbType);
 
@@ -281,8 +286,11 @@ public class OrbManager : MonoBehaviour
 
     private void OnOrbFinished()
     {
-        isOrbLaunched = false;
-        turnManager.EndPlayerTurn();
+        // Remova ou ajuste o uso de isOrbLaunched
+        // isOrbLaunched = false;
+
+        // Não chame EndPlayerTurn aqui, pois já foi chamado após o lançamento do orbe
+        // turnManager.EndPlayerTurn();
     }
 
     private void DrawTrajectory(Vector3 start, Vector3 end, string tag, Color color)
