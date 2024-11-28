@@ -1,0 +1,199 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3002149159124847012
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.72
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3796974353474561415, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8b186c6e06849974199af1b6073cdb07, type: 2}
+    - target: {fileID: 919132149155446097, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: Thraz
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1436034013943334812, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8680384226489637267, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6007379628965496130}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 346759952605145599}
+  m_SourcePrefab: {fileID: 100100000, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b, type: 3}
+--- !u!1 &2695596864334656757 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3002149159124847012}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-6007379628965496130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2695596864334656757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63355d6e1ff877a4f85ad20e5dcc9ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  isInvincible: 0
+  protectionDroneConfig:
+    enabled: 1
+    dronePrefab: {fileID: 9209161420227972244, guid: 0421f595c72f88149a2dd83bbf577c18,
+      type: 3}
+    numberOfDrones: 3
+    dronesToSummonPerTurn: 1
+    droneCooldown: 1
+    droneMinimumRound: 1
+  toxicSmokeConfig:
+    enabled: 0
+    smokePrefab: {fileID: 6129586860043311152, guid: 228b01c569451ea428efc0dd1c25b399,
+      type: 3}
+    mapArea: {fileID: 0}
+    toxicSmokeCooldown: 2
+    toxicSmokeMinimumRound: 1
+  activeSmoke: {fileID: 0}
+  summonableEnemiesConfig:
+    enabled: 1
+    summonableEnemies:
+    - enemyPrefab: {fileID: 6172684627179200154, guid: b50f5466dc8b66441a57e529c581b122,
+        type: 3}
+      currentCount: 0
+      enemySpawnCount: 1
+      enemySpawnLimit: 3
+      enemySpawnCooldown: 2
+      turnsSinceLastSummon: 0
+      enemySpawnMinimumRound: 0
+  gridManager: {fileID: 0}
+  turnManager: {fileID: 0}
+  healthText: {fileID: 0}
+  healthBar: {fileID: 0}
+  abilitiesConfig:
+  - abilityType: 0
+    priority: 2
+  - abilityType: 2
+    priority: 3
+  - abilityType: 1
+    priority: 1
+--- !u!136 &346759952605145599
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2695596864334656757}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.9
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.5, z: -0.22}
