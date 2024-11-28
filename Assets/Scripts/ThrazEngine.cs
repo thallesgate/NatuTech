@@ -433,7 +433,7 @@ public class ThrazEngine : MonoBehaviour
             Debug.LogError("TurnManager não encontrado. Não é possível terminar o jogo.");
         }
 
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     private void UpdateHealthUI()

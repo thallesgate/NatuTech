@@ -1221,7 +1221,7 @@ MonoBehaviour:
   maxHealth: 100
   isInvincible: 0
   protectionDroneConfig:
-    enabled: 0
+    enabled: 1
     dronePrefab: {fileID: 9209161420227972244, guid: 0421f595c72f88149a2dd83bbf577c18,
       type: 3}
     numberOfDrones: 3
@@ -1229,7 +1229,7 @@ MonoBehaviour:
     droneCooldown: 3
     droneMinimumRound: 1
   toxicSmokeConfig:
-    enabled: 1
+    enabled: 0
     smokePrefab: {fileID: 319560972021929896, guid: 39b0fd763f898ed41822d5f2e5969a57,
       type: 3}
     mapArea: {fileID: 984845043}
@@ -1237,7 +1237,7 @@ MonoBehaviour:
     toxicSmokeMinimumRound: 0
   activeSmoke: {fileID: 0}
   summonableEnemiesConfig:
-    enabled: 0
+    enabled: 1
     summonableEnemies:
     - enemyPrefab: {fileID: 6172684627179200154, guid: b50f5466dc8b66441a57e529c581b122,
         type: 3}
@@ -1272,6 +1272,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatAmplitude: 0.01
   floatSpeed: 1
+--- !u!114 &1957824975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957824965}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ab2540fe4b4bf841819ee0cece94166, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oscillatePosition: 1
+  positionFrequency: 1
+  positionAmplitude: 10
+  oscillateScale: 1
+  scaleFrequency: 1
+  scaleAmplitude: {x: 0.1, y: 0.1, z: 0}
+  oscillateRotation: 1
+  rotationFrequency: 1
+  rotationAmplitude: 10
 --- !u!1 &1997013740
 GameObject:
   m_ObjectHideFlags: 0
@@ -2242,6 +2263,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7167866260836216854, guid: 47711bb5f30846e499cb0543f84d2609,
+        type: 3}
+      propertyPath: gridManager
+      value: 
+      objectReference: {fileID: 1674360579}
+    - target: {fileID: 7167866260836216854, guid: 47711bb5f30846e499cb0543f84d2609,
+        type: 3}
+      propertyPath: turnManager
+      value: 
+      objectReference: {fileID: 2122085386}
     - target: {fileID: 7439705479670605225, guid: 47711bb5f30846e499cb0543f84d2609,
         type: 3}
       propertyPath: m_Layer
@@ -2269,7 +2300,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3291208565876859000, guid: 47711bb5f30846e499cb0543f84d2609, type: 3}
-    - {fileID: 3735560631362039449, guid: 47711bb5f30846e499cb0543f84d2609, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -2281,6 +2311,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1957824970}
+    - targetCorrespondingSourceObject: {fileID: 4187872134296608978, guid: 47711bb5f30846e499cb0543f84d2609,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1957824975}
   m_SourcePrefab: {fileID: 100100000, guid: 47711bb5f30846e499cb0543f84d2609, type: 3}
 --- !u!1001 &4380804112534969
 PrefabInstance:

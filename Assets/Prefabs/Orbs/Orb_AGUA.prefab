@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4420273185133787366}
   - component: {fileID: 844152033339303084}
   - component: {fileID: 4715731095320671986}
-  - component: {fileID: 4165604008615858899}
   - component: {fileID: -6169792898560486847}
   - component: {fileID: 793054460718014868}
   m_Layer: 0
@@ -62,6 +61,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -106,22 +108,8 @@ SphereCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4165604008615858899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4527907997627854323}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d00539890e1909a4d869e6485ec14cd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particleEffectPrefab: {fileID: 12417722430379846, guid: 559abaa5d9b0c694cbb28da1ecb2e36e,
-    type: 3}
 --- !u!114 &-6169792898560486847
 MonoBehaviour:
   m_ObjectHideFlags: 0

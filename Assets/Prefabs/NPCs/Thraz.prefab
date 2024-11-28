@@ -80,7 +80,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3796974353474561415, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 8b186c6e06849974199af1b6073cdb07, type: 2}
     - target: {fileID: 919132149155446097, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
@@ -110,11 +110,27 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: -6007379628965496130}
+      addedObject: {fileID: 1584870058380058757}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 346759952605145599}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8939505584897860657}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9023664753930305705}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1049418767023697549}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4188301139384286469}
   m_SourcePrefab: {fileID: 100100000, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b, type: 3}
 --- !u!1 &2695596864334656757 stripped
 GameObject:
@@ -122,7 +138,51 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3002149159124847012}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-6007379628965496130
+--- !u!65 &1584870058380058757
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2695596864334656757}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.3, y: 2.3, z: 1}
+  m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!136 &346759952605145599
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2695596864334656757}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.9
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!114 &8939505584897860657
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,23 +197,23 @@ MonoBehaviour:
   maxHealth: 100
   isInvincible: 0
   protectionDroneConfig:
-    enabled: 1
+    enabled: 0
     dronePrefab: {fileID: 9209161420227972244, guid: 0421f595c72f88149a2dd83bbf577c18,
       type: 3}
     numberOfDrones: 3
     dronesToSummonPerTurn: 1
-    droneCooldown: 1
+    droneCooldown: 3
     droneMinimumRound: 1
   toxicSmokeConfig:
-    enabled: 0
-    smokePrefab: {fileID: 6129586860043311152, guid: 228b01c569451ea428efc0dd1c25b399,
+    enabled: 1
+    smokePrefab: {fileID: 319560972021929896, guid: 39b0fd763f898ed41822d5f2e5969a57,
       type: 3}
     mapArea: {fileID: 0}
     toxicSmokeCooldown: 2
-    toxicSmokeMinimumRound: 1
+    toxicSmokeMinimumRound: 0
   activeSmoke: {fileID: 0}
   summonableEnemiesConfig:
-    enabled: 1
+    enabled: 0
     summonableEnemies:
     - enemyPrefab: {fileID: 6172684627179200154, guid: b50f5466dc8b66441a57e529c581b122,
         type: 3}
@@ -174,26 +234,53 @@ MonoBehaviour:
     priority: 3
   - abilityType: 1
     priority: 1
---- !u!136 &346759952605145599
-CapsuleCollider:
+--- !u!114 &9023664753930305705
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2695596864334656757}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.9
-  m_Height: 3
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.5, z: -0.22}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11c7c5bcc089d6e48afe1a4c9dd2b7b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatAmplitude: 0.01
+  floatSpeed: 1
+--- !u!95 &1049418767023697549
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2695596864334656757}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4188301139384286469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2695596864334656757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee13576f6645724459eea7286cbed2dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 4183308335039930855, guid: 4a543bc1db7cf0b45ac217af2e87dba3,
+    type: 3}
