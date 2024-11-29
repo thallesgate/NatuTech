@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public enum StatusEffect
@@ -19,6 +20,7 @@ public abstract class EnemyBase : MonoBehaviour
     public int enemyHealth = 100;
     protected GameObject targetTree;
 
+    // Referência ao ThrazEngine
     public ThrazEngine thrazEngine;
     public ThrazEngine.SummonableEnemy summonableEnemyType;
 
@@ -26,11 +28,31 @@ public abstract class EnemyBase : MonoBehaviour
     protected StatusEffect currentEffect = StatusEffect.None;
     protected int effectTurnsRemaining = 0;
 
+    // Efeito de queimadura
+    public GameObject fireEffectPrefab; // Prefab do efeito de fogo
+    private GameObject activeFireEffect; // Instância do efeito de fogo
+
+    // Efeito de atordoamento
+    private Renderer[] enemyRenderers;      // Array de Renderers do inimigo
+    private Color[] originalColors;         // Array de cores originais
+    private bool isStunned = false;         // Flag para verificar se está atordoado
+
     public void Start()
     {
         if (thrazEngine == null)
         {
             thrazEngine = FindObjectOfType<ThrazEngine>();
+        }
+
+        // Inicializa os Renderers e armazena as cores originais
+        enemyRenderers = GetComponentsInChildren<Renderer>();
+        originalColors = new Color[enemyRenderers.Length];
+
+        for (int i = 0; i < enemyRenderers.Length; i++)
+        {
+            // Cria uma instância do material para evitar alterar materiais compartilhados
+            enemyRenderers[i].material = new Material(enemyRenderers[i].material);
+            originalColors[i] = enemyRenderers[i].material.color;
         }
     }
 
@@ -52,20 +74,19 @@ public abstract class EnemyBase : MonoBehaviour
             effectTurnsRemaining--;
             if (effectTurnsRemaining == 0)
             {
-                currentEffect = StatusEffect.None;
-                Debug.Log(gameObject.name + " não está mais afetado por nenhum efeito.");
+                ClearStatusEffect();
             }
         }
 
         // Se o inimigo estiver atordoado, não faz nada neste turno
-        if (currentEffect == StatusEffect.Stunned)
+        if (isStunned)
         {
             Debug.Log(gameObject.name + " está atordoado e perde o turno.");
             return;
         }
 
-        // Implementação do comportamento padrão do inimigo
-        // (Mover-se em direção à árvore, atacar, etc.)
+        // Lógica padrão de movimento e ataque do inimigo
+        // (Implementar conforme a lógica específica do seu inimigo)
     }
 
     protected GameObject FindClosestTree(List<GameObject> trees)
@@ -102,9 +123,38 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void ApplyStatusEffect(StatusEffect effect, int duration)
     {
+        Debug.Log(gameObject.name + " está agora sob o efeito: " + effect + " por " + duration + " turnos.");
+
+        // Se já estiver sob o mesmo efeito, reinicia a duração
+        if (currentEffect == effect)
+        {
+            effectTurnsRemaining = duration;
+            return;
+        }
+
+        // Se um efeito diferente está ativo, limpa o efeito anterior
+        if (currentEffect != StatusEffect.None)
+        {
+            ClearStatusEffect();
+        }
+
         currentEffect = effect;
         effectTurnsRemaining = duration;
-        Debug.Log(gameObject.name + " está agora sob o efeito: " + effect + " por " + duration + " turnos.");
+
+        switch (effect)
+        {
+            case StatusEffect.Burning:
+                // Inicia o efeito de queimadura
+                StartBurningEffect();
+                break;
+
+            case StatusEffect.Stunned:
+                // Inicia o efeito de atordoamento
+                StartStunnedEffect();
+                break;
+
+                // Adicione outros casos para diferentes efeitos de status, se necessário
+        }
     }
 
     protected void ApplyCurrentEffect()
@@ -112,27 +162,91 @@ public abstract class EnemyBase : MonoBehaviour
         switch (currentEffect)
         {
             case StatusEffect.Burning:
-                ApplyBurningEffect();
+                // O dano é aplicado no início de cada turno
+                ApplyBurningDamage();
                 break;
-            case StatusEffect.Slowed:
-                // A redução de velocidade pode ser aplicada aqui
-                break;
+
             case StatusEffect.Stunned:
-                // O atordoamento é tratado no StartTurn
+                // O atordoamento é tratado pela flag isStunned
                 break;
-            case StatusEffect.Knockback:
-                ApplyKnockbackEffect();
-                break;
+
+            // Adicione outros casos para diferentes efeitos de status, se necessário
+
             default:
                 break;
         }
     }
 
-    protected void ApplyBurningEffect()
+    // Métodos para o efeito de queimadura
+    private void StartBurningEffect()
     {
-        int burnDamage = 3; // Dano causado a cada turno (ajuste conforme necessário)
+        // Instancia o efeito de fogo se ainda não estiver ativo
+        if (fireEffectPrefab != null && activeFireEffect == null)
+        {
+            activeFireEffect = Instantiate(fireEffectPrefab, transform.position, Quaternion.identity, transform);
+            // Ajusta a posição do efeito, se necessário
+            activeFireEffect.transform.localPosition = Vector3.zero;
+        }
+    }
+
+    private void ApplyBurningDamage()
+    {
+        int burnDamage = 5; // Dano causado a cada turno
         TakeDamage(burnDamage);
         Debug.Log(gameObject.name + " sofre " + burnDamage + " de dano devido ao efeito de queimadura.");
+    }
+
+    // Métodos para o efeito de atordoamento
+    private void StartStunnedEffect()
+    {
+        if (!isStunned)
+        {
+            isStunned = true;
+
+            // Altera a cor de todos os Renderers do inimigo para marrom
+            if (enemyRenderers != null)
+            {
+                foreach (var renderer in enemyRenderers)
+                {
+                    renderer.material.color = new Color(0.6f, 0.3f, 0f); // Cor marrom
+                }
+            }
+        }
+    }
+
+    // Método para limpar o efeito de status atual
+    private void ClearStatusEffect()
+    {
+        Debug.Log(gameObject.name + " não está mais afetado por nenhum efeito.");
+
+        switch (currentEffect)
+        {
+            case StatusEffect.Burning:
+                // Remove o efeito de fogo
+                if (activeFireEffect != null)
+                {
+                    Destroy(activeFireEffect);
+                    activeFireEffect = null;
+                }
+                break;
+
+            case StatusEffect.Stunned:
+                // Reverte as cores originais
+                if (enemyRenderers != null && originalColors != null)
+                {
+                    for (int i = 0; i < enemyRenderers.Length; i++)
+                    {
+                        enemyRenderers[i].material.color = originalColors[i];
+                    }
+                }
+                isStunned = false;
+                break;
+
+                // Adicione outros casos para limpar efeitos adicionais, se necessário
+        }
+
+        currentEffect = StatusEffect.None;
+        effectTurnsRemaining = 0;
     }
 
     protected void ApplyKnockbackEffect()
@@ -171,6 +285,9 @@ public abstract class EnemyBase : MonoBehaviour
         {
             thrazEngine.OnEnemyDestroyed(summonableEnemyType);
         }
+
+        // Remove quaisquer efeitos ativos antes de destruir o inimigo
+        ClearStatusEffect();
 
         Destroy(gameObject);
     }

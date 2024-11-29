@@ -1206,72 +1206,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2147379509}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1957824967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1957824965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63355d6e1ff877a4f85ad20e5dcc9ff7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  isInvincible: 0
-  protectionDroneConfig:
-    enabled: 1
-    dronePrefab: {fileID: 9209161420227972244, guid: 0421f595c72f88149a2dd83bbf577c18,
-      type: 3}
-    numberOfDrones: 3
-    dronesToSummonPerTurn: 1
-    droneCooldown: 3
-    droneMinimumRound: 1
-  toxicSmokeConfig:
-    enabled: 0
-    smokePrefab: {fileID: 319560972021929896, guid: 39b0fd763f898ed41822d5f2e5969a57,
-      type: 3}
-    mapArea: {fileID: 984845043}
-    toxicSmokeCooldown: 2
-    toxicSmokeMinimumRound: 0
-  activeSmoke: {fileID: 0}
-  summonableEnemiesConfig:
-    enabled: 1
-    summonableEnemies:
-    - enemyPrefab: {fileID: 6172684627179200154, guid: b50f5466dc8b66441a57e529c581b122,
-        type: 3}
-      currentCount: 0
-      enemySpawnCount: 1
-      enemySpawnLimit: 3
-      enemySpawnCooldown: 2
-      turnsSinceLastSummon: 0
-      enemySpawnMinimumRound: 0
-  gridManager: {fileID: 1674360579}
-  turnManager: {fileID: 2122085386}
-  healthText: {fileID: 0}
-  healthBar: {fileID: 0}
-  abilitiesConfig:
-  - abilityType: 0
-    priority: 2
-  - abilityType: 2
-    priority: 3
-  - abilityType: 1
-    priority: 1
---- !u!114 &1957824970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1957824965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11c7c5bcc089d6e48afe1a4c9dd2b7b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floatAmplitude: 0.01
-  floatSpeed: 1
 --- !u!114 &1957824975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2197,6 +2131,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2695744291372689698, guid: 47711bb5f30846e499cb0543f84d2609,
+        type: 3}
+      propertyPath: createParticlePrefab
+      value: 
+      objectReference: {fileID: 3826420434364979677, guid: a9ab61279125bd349979b3f9a42f0d5e,
+        type: 3}
+    - target: {fileID: 2695744291372689698, guid: 47711bb5f30846e499cb0543f84d2609,
+        type: 3}
+      propertyPath: destroyParticlePrefab
+      value: 
+      objectReference: {fileID: 4183308335039930855, guid: 4a543bc1db7cf0b45ac217af2e87dba3,
+        type: 3}
     - target: {fileID: 3771389810144514204, guid: 47711bb5f30846e499cb0543f84d2609,
         type: 3}
       propertyPath: m_Enabled
@@ -2273,6 +2219,26 @@ PrefabInstance:
       propertyPath: turnManager
       value: 
       objectReference: {fileID: 2122085386}
+    - target: {fileID: 7167866260836216854, guid: 47711bb5f30846e499cb0543f84d2609,
+        type: 3}
+      propertyPath: isInvincible
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7167866260836216854, guid: 47711bb5f30846e499cb0543f84d2609,
+        type: 3}
+      propertyPath: toxicSmokeConfig.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7167866260836216854, guid: 47711bb5f30846e499cb0543f84d2609,
+        type: 3}
+      propertyPath: toxicSmokeConfig.mapArea
+      value: 
+      objectReference: {fileID: 984845043}
+    - target: {fileID: 7167866260836216854, guid: 47711bb5f30846e499cb0543f84d2609,
+        type: 3}
+      propertyPath: summonableEnemiesConfig.enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7439705479670605225, guid: 47711bb5f30846e499cb0543f84d2609,
         type: 3}
       propertyPath: m_Layer
@@ -2292,7 +2258,7 @@ PrefabInstance:
         type: 3}
       propertyPath: thrazEngine
       value: 
-      objectReference: {fileID: 1957824967}
+      objectReference: {fileID: 0}
     - target: {fileID: 8321437450490557573, guid: 47711bb5f30846e499cb0543f84d2609,
         type: 3}
       propertyPath: m_Layer
@@ -2303,14 +2269,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4187872134296608978, guid: 47711bb5f30846e499cb0543f84d2609,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1957824967}
-    - targetCorrespondingSourceObject: {fileID: 4187872134296608978, guid: 47711bb5f30846e499cb0543f84d2609,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1957824970}
     - targetCorrespondingSourceObject: {fileID: 4187872134296608978, guid: 47711bb5f30846e499cb0543f84d2609,
         type: 3}
       insertIndex: -1
@@ -2600,7 +2558,22 @@ PrefabInstance:
     - target: {fileID: 8659662795037624185, guid: 90a4327b1a2e5fd45938eb67b0750311,
         type: 3}
       propertyPath: orbSettingsList.Array.data[0].statusEffect
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8659662795037624185, guid: 90a4327b1a2e5fd45938eb67b0750311,
+        type: 3}
+      propertyPath: orbSettingsList.Array.data[2].statusEffect
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8659662795037624185, guid: 90a4327b1a2e5fd45938eb67b0750311,
+        type: 3}
+      propertyPath: orbSettingsList.Array.data[0].effectDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8659662795037624185, guid: 90a4327b1a2e5fd45938eb67b0750311,
+        type: 3}
+      propertyPath: orbSettingsList.Array.data[2].effectDuration
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -129,6 +129,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 344424759731719302}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee9024b9ea652f94a841c05cd371a484,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1115017420665486107}
   m_SourcePrefab: {fileID: 100100000, guid: ee9024b9ea652f94a841c05cd371a484, type: 3}
 --- !u!1 &6172684627179200154 stripped
 GameObject:
@@ -159,6 +163,8 @@ MonoBehaviour:
     enemySpawnCooldown: 2
     turnsSinceLastSummon: 0
     enemySpawnMinimumRound: 1
+  fireEffectPrefab: {fileID: 6891721172336665158, guid: 765202e5d52c91145806ebfa3a8720e8,
+    type: 3}
 --- !u!65 &344424759731719302
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -178,8 +184,24 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 4}
+  m_Size: {x: 2.5, y: 2.5, z: 4.5}
   m_Center: {x: 0, y: 1.3, z: -0.7}
+--- !u!114 &1115017420665486107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6172684627179200154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee13576f6645724459eea7286cbed2dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  createParticlePrefab: {fileID: 3826420434364979677, guid: a9ab61279125bd349979b3f9a42f0d5e,
+    type: 3}
+  destroyParticlePrefab: {fileID: 4183308335039930855, guid: 4a543bc1db7cf0b45ac217af2e87dba3,
+    type: 3}
 --- !u!4 &6837052860878259232 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ee9024b9ea652f94a841c05cd371a484,
