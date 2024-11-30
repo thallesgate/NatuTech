@@ -225,6 +225,7 @@ public class ThrazEngine : MonoBehaviour
             float angle = Random.Range(0f, 360f);
 
             GameObject droneObject = Instantiate(protectionDroneConfig.dronePrefab, transform.position, Quaternion.identity);
+            droneObject.transform.SetParent(gameObject.transform);
 
             ProtectionDrone drone = droneObject.GetComponent<ProtectionDrone>();
             if (drone != null)

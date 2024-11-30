@@ -264,11 +264,19 @@ public class OrbManager : MonoBehaviour
 
     private void DrawTrajectory(Vector3 start, Vector3 end, string tag, Color color)
     {
+        // Maximum allowed quads to limit
+        const int maxTrajectoryPoints = 20;
+
+        // Calculate the total curve length
         var trajectoryLength = CalculateCurveLength(start, (start + end) / 2 + Vector3.up * arcHeight, end);
 
-        int trajectoryPoints = (int)(trajectoryLength / trajectoryPointsSpacing);
+        // Determine the number of points based on spacing or max limit
+        int trajectoryPoints = Mathf.Min(maxTrajectoryPoints, (int)(trajectoryLength / trajectoryPointsSpacing));
         if (trajectoryPoints <= 1)
             return;
+
+        // Adjust spacing to evenly distribute the quads
+        float adjustedSpacing = trajectoryLength / trajectoryPoints;
 
         ClearTrajectoryPoints(tag);
 
@@ -294,6 +302,7 @@ public class OrbManager : MonoBehaviour
             quad.transform.rotation = rotation;
         }
     }
+
 
     private float CalculateCurveLength(Vector3 start, Vector3 control, Vector3 end)
     {

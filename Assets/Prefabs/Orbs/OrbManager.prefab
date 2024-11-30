@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 342587265679222356}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.3280044, y: -2.2379746, z: -7.700537}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,27 +44,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9916f0188c1a47348ba513ad86a48a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridManager: {fileID: 0}
   orbSettingsList:
   - orbType: 0
     enabled: 1
     orbPrefab: {fileID: 4527907997627854323, guid: 1553c57c52dc2db45a27e71f1f984661,
       type: 3}
     damage: 10
+    statusEffect: 0
+    effectDuration: 0
   - orbType: 1
     enabled: 1
     orbPrefab: {fileID: 4527907997627854323, guid: 5870c67e60834924a89748ce7a563ec8,
       type: 3}
     damage: 10
+    statusEffect: 0
+    effectDuration: 0
   - orbType: 2
     enabled: 1
     orbPrefab: {fileID: 4527907997627854323, guid: 1ad26a0aaa1892945a236f5bba342430,
       type: 3}
     damage: 10
+    statusEffect: 0
+    effectDuration: 0
   - orbType: 3
     enabled: 1
     orbPrefab: {fileID: 4527907997627854323, guid: 1b2eb9c429523af4d89417208961d80b,
       type: 3}
     damage: 10
+    statusEffect: 0
+    effectDuration: 0
   placementIndicator: {fileID: 0}
   trajectoryPointPrefab: {fileID: 3778061657444160832, guid: 273b263737d028f44bd34a3d3609c3a5,
     type: 3}

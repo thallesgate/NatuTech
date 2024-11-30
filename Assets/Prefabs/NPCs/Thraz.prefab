@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8824595596479753316, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: CotoveloD
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -78,11 +83,81 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8597977848336004441, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0088001
+      objectReference: {fileID: 0}
+    - target: {fileID: -8597977848336004441, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0088
+      objectReference: {fileID: 0}
+    - target: {fileID: -8597977848336004441, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0088
+      objectReference: {fileID: 0}
+    - target: {fileID: -8218546655157958286, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8b186c6e06849974199af1b6073cdb07, type: 2}
+    - target: {fileID: -7116571373702577254, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: Pescoco
+      objectReference: {fileID: 0}
+    - target: {fileID: -6927613216735686446, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: Rabo
+      objectReference: {fileID: 0}
+    - target: {fileID: -6377441368062583524, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: PEITOD
+      objectReference: {fileID: 0}
+    - target: {fileID: -5953236495053525637, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: Dedo1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4329732340044684735, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: LadoE
+      objectReference: {fileID: 0}
+    - target: {fileID: -4323444086609437715, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: Nariz
+      objectReference: {fileID: 0}
     - target: {fileID: -3796974353474561415, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 8b186c6e06849974199af1b6073cdb07, type: 2}
+    - target: {fileID: -2074766401394688374, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: OmbroE
+      objectReference: {fileID: 0}
+    - target: {fileID: -1531330183800415733, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: CotoveloE
+      objectReference: {fileID: 0}
+    - target: {fileID: -648718554211397702, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: Dedo2
+      objectReference: {fileID: 0}
+    - target: {fileID: 581478473195350879, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: Dedo3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
         type: 3}
       propertyPath: m_Name
@@ -97,6 +172,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3090493850368779397, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: Cabeca
+      objectReference: {fileID: 0}
+    - target: {fileID: 3224434642793957523, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: OlhoD
+      objectReference: {fileID: 0}
+    - target: {fileID: 3836430970535692482, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: Boca
+      objectReference: {fileID: 0}
+    - target: {fileID: 3966073302513389975, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: OmbroD
+      objectReference: {fileID: 0}
+    - target: {fileID: 3968329896460801412, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: PEITOE
+      objectReference: {fileID: 0}
+    - target: {fileID: 4396179672921771526, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: Dedo3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5716778830851298740, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: Dedo1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171452084480978747, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: OlhoE
+      objectReference: {fileID: 0}
+    - target: {fileID: 6673728158827694867, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: Dedo2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8102856935791601147, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: LadoD
       objectReference: {fileID: 0}
     - target: {fileID: 8680384226489637267, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
         type: 3}
@@ -221,7 +346,7 @@ MonoBehaviour:
       enemySpawnCount: 1
       enemySpawnLimit: 3
       enemySpawnCooldown: 2
-      turnsSinceLastSummon: 0
+      lastSummonTurn: -1
       enemySpawnMinimumRound: 0
   gridManager: {fileID: 0}
   turnManager: {fileID: 0}
@@ -258,7 +383,7 @@ Animator:
   m_GameObject: {fileID: 2695596864334656757}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9d7e4c1da854d4b4680b499fc4a56865, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -282,5 +407,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee13576f6645724459eea7286cbed2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particlePrefab: {fileID: 4183308335039930855, guid: 4a543bc1db7cf0b45ac217af2e87dba3,
-    type: 3}
+  createParticlePrefab: {fileID: 0}
+  destroyParticlePrefab: {fileID: 0}
