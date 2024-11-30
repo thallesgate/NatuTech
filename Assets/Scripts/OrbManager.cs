@@ -71,17 +71,17 @@ public class OrbManager : MonoBehaviour
 
         if (planeManager == null)
         {
-            planeManager = FindObjectOfType<ARPlaneManager>();
+            planeManager = FindFirstObjectByType<ARPlaneManager>();
         }
 
         if (raycastManager == null)
         {
-            raycastManager = FindObjectOfType<ARRaycastManager>();
+            raycastManager = FindFirstObjectByType<ARRaycastManager>();
         }
 
         if (gridManager == null)
         {
-            gridManager = FindObjectOfType<GridManager>();
+            gridManager = FindFirstObjectByType<GridManager>();
         }
     }
 

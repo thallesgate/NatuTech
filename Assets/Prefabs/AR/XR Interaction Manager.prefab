@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2480030373572747116}
   - component: {fileID: 6797049405678971441}
-  - component: {fileID: 7380141067802207341}
   m_Layer: 0
   m_Name: XR Interaction Manager
   m_TagString: Untagged
@@ -47,15 +46,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
---- !u!114 &7380141067802207341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1116650966286821575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d502d23a41ceb3045abdf9b69ccf95c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

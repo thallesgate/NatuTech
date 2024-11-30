@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class AttachParticleSystemToCamera : MonoBehaviour
 {
@@ -16,11 +17,13 @@ public class AttachParticleSystemToCamera : MonoBehaviour
 
         // Spawn the particle system as a child of the camera
         arCamera = FindFirstObjectByType<Camera>().gameObject;
-        spawnedParticleSystem = Instantiate(particlePrefab, arCamera.transform);
-
-        // Optional: Adjust the position of the particle system relative to the camera
-        spawnedParticleSystem.transform.localPosition = Vector3.zero;
-        spawnedParticleSystem.transform.localRotation = Quaternion.identity;
+        if(particlePrefab != null)
+        {
+            spawnedParticleSystem = Instantiate(particlePrefab, arCamera.transform);
+            // Optional: Adjust the position of the particle system relative to the camera
+            spawnedParticleSystem.transform.localPosition = Vector3.zero;
+            spawnedParticleSystem.transform.localRotation = Quaternion.identity;
+        }
     }
 
     void OnDestroy()
@@ -28,7 +31,9 @@ public class AttachParticleSystemToCamera : MonoBehaviour
         // Destroy the spawned particle system
         if (spawnedParticleSystem != null && deleteOnDestroy)
         {
-            Destroy(spawnedParticleSystem.gameObject);
+            spawnedParticleSystem.Stop();
+            Destroy(spawnedParticleSystem.gameObject, 5);
+
         }
     }
 }
