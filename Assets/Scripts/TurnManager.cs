@@ -179,10 +179,10 @@ public class TurnManager : MonoBehaviour
     IEnumerator WaitForPlayerAction()
     {
         // Exibe uma mensagem adicional no HUD
-        if (turnText != null)
-        {
-            turnText.text += " - Faça sua jogada";
-        }
+        //if (turnText != null)
+        //{
+        //    turnText.text += " - Faça sua jogada";
+        //}
 
         // Reseta a sinalização do fim do turno do jogador
         playerTurnEnded = false;

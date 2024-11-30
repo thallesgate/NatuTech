@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     public Button waterOrbButton;
     public Button earthOrbButton;
     public Button airOrbButton;
-
+    public GameObject prefabToSpawn;
     void Start()
     {
         // Adiciona os event listeners aos botões
@@ -127,6 +127,32 @@ public class UIManager : MonoBehaviour
         else
         {
             Debug.LogError("OrbManager não está atribuído no UIManager.");
+        }
+    }
+
+    public void OnQuitButtonClicked()
+    {
+        #if UNITY_EDITOR
+                Debug.Log("Game would quit if this were a built application.");
+        #else
+                // Quit the application
+                Application.Quit();
+        #endif
+    }
+    public void OnResetButtonClicked()
+    {
+        GameObject faseObject = GameObject.FindGameObjectWithTag("Fase");
+        if (faseObject != null)
+        {
+            Destroy(faseObject);
+            if (prefabToSpawn != null)
+            {
+                Instantiate(prefabToSpawn, Vector3.zero, Quaternion.identity);
+            }
+        }
+        else
+        {
+            Debug.Log("Fase not found man..");
         }
     }
 }
