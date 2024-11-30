@@ -254,7 +254,7 @@ public class TurnManager : MonoBehaviour
 
     void ApplySmokeDamageToTrees()
     {
-        int damage = 10; // Quantidade de dano causada pela fumaça
+        int damage = 5; // Quantidade de dano causada pela fumaça
 
         foreach (GameObject tree in trees)
         {
