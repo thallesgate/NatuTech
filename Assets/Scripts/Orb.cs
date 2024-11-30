@@ -81,7 +81,7 @@ public class Orb : MonoBehaviour
         onOrbFinished?.Invoke();
 
         // Destroi o orbe
-        Destroy(gameObject);
+        Destroy(gameObject,0.1f);
     }
 
     // Método chamado quando o orbe colide com outro objeto

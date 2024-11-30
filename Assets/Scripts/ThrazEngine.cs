@@ -9,6 +9,8 @@ public class ThrazEngine : MonoBehaviour
     private int currentHealth;
     public bool isInvincible = false;
 
+    private DamageIndicator damageIndicator;
+
     // Drones de Proteção
     [System.Serializable]
     public class ProtectionDroneConfig
@@ -17,27 +19,27 @@ public class ThrazEngine : MonoBehaviour
         public GameObject dronePrefab;
         public int numberOfDrones = 3;
         public int dronesToSummonPerTurn = 1;
-        public int droneCooldown = 3;
-        public int droneMinimumRound = 2;
+        public int droneCooldown = 2;
+        public int droneMinimumRound = 1;
     }
     public ProtectionDroneConfig protectionDroneConfig;
     private List<ProtectionDrone> activeDrones = new List<ProtectionDrone>();
-    private int turnsSinceLastDroneUse = 0;
+    private int lastDroneSummonTurn = -1;
 
     // Fumaça Tóxica
     [System.Serializable]
     public class ToxicSmokeConfig
     {
         public bool enabled = false;
-        public GameObject smokePrefab; // Referencie o ToxicSmokePrefab aqui
+        public GameObject smokePrefab;
         public GameObject mapArea;
-        public int toxicSmokeCooldown = 3;
-        public int toxicSmokeMinimumRound = 2;
+        public int toxicSmokeCooldown = 2;
+        public int toxicSmokeMinimumRound = 1;
     }
     public ToxicSmokeConfig toxicSmokeConfig;
     [HideInInspector]
     public GameObject activeSmoke;
-    private int turnsSinceLastSmoke = 0;
+    private int lastSmokeReleaseTurn = -1;
 
     // Invocar Inimigos
     [System.Serializable]
@@ -51,7 +53,6 @@ public class ThrazEngine : MonoBehaviour
     public GridManager gridManager;
     public TurnManager turnManager;
 
-    private bool isFirstTurn = true;
     private int currentRound = 0;
 
     public TextMeshProUGUI healthText;
@@ -78,8 +79,10 @@ public class ThrazEngine : MonoBehaviour
         currentHealth = maxHealth;
         UpdateHealthUI();
 
-        turnsSinceLastDroneUse = protectionDroneConfig.droneCooldown;
-        turnsSinceLastSmoke = toxicSmokeConfig.toxicSmokeCooldown;
+        damageIndicator = GetComponent<DamageIndicator>() ?? gameObject.AddComponent<DamageIndicator>();
+
+        lastDroneSummonTurn = -1;
+        lastSmokeReleaseTurn = -1;
 
         foreach (var enemy in summonableEnemiesConfig.summonableEnemies)
         {
@@ -89,8 +92,6 @@ public class ThrazEngine : MonoBehaviour
         UpdateCurrentCountsWithExistingEnemies();
 
         abilitiesConfig.Sort((a, b) => a.priority.CompareTo(b.priority));
-
-        StartTurn();
     }
 
     void UpdateCurrentCountsWithExistingEnemies()
@@ -125,41 +126,9 @@ public class ThrazEngine : MonoBehaviour
     {
         Debug.Log("ThrazEngine está agindo no turno " + currentRound);
 
-        if (!isFirstTurn)
-        {
-            UpdateCooldowns();
-        }
-
         ExecuteAbilities();
 
-        isFirstTurn = false;
         currentRound++;
-    }
-
-    void UpdateCooldowns()
-    {
-        if (turnsSinceLastDroneUse < protectionDroneConfig.droneCooldown)
-        {
-            turnsSinceLastDroneUse++;
-        }
-
-        if (turnsSinceLastSmoke < toxicSmokeConfig.toxicSmokeCooldown)
-        {
-            turnsSinceLastSmoke++;
-        }
-
-        UpdateEnemyCooldowns();
-    }
-
-    void UpdateEnemyCooldowns()
-    {
-        foreach (var enemy in summonableEnemiesConfig.summonableEnemies)
-        {
-            if (enemy.turnsSinceLastSummon < enemy.enemySpawnCooldown)
-            {
-                enemy.turnsSinceLastSummon++;
-            }
-        }
     }
 
     void ExecuteAbilities()
@@ -201,10 +170,10 @@ public class ThrazEngine : MonoBehaviour
         if (activeSmoke != null)
             return false;
 
-        if (turnsSinceLastSmoke < toxicSmokeConfig.toxicSmokeCooldown)
+        if (currentRound < toxicSmokeConfig.toxicSmokeMinimumRound)
             return false;
 
-        if (currentRound < toxicSmokeConfig.toxicSmokeMinimumRound)
+        if (lastSmokeReleaseTurn != -1 && currentRound < lastSmokeReleaseTurn + toxicSmokeConfig.toxicSmokeCooldown + 1)
             return false;
 
         return true;
@@ -212,23 +181,14 @@ public class ThrazEngine : MonoBehaviour
 
     void ReleaseToxicSmoke()
     {
-        // Instancia a fumaça sem rotação adicional
         activeSmoke = Instantiate(toxicSmokeConfig.smokePrefab, toxicSmokeConfig.mapArea.transform.position, Quaternion.identity);
         activeSmoke.transform.SetParent(toxicSmokeConfig.mapArea.transform, false);
-
-        // Ajusta a rotação local da fumaça
         activeSmoke.transform.localRotation = Quaternion.Euler(-90f, 0f, 0f);
-
-        // Reseta a posição local
         activeSmoke.transform.localPosition = Vector3.zero;
+        activeSmoke.transform.localScale = Vector3.one;
 
-        // Ajusta a escala local, se necessário
-        activeSmoke.transform.localScale = Vector3.one; // Ajuste conforme necessário
-
-        turnsSinceLastSmoke = 0;
         Debug.Log("Thraz liberou fumaça tóxica.");
     }
-
 
     public void RemoveToxicSmoke()
     {
@@ -236,6 +196,7 @@ public class ThrazEngine : MonoBehaviour
         {
             Destroy(activeSmoke);
             activeSmoke = null;
+            lastSmokeReleaseTurn = currentRound;
             Debug.Log("Toxic Smoke foi removida pelo orbe de Ar.");
         }
     }
@@ -243,10 +204,10 @@ public class ThrazEngine : MonoBehaviour
     // Drones de Proteção
     bool CanSummonProtectionDrones()
     {
-        if (turnsSinceLastDroneUse < protectionDroneConfig.droneCooldown)
+        if (currentRound < protectionDroneConfig.droneMinimumRound)
             return false;
 
-        if (currentRound < protectionDroneConfig.droneMinimumRound)
+        if (lastDroneSummonTurn != -1 && currentRound < lastDroneSummonTurn + protectionDroneConfig.droneCooldown + 1)
             return false;
 
         if (activeDrones.Count >= protectionDroneConfig.numberOfDrones)
@@ -277,7 +238,8 @@ public class ThrazEngine : MonoBehaviour
             }
         }
 
-        turnsSinceLastDroneUse = 0;
+        lastDroneSummonTurn = currentRound;
+
         Debug.Log("Thraz invocou drones de proteção.");
     }
 
@@ -305,13 +267,13 @@ public class ThrazEngine : MonoBehaviour
         public int enemySpawnLimit = 3;
         public int enemySpawnCooldown = 2;
         [HideInInspector]
-        public int turnsSinceLastSummon = 0;
-        public int enemySpawnMinimumRound = 1;
+        public int lastSummonTurn = -1;
+        public int enemySpawnMinimumRound = 0;
 
         public void Initialize()
         {
             currentCount = 0;
-            turnsSinceLastSummon = enemySpawnCooldown;
+            lastSummonTurn = -1;
         }
     }
 
@@ -336,7 +298,7 @@ public class ThrazEngine : MonoBehaviour
                 {
                     SummonEnemy(enemy);
                 }
-                enemy.turnsSinceLastSummon = 0;
+                enemy.lastSummonTurn = currentRound;
                 break;
             }
         }
@@ -347,10 +309,10 @@ public class ThrazEngine : MonoBehaviour
         if (enemy.currentCount >= enemy.enemySpawnLimit)
             return false;
 
-        if (enemy.turnsSinceLastSummon < enemy.enemySpawnCooldown)
+        if (currentRound < enemy.enemySpawnMinimumRound)
             return false;
 
-        if (currentRound < enemy.enemySpawnMinimumRound)
+        if (enemy.lastSummonTurn != -1 && currentRound < enemy.lastSummonTurn + enemy.enemySpawnCooldown + 1)
             return false;
 
         return true;
@@ -370,6 +332,8 @@ public class ThrazEngine : MonoBehaviour
             enemyEngine.InitializeGrid(gridManager.grid, gridManager.cellSize);
             enemyEngine.thrazEngine = this;
             enemyEngine.summonableEnemyType = enemyToSummon;
+
+            gridManager.enemies.Add(enemyEngine);
         }
         else
         {
@@ -403,7 +367,6 @@ public class ThrazEngine : MonoBehaviour
         if (protectionDroneConfig.enabled && activeDrones.Count > 0)
         {
             Debug.Log("Drone intercepta o dano.");
-            // O drone intercepta o dano
             ProtectionDrone drone = activeDrones[0];
             drone.TakeDamage(damage);
             return;
@@ -411,6 +374,11 @@ public class ThrazEngine : MonoBehaviour
 
         currentHealth -= damage;
         Debug.Log("Thraz recebeu " + damage + " de dano. Vida restante: " + currentHealth);
+
+        if (damageIndicator != null)
+        {
+            damageIndicator.FlashDamage();
+        }
 
         UpdateHealthUI();
 

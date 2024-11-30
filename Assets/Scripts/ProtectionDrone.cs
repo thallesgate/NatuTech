@@ -6,11 +6,11 @@ public class ProtectionDrone : MonoBehaviour
     private int currentHealth;
     private ThrazEngine thrazEngine;
 
-    // VOO do DRONE
-    public float raioOrbita = 0.3f; // Distância do drone ao Thraz
-    public float alturaVoo = 1;
-    public float VelocidadeOrbita = 50f;   // Velocidade de rotação em graus por segundo
-    private float angle;              // Ângulo atual do drone em relação ao Thraz
+    // Parâmetros do voo do drone
+    public float raioOrbita = 0.3f;    // Distância do drone ao Thraz
+    public float alturaVoo = 1f;       // Altura do voo do drone
+    public float VelocidadeOrbita = 50f; // Velocidade de rotação em graus por segundo
+    private float angle;               // Ângulo atual do drone em relação ao Thraz
 
     public void Initialize(ThrazEngine thraz, float initialAngle)
     {
@@ -26,7 +26,7 @@ public class ProtectionDrone : MonoBehaviour
         if (thrazEngine != null)
         {
             angle += VelocidadeOrbita * Time.deltaTime;
-            angle %= 360;
+            angle %= 360f;
 
             UpdatePosition();
         }
@@ -35,8 +35,21 @@ public class ProtectionDrone : MonoBehaviour
     void UpdatePosition()
     {
         float rad = Mathf.Deg2Rad * angle;
-        Vector3 offset = new Vector3(Mathf.Cos(rad), alturaVoo, Mathf.Sin(rad)) * raioOrbita;
-        transform.position = thrazEngine.transform.position + offset;
+
+        // Calcula a posição do drone
+        Vector3 offset = new Vector3(Mathf.Cos(rad), 0f, Mathf.Sin(rad)) * raioOrbita;
+        Vector3 targetPosition = thrazEngine.transform.position + offset + Vector3.up * alturaVoo;
+        transform.position = targetPosition;
+
+        // Calcula a direção do movimento (derivada da posição em relação ao ângulo)
+        Vector3 direction = new Vector3(-Mathf.Sin(rad), 0f, Mathf.Cos(rad));
+
+        // Define a rotação do drone para olhar na direção do movimento
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = targetRotation;
+        }
     }
 
     public void TakeDamage(int damage)

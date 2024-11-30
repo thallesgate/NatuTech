@@ -24,7 +24,7 @@ public class TurnManager : MonoBehaviour
     public TextMeshProUGUI turnText;
     public TextMeshProUGUI gameOverText; // Texto para exibir a mensagem de fim de jogo
 
-    // Adicionamos o contador de rodadas
+    // Contador de rodadas
     private int roundCounter = 0;
 
     // Propriedade pública para acessar o roundCounter
@@ -135,14 +135,20 @@ public class TurnManager : MonoBehaviour
     {
         Debug.Log("Turno dos inimigos");
 
-        foreach (EnemyBase enemy in enemies)
+        // Usando um loop 'for' inverso para evitar modificar a lista durante a iteração
+        for (int i = enemies.Count - 1; i >= 0; i--)
         {
-            if (enemy != null)
+            EnemyBase enemy = enemies[i];
+            if (enemy != null && !enemy.IsDestroyed)
             {
                 enemy.StartTurn(trees);
             }
+
             yield return new WaitForSeconds(0.5f);
         }
+
+        // Remover inimigos destruídos após a iteração
+        enemies.RemoveAll(enemy => enemy == null || enemy.IsDestroyed);
     }
 
     IEnumerator PlayerTurn()
@@ -219,7 +225,8 @@ public class TurnManager : MonoBehaviour
 
     public void RemoveEnemy(EnemyBase enemy)
     {
-        enemies.Remove(enemy);
+        // Não removemos o inimigo aqui para evitar modificar a lista durante a iteração
+        // A remoção é feita após a iteração no método EnemyTurn()
     }
 
     public void RemoveTree(GameObject tree)

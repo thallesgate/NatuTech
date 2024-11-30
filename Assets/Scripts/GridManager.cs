@@ -7,19 +7,15 @@ public class GridManager : MonoBehaviour
     public int gridSizeX = 10;
     public int gridSizeY = 10;
     public GameObject treePrefab;
-    public GameObject housePrefab;
-    public GameObject enemyPrefab;
     public TurnManager turnManager;
     public bool showGridLines = true;
 
     public List<EnemyBase> enemies = new List<EnemyBase>();
 
     [SerializeField]
-    public int qtd_casa;
-    [SerializeField]
     public int qtd_arvore;
-    [SerializeField]
-    public int qtd_inimigos;
+
+    public int treeHealth = 100; // Novo parâmetro para a vida das árvores
 
     public Vector3[,] grid { get; private set; }
     public float cellSize { get; private set; }
@@ -39,7 +35,7 @@ public class GridManager : MonoBehaviour
         }
 
         CreateGrid();
-        PlaceObjectsOnGrid(qtd_arvore, qtd_inimigos);
+        PlaceTreesOnGrid(qtd_arvore);
     }
 
     void CreateGrid()
@@ -66,7 +62,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    void PlaceObjectsOnGrid(int treeCount, int enemyCount)
+    void PlaceTreesOnGrid(int treeCount)
     {
         if (treePrefab == null)
         {
@@ -74,13 +70,6 @@ public class GridManager : MonoBehaviour
             return;
         }
 
-        if (enemyPrefab == null)
-        {
-            Debug.LogError("enemyPrefab não está atribuído!");
-            return;
-        }
-
-        // Coloca árvores
         for (int i = 0; i < treeCount; i++)
         {
             Vector3 position = GetRandomGridPosition();
@@ -89,38 +78,22 @@ public class GridManager : MonoBehaviour
             {
                 Debug.LogError("Instância de árvore falhou!");
             }
-            //tree.transform.localScale = Vector3.one * 1.5f; // Define a escala para 5
-            tree.transform.localScale = Vector3.one * 0.6f; // Define a escala para 5
-            tree.transform.SetParent(mapArea.transform);
-        }
-
-        // Coloca inimigos
-        for (int i = 0; i < enemyCount; i++)
-        {
-            Vector3 position = GetRandomGridPosition();
-
-            GameObject enemyPrefabToInstantiate = DecideEnemyPrefab();
-            GameObject enemy = Instantiate(enemyPrefabToInstantiate, position, Quaternion.identity);
-            enemy.transform.SetParent(mapArea.transform);
-            enemy.transform.localScale = Vector3.one * 1f; // Escala padrão
-
-            EnemyBase enemyEngine = enemy.GetComponent<EnemyBase>();
-            if (enemyEngine != null)
-            {
-                enemyEngine.InitializeGrid(grid, cellSize);
-                enemies.Add(enemyEngine);
-
-                // Log para depuração
-                Vector2Int enemyGridIndex = GetGridIndexFromPosition(enemy.transform.position);
-                Debug.Log("Inimigo criado: " + enemy.name + ", Posição: " + enemy.transform.position + ", GridIndex: " + enemyGridIndex);
-            }
             else
             {
-                Debug.LogError("EnemyBase não foi encontrado no prefab!");
+                // Define a vida da árvore
+                TreeEngine treeEngine = tree.GetComponent<TreeEngine>();
+                if (treeEngine != null)
+                {
+                    treeEngine.Initialize(treeHealth);
+                }
+                else
+                {
+                    Debug.LogError("TreeEngine não encontrado no prefab da árvore!");
+                }
             }
+            tree.transform.SetParent(mapArea.transform);
         }
     }
-
 
     public List<EnemyBase> GetEnemiesAtGridIndex(Vector2Int gridIndex)
     {
@@ -153,12 +126,6 @@ public class GridManager : MonoBehaviour
         y = Mathf.Clamp(y, 0, gridSizeY - 1);
 
         return new Vector2Int(x, y);
-    }
-
-    GameObject DecideEnemyPrefab()
-    {
-        GameObject retroescavadeiraPrefab = enemyPrefab;
-        return retroescavadeiraPrefab;
     }
 
     public Vector3 GetRandomGridPosition()

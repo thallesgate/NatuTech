@@ -3,16 +3,21 @@ using UnityEngine;
 public class ParticlesOnDestroy : MonoBehaviour
 {
     public ParticleSystem createParticlePrefab; // Assign your ParticlePrefab in the inspector
+    private GameObject createParticleEffect;
 
     public ParticleSystem destroyParticlePrefab; // Assign your ParticlePrefab in the inspector
+    private GameObject destroyParticleEffect;
 
     private void Start()
     {
         // Check if the application is not quitting to avoid errors during shutdown
         if (Application.isPlaying)
         {
+
+
             // Instantiate the particle system at the object's position and rotation
             Instantiate(createParticlePrefab, transform.position, transform.rotation);
+
             Debug.Log("Surgi!");
         }
     }
@@ -24,7 +29,7 @@ public class ParticlesOnDestroy : MonoBehaviour
         {
             // Instantiate the particle system at the object's position and rotation
             Instantiate(destroyParticlePrefab, transform.position, transform.rotation);
-            Debug.Log("AI");
+            //Debug.Log("AI");
          
         }
     }

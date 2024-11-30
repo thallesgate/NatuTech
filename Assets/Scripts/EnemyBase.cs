@@ -20,6 +20,8 @@ public abstract class EnemyBase : MonoBehaviour
     public int enemyHealth = 100;
     protected GameObject targetTree;
 
+    private DamageIndicator damageIndicator;
+
     // Referência ao ThrazEngine
     public ThrazEngine thrazEngine;
     public ThrazEngine.SummonableEnemy summonableEnemyType;
@@ -37,8 +39,15 @@ public abstract class EnemyBase : MonoBehaviour
     private Color[] originalColors;         // Array de cores originais
     private bool isStunned = false;         // Flag para verificar se está atordoado
 
+    public bool IsDestroyed { get; private set; } = false;
+
     public void Start()
     {
+        if (damageIndicator == null)
+        {
+            damageIndicator = gameObject.AddComponent<DamageIndicator>();
+        }
+
         if (thrazEngine == null)
         {
             thrazEngine = FindObjectOfType<ThrazEngine>();
@@ -54,6 +63,25 @@ public abstract class EnemyBase : MonoBehaviour
             enemyRenderers[i].material = new Material(enemyRenderers[i].material);
             originalColors[i] = enemyRenderers[i].material.color;
         }
+    }
+
+    protected virtual void DestroyEnemy()
+    {
+        Debug.Log(gameObject.name + " foi destruído!");
+
+        IsDestroyed = true;
+
+        // Usando a referência ao ThrazEngine
+        if (thrazEngine != null && summonableEnemyType != null)
+        {
+            thrazEngine.OnEnemyDestroyed(summonableEnemyType);
+        }
+
+        // Remove quaisquer efeitos ativos antes de destruir o inimigo
+        ClearStatusEffect();
+
+        // Destrói o GameObject após um pequeno delay para garantir que todas as operações pendentes sejam concluídas
+        Destroy(gameObject, 0.1f);
     }
 
     public virtual void InitializeGrid(Vector3[,] grid, float cellSize)
@@ -114,6 +142,12 @@ public abstract class EnemyBase : MonoBehaviour
     {
         enemyHealth -= damageAmount;
         Debug.Log(gameObject.name + " tomou " + damageAmount + " de dano. Vida restante: " + enemyHealth);
+
+        // Aciona o efeito de piscar
+        if (damageIndicator != null)
+        {
+            damageIndicator.FlashDamage();
+        }
 
         if (enemyHealth <= 0)
         {
@@ -186,12 +220,15 @@ public abstract class EnemyBase : MonoBehaviour
             activeFireEffect = Instantiate(fireEffectPrefab, transform.position, Quaternion.identity, transform);
             // Ajusta a posição do efeito, se necessário
             activeFireEffect.transform.localPosition = Vector3.zero;
+
+            // Ajusta a rotação no eixo X para -90 graus
+            activeFireEffect.transform.localEulerAngles = new Vector3(-90f, 0f, 0f);
         }
     }
 
     private void ApplyBurningDamage()
     {
-        int burnDamage = 5; // Dano causado a cada turno
+        int burnDamage = 10; // Dano causado a cada turno
         TakeDamage(burnDamage);
         Debug.Log(gameObject.name + " sofre " + burnDamage + " de dano devido ao efeito de queimadura.");
     }
@@ -268,27 +305,5 @@ public abstract class EnemyBase : MonoBehaviour
         // O efeito de knockback geralmente é instantâneo, então podemos remover o efeito imediatamente
         currentEffect = StatusEffect.None;
         effectTurnsRemaining = 0;
-    }
-
-    protected virtual void DestroyEnemy()
-    {
-        Debug.Log(gameObject.name + " foi destruído!");
-
-        TurnManager turnManager = FindObjectOfType<TurnManager>();
-        if (turnManager != null)
-        {
-            turnManager.RemoveEnemy(this);
-        }
-
-        // Usando a referência ao ThrazEngine
-        if (thrazEngine != null && summonableEnemyType != null)
-        {
-            thrazEngine.OnEnemyDestroyed(summonableEnemyType);
-        }
-
-        // Remove quaisquer efeitos ativos antes de destruir o inimigo
-        ClearStatusEffect();
-
-        Destroy(gameObject);
     }
 }

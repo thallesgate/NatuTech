@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class RetroescavadeiraEnemy : EnemyBase
 {
@@ -37,6 +38,7 @@ public class RetroescavadeiraEnemy : EnemyBase
 
         if (IsTreeNearby())
         {
+            FaceTarget(targetTree.transform.position); // Vira para a árvore antes de atacar
             AttackTree();
         }
         else
@@ -71,6 +73,37 @@ public class RetroescavadeiraEnemy : EnemyBase
         }
     }
 
+    private IEnumerator MoveToPosition(Vector3 targetPosition)
+    {
+        Vector3 startPosition = transform.position;
+        float elapsedTime = 0f;
+        float duration = 1f; // Duração da movimentação (ajuste conforme necessário)
+
+        // Calcula a direção para a qual o inimigo deve se virar
+        Vector3 direction = (targetPosition - startPosition).normalized;
+        direction.y = 0f; // Mantém apenas a rotação no plano XZ
+
+        // Rotação inicial e final
+        Quaternion startRotation = transform.rotation;
+        Quaternion targetRotation = Quaternion.LookRotation(direction); // Não inverte o direction
+
+        while (elapsedTime < duration)
+        {
+            // Interpola a posição
+            transform.position = Vector3.Lerp(startPosition, targetPosition, (elapsedTime / duration));
+
+            // Interpola a rotação
+            transform.rotation = Quaternion.Slerp(startRotation, targetRotation, (elapsedTime / duration));
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Garante que a posição e rotação finais sejam exatamente as desejadas
+        transform.position = targetPosition;
+        transform.rotation = targetRotation;
+    }
+
     private void MoveTowardsTree()
     {
         if (targetTree != null && gridPositions != null)
@@ -96,12 +129,26 @@ public class RetroescavadeiraEnemy : EnemyBase
             enemyGridIndex = ClampGridIndex(enemyGridIndex);
 
             Vector3 nextPosition = gridPositions[enemyGridIndex.x, enemyGridIndex.y];
-            transform.position = nextPosition;
+
+            // Inicia a coroutine para movimentação suave
+            StartCoroutine(MoveToPosition(nextPosition));
 
             // Após mover o inimigo, registre o GridIndex
             Debug.Log("Inimigo " + gameObject.name + " está na posição: " + transform.position + ", GridIndex: " + enemyGridIndex);
 
             Debug.Log("Retroescavadeira moveu-se para a posição: " + nextPosition);
+        }
+    }
+
+    private void FaceTarget(Vector3 targetPosition)
+    {
+        Vector3 direction = (targetPosition - transform.position).normalized;
+        direction.y = 0f; // Mantém apenas a rotação no plano XZ
+
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction); // Corrigido para usar direction
+            transform.rotation = targetRotation;
         }
     }
 
