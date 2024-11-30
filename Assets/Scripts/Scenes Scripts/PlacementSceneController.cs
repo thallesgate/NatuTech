@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using System.Collections;
 using TMPro;
+using System;
+using UnityEngine.SceneManagement;
 
 public class PlacementSceneController: MonoBehaviour
 {
@@ -389,9 +391,22 @@ public class PlacementSceneController: MonoBehaviour
         {
             //GameObject spawnedScene = Instantiate(sceneToLoadPrefab, placementData.position, placementData.rotation);
             //spawnedScene.transform.localScale = placementData.scale;
-            sceneToLoadPrefab.SetActive(true);
-            sceneToLoadPrefab.transform.position = indicatorInstance.transform.position;
-            sceneToLoadPrefab.transform.rotation = indicatorInstance.transform.rotation;
+            Scene activeScene = SceneManager.GetActiveScene();
+            GameObject[] rootObjects = activeScene.GetRootGameObjects();
+
+            foreach (GameObject obj in rootObjects)
+            {
+                if (obj.name == "SceneFase1")
+                {
+                    obj.SetActive(true);
+                }
+            }
+            // sceneToLoadPrefab.transform.position = indicatorInstance.transform.position;
+            // sceneToLoadPrefab.transform.rotation = indicatorInstance.transform.rotation;
+        }
+        else
+        {
+            Debug.Log("PlacementSceneController, Instantiate, sceneLoad está nulo rapaz");
         }
     }
     void InstantiateFlashbang()

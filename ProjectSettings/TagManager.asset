@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Tree
   - TrajectoryPoint
+  - Fase
   layers:
   - Default
   - TransparentFX

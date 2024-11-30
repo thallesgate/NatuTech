@@ -46,7 +46,7 @@ public class OrbManager : MonoBehaviour
 
     [Header("Map Settings")]
     public GameObject mapPrefab;
-    private bool isMapSpawned = false;
+    private bool isMapSpawned = true;
 
     [Header("Turn Manager")]
     public TurnManager turnManager;

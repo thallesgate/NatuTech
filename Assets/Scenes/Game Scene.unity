@@ -137,6 +137,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3091330995790222088, guid: 595d188e5644b384d9ce1bb7e264997b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Fase
+      objectReference: {fileID: 0}
     - target: {fileID: 3670917058845881950, guid: 595d188e5644b384d9ce1bb7e264997b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -209,7 +214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &1659873582
 Light:
   m_ObjectHideFlags: 0
