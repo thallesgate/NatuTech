@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
@@ -6,10 +6,8 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using System.Collections;
 using TMPro;
-using System;
-using UnityEngine.SceneManagement;
 
-public class PlacementSceneController: MonoBehaviour
+public class PlacementSceneController : MonoBehaviour
 {
     // Variables from PlacementInterfaceController
     [SerializeField] private Slider distanceSlider;
@@ -28,11 +26,11 @@ public class PlacementSceneController: MonoBehaviour
     [SerializeField] private GameObject topTooltip;
     [SerializeField] private GameObject bottomTooltip;
 
-    public string noPlaneText = "Aponte a câmera para uma superfície plana e texturizada.";
+    public string noPlaneText = "Aponte a cï¿½mera para uma superfï¿½cie plana e texturizada.";
     public string lowText = "Perto demais! Afaste-se.";
     public string midText = "Afaste-se um pouco mais...";
     public string idealText = "Perfeito!";
-    public string mappingText = "Aponte a câmera para uma superfície plana e texturizada.";
+    public string mappingText = "Aponte a cï¿½mera para uma superfï¿½cie plana e texturizada.";
 
     // Variables from PlacementManager
     public GameObject indicatorPrefab;
@@ -85,7 +83,7 @@ public class PlacementSceneController: MonoBehaviour
         {
             Debug.Log("Placement Scene Controller: ARPlaneManager not found!");
         }
-        
+
         // Subscribe to plane events
         SubscribeToPlanesChanged();
 
@@ -116,7 +114,7 @@ public class PlacementSceneController: MonoBehaviour
 
         StartCoroutine(EnableInputAfterDelay());
 
-        
+
     }
 
     void Update()
@@ -177,7 +175,7 @@ public class PlacementSceneController: MonoBehaviour
 
     void SubscribeToPlanesChanged()
     {
-       arPlaneManager.trackablesChanged.AddListener(OnPlanesChanged);
+        arPlaneManager.trackablesChanged.AddListener(OnPlanesChanged);
     }
 
     void UnsubscribeToPlanesChanged()
@@ -381,7 +379,7 @@ public class PlacementSceneController: MonoBehaviour
         {
             position = indicatorInstance.transform.position,
             rotation = indicatorInstance.transform.rotation,
-            scale = new Vector3(1f,1f,1f)//indicatorInstance.transform.localScale
+            scale = indicatorInstance.transform.localScale
         };
     }
 
@@ -389,24 +387,9 @@ public class PlacementSceneController: MonoBehaviour
     {
         if (sceneToLoadPrefab != null)
         {
-            //GameObject spawnedScene = Instantiate(sceneToLoadPrefab, placementData.position, placementData.rotation);
+            GameObject spawnedScene = Instantiate(sceneToLoadPrefab, placementData.position, placementData.rotation);
             //spawnedScene.transform.localScale = placementData.scale;
-            Scene activeScene = SceneManager.GetActiveScene();
-            GameObject[] rootObjects = activeScene.GetRootGameObjects();
-
-            foreach (GameObject obj in rootObjects)
-            {
-                if (obj.name == "SceneFase1")
-                {
-                    obj.SetActive(true);
-                }
-            }
-            // sceneToLoadPrefab.transform.position = indicatorInstance.transform.position;
-            // sceneToLoadPrefab.transform.rotation = indicatorInstance.transform.rotation;
-        }
-        else
-        {
-            Debug.Log("PlacementSceneController, Instantiate, sceneLoad está nulo rapaz");
+            spawnedScene.transform.Rotate(0, 180, 0);
         }
     }
     void InstantiateFlashbang()
@@ -460,11 +443,12 @@ public class PlacementSceneController: MonoBehaviour
         {
             mappingCompleted = true;
             // Hide mapping progress UI
-            if(mappingProgressBar != null)
+            if (mappingProgressBar != null)
             {
                 mappingProgressBar.gameObject.SetActive(false);
             }
-            if(mappingProgressText != null) {
+            if (mappingProgressText != null)
+            {
                 mappingProgressText.gameObject.SetActive(false);
             }
             // Show distance measurement UI
@@ -482,7 +466,7 @@ public class PlacementSceneController: MonoBehaviour
             return;
 
         float progress = Mathf.Clamp01(cumulativeMappedArea / requiredMappedArea);
-        
+
         if (mappingProgressBar != null)
         {
             mappingProgressBar.value = progress;

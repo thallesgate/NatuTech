@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.ARFoundation;
-using UnityEngine.EventSystems; // Importação adicionada
+using UnityEngine.EventSystems;
 
 public enum OrbType
 {
@@ -46,7 +46,7 @@ public class OrbManager : MonoBehaviour
 
     [Header("Map Settings")]
     public GameObject mapPrefab;
-    private bool isMapSpawned = true;
+    private bool isMapSpawned = true; // Set to true since map is spawned elsewhere
 
     [Header("Turn Manager")]
     public TurnManager turnManager;
@@ -65,6 +65,8 @@ public class OrbManager : MonoBehaviour
     void Start()
     {
         tap.action.started += OnTap;
+        tap.action.Enable();
+
         cameraObject = Camera.main;
 
         SelectFirstEnabledOrb();
@@ -95,7 +97,7 @@ public class OrbManager : MonoBehaviour
                 return;
             }
         }
-        Debug.LogError("Nenhum tipo de orbe está habilitado.");
+        Debug.LogError("No orb type is enabled.");
     }
 
     public void SetCurrentOrbType(OrbType orbType)
@@ -105,12 +107,12 @@ public class OrbManager : MonoBehaviour
         {
             currentOrbType = orbType;
             currentOrbPrefab = settings.orbPrefab;
-            Debug.Log("Orbe atual definido para: " + currentOrbType);
+            Debug.Log("Current orb set to: " + currentOrbType);
         }
         else
         {
             currentOrbPrefab = null;
-            Debug.LogWarning("Orbe " + orbType + " não está habilitado ou não existe.");
+            Debug.LogWarning("Orb " + orbType + " is not enabled or does not exist.");
         }
     }
 
@@ -124,42 +126,35 @@ public class OrbManager : MonoBehaviour
         UpdatePlacementPose();
         DrawPlacementIndicatorAndTrajectory();
 
-        if (isMapSpawned && planeManager != null)
-        {
-            foreach (var plane in planeManager.trackables)
-            {
-                plane.gameObject.SetActive(false);
-            }
-        }
+        // Do not disable planes here; keep them active
+        // if (isMapSpawned && planeManager != null)
+        // {
+        //     foreach (var plane in planeManager.trackables)
+        //     {
+        //         plane.gameObject.SetActive(false);
+        //     }
+        // }
     }
 
     private void UpdatePlacementPose()
     {
         var screenCenter = cameraObject.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
 
-        if (!isMapSpawned)
-        {
-            // Antes do mapa ser gerado, usamos o ARRaycastManager para detectar planos
-            List<ARRaycastHit> hits = new List<ARRaycastHit>();
-            raycastManager.Raycast(screenCenter, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes);
+        // Always use ARRaycastManager to detect planes
+        List<ARRaycastHit> hits = new List<ARRaycastHit>();
+        raycastManager.Raycast(screenCenter, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes);
 
-            if (hits.Count > 0)
-            {
-                placementPose = hits[0].pose;
-                isPlacementPoseValid = true;
-            }
-            else
-            {
-                isPlacementPoseValid = false;
-            }
+        if (hits.Count > 0)
+        {
+            placementPose = hits[0].pose;
+            isPlacementPoseValid = true;
         }
         else
         {
-            // Após o mapa ser gerado, usamos o Raycast para detectar qualquer objeto
+            // Optionally use Physics.Raycast if ARRaycastManager doesn't find a plane
             Ray ray = cameraObject.ScreenPointToRay(screenCenter);
             RaycastHit hitInfo;
 
-            // Removemos o layerMask para permitir que o Raycast atinja qualquer objeto
             if (Physics.Raycast(ray, out hitInfo))
             {
                 placementPose = new Pose(hitInfo.point, Quaternion.identity);
@@ -179,7 +174,7 @@ public class OrbManager : MonoBehaviour
             placementIndicator.SetActive(true);
             placementIndicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
 
-            if (isMapSpawned && turnManager != null && turnManager.IsPlayerTurn() && !isOrbLaunched)
+            if (turnManager != null && turnManager.IsPlayerTurn() && !isOrbLaunched)
             {
                 DrawTrajectory(cameraObject.transform.position + launchOffset, placementPose.position, "TrajectoryPoint", Color.white);
             }
@@ -205,7 +200,7 @@ public class OrbManager : MonoBehaviour
 
     private void OnTap(InputAction.CallbackContext context)
     {
-        // Verifica se o ponteiro está sobre a UI
+        // Check if pointer is over UI
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
         {
             return;
@@ -213,34 +208,14 @@ public class OrbManager : MonoBehaviour
 
         if (isPlacementPoseValid)
         {
-            if (!isMapSpawned)
-            {
-                PlaceMap();
-                isMapSpawned = true;
-            }
-            else if (turnManager != null && turnManager.CanPlayerAct())
+            if (turnManager != null && turnManager.CanPlayerAct())
             {
                 LaunchOrb();
                 turnManager.EndPlayerTurn();
             }
             else
             {
-                Debug.Log("Você não pode agir no momento.");
-            }
-        }
-    }
-
-    void PlaceMap()
-    {
-        mapPrefab.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
-        mapPrefab.SetActive(true);
-
-        if (planeManager != null)
-        {
-            planeManager.enabled = false;
-            foreach (var plane in planeManager.trackables)
-            {
-                plane.gameObject.SetActive(false);
+                Debug.Log("You cannot act at the moment.");
             }
         }
     }
@@ -249,7 +224,7 @@ public class OrbManager : MonoBehaviour
     {
         if (currentOrbPrefab == null)
         {
-            Debug.LogWarning("Nenhum orbe está selecionado ou o prefab não está atribuído.");
+            Debug.LogWarning("No orb is selected or the prefab is not assigned.");
             return;
         }
 
@@ -260,9 +235,6 @@ public class OrbManager : MonoBehaviour
             Orb orbScript = orb.GetComponent<Orb>();
             if (orbScript != null)
             {
-                // Remova ou ajuste o uso de isOrbLaunched
-                // isOrbLaunched = true;
-
                 OrbSettings currentSettings = orbSettingsList.Find(o => o.orbType == currentOrbType);
 
                 orbScript.Initialize(
@@ -279,18 +251,15 @@ public class OrbManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError("O prefab do orbe não possui o componente Orb.cs.");
+                Debug.LogError("The orb prefab does not have the Orb.cs component.");
             }
         }
     }
 
     private void OnOrbFinished()
     {
-        // Remova ou ajuste o uso de isOrbLaunched
+        // Optionally reset orb launched state
         // isOrbLaunched = false;
-
-        // Não chame EndPlayerTurn aqui, pois já foi chamado após o lançamento do orbe
-        // turnManager.EndPlayerTurn();
     }
 
     private void DrawTrajectory(Vector3 start, Vector3 end, string tag, Color color)
