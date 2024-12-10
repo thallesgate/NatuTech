@@ -56,7 +56,6 @@ public class PlacementSceneController : MonoBehaviour
 
     [SerializeField] private InputAction tap;
 
-    public static PlacementData placementData;
     public GameObject sceneToLoadPrefab;
 
     // Variables for mapping progress
@@ -375,20 +374,17 @@ public class PlacementSceneController : MonoBehaviour
     void StorePlacementData()
     {
         Debug.Log("Placement Manager: Stored Placement Data!");
-        placementData = new PlacementData
-        {
-            position = indicatorInstance.transform.position,
-            rotation = indicatorInstance.transform.rotation,
-            scale = indicatorInstance.transform.localScale
-        };
+        GlobalPlacementData.position = indicatorInstance.transform.position;
+        GlobalPlacementData.rotation = indicatorInstance.transform.rotation;
+        GlobalPlacementData.scale = indicatorInstance.transform.localScale;
     }
 
     void InstantiateScenePrefab()
     {
         if (sceneToLoadPrefab != null)
         {
-            GameObject spawnedScene = Instantiate(sceneToLoadPrefab, placementData.position, placementData.rotation);
-            //spawnedScene.transform.localScale = placementData.scale;
+            GameObject spawnedScene = Instantiate(sceneToLoadPrefab, GlobalPlacementData.position, GlobalPlacementData.rotation);
+            //spawnedScene.transform.localScale = PlacementData.scale;
             spawnedScene.transform.Rotate(0, 180, 0);
         }
     }

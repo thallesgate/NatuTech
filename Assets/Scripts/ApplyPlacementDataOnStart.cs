@@ -5,11 +5,11 @@ public class ApplyPlacementDataOnStart : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (PlacementManager.placementData != null)
+        if (GlobalPlacementData.position != null)
         {
-            this.transform.position = PlacementManager.placementData.position;
-            this.transform.rotation = PlacementManager.placementData.rotation;
-            this.transform.localScale = PlacementManager.placementData.scale;
+            this.transform.position = GlobalPlacementData.position;
+            this.transform.rotation = GlobalPlacementData.rotation;
+            this.transform.localScale = GlobalPlacementData.scale;
         }
         else
         {

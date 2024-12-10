@@ -74,6 +74,9 @@ public class GridManager : MonoBehaviour
         {
             Vector3 position = GetRandomGridPosition();
             GameObject tree = Instantiate(treePrefab, position, Quaternion.identity);
+            
+            tree.transform.localScale = GlobalPlacementData.scale;
+            
             if (tree == null)
             {
                 Debug.LogError("Instância de árvore falhou!");

@@ -38,12 +38,12 @@ public class MapPlacer : MonoBehaviour
     void PlaceMap()
     {
         Debug.Log("Map Placer: Placed!");
-        if (PlacementManager.placementData != null)
+        if (GlobalPlacementData.position != null)
         {
             GameObject mapInstance = Instantiate(mapPrefab);
-            mapInstance.transform.position = PlacementManager.placementData.position;
-            mapInstance.transform.rotation = PlacementManager.placementData.rotation;
-            mapInstance.transform.localScale = PlacementManager.placementData.scale;
+            mapInstance.transform.position = GlobalPlacementData.position;
+            mapInstance.transform.rotation = GlobalPlacementData.rotation;
+            mapInstance.transform.localScale = GlobalPlacementData.scale;
         }
         else
         {
