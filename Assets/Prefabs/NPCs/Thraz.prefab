@@ -344,7 +344,7 @@ MonoBehaviour:
         type: 3}
       currentCount: 0
       enemySpawnCount: 1
-      enemySpawnLimit: 3
+      enemySpawnLimit: 2
       enemySpawnCooldown: 2
       lastSummonTurn: -1
       enemySpawnMinimumRound: 0
@@ -407,5 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee13576f6645724459eea7286cbed2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createParticlePrefab: {fileID: 0}
-  destroyParticlePrefab: {fileID: 0}
+  createParticlePrefab: {fileID: 3826420434364979677, guid: a9ab61279125bd349979b3f9a42f0d5e,
+    type: 3}
+  destroyParticlePrefab: {fileID: 4183308335039930855, guid: 4a543bc1db7cf0b45ac217af2e87dba3,
+    type: 3}
