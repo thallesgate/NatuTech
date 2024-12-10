@@ -1,2 +1,2 @@
-# NatuTech
+# NatuTechGame
  NatuTech Game Project

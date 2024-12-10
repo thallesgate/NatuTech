@@ -29,6 +29,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TorusVariant
       objectReference: {fileID: 0}
+    - target: {fileID: 6765493960509287110, guid: 8ae99c55d89c449b4be74f60dc81e02b,
+        type: 3}
+      propertyPath: m_MinScale
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 7784342881662376316, guid: 8ae99c55d89c449b4be74f60dc81e02b,
         type: 3}
       propertyPath: m_LocalPosition.x
