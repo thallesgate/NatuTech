@@ -96,7 +96,7 @@ public class ThrazEngine : MonoBehaviour
 
     void UpdateCurrentCountsWithExistingEnemies()
     {
-        EnemyBase[] existingEnemies = FindObjectsOfType<EnemyBase>();
+        EnemyBase[] existingEnemies = FindObjectsByType<EnemyBase>(FindObjectsSortMode.None);
         foreach (var enemyBase in existingEnemies)
         {
             if (enemyBase.thrazEngine == null)

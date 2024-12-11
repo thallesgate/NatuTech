@@ -40,13 +40,13 @@ public class TurnManager : MonoBehaviour
     public bool HasPlayerActed { get; private set; } = false;
 
     void Start()
-    {
-        enemies = new List<EnemyBase>(FindObjectsOfType<EnemyBase>());
+    { 
+        enemies = new List<EnemyBase>(FindObjectsByType<EnemyBase>(FindObjectsSortMode.None));
         trees = new List<GameObject>(GameObject.FindGameObjectsWithTag("Tree"));
 
         if (thrazEngine == null)
         {
-            thrazEngine = FindObjectOfType<ThrazEngine>();
+            thrazEngine = FindFirstObjectByType<ThrazEngine>();
             if (thrazEngine == null)
             {
                 Debug.LogError("ThrazEngine não foi encontrado na cena.");

@@ -50,7 +50,7 @@ public abstract class EnemyBase : MonoBehaviour
 
         if (thrazEngine == null)
         {
-            thrazEngine = FindObjectOfType<ThrazEngine>();
+            thrazEngine = FindFirstObjectByType<ThrazEngine>();
         }
 
         // Inicializa os Renderers e armazena as cores originais

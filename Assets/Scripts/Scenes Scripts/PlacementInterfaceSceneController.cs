@@ -4,7 +4,7 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using System.Collections.Generic;
 using TMPro;
-public class PlacementInterfaceController : MonoBehaviour
+public class PlacementInterfaceSceneController : MonoBehaviour
 {
     public Slider distanceSlider;
     private ARRaycastManager arRaycastManager;

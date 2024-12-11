@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-public class HomeScreenController : MonoBehaviour
+public class HomeScreenSceneController : MonoBehaviour
 {
     [SerializeField] private InputAction tap;
     [SerializeField] private GameObject sceneToLoadPrefab;

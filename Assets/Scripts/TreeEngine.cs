@@ -46,7 +46,7 @@ public class TreeEngine : MonoBehaviour
         Debug.Log(gameObject.name + " foi destruída!");
 
         // Notifica o TurnManager que esta árvore foi removida
-        TurnManager turnManager = FindObjectOfType<TurnManager>();
+        TurnManager turnManager = FindFirstObjectByType<TurnManager>();
         if (turnManager != null)
         {
             turnManager.RemoveTree(gameObject);
