@@ -384,7 +384,7 @@ public class PlacementSceneController : MonoBehaviour
         if (sceneToLoadPrefab != null)
         {
             GameObject spawnedScene = Instantiate(sceneToLoadPrefab, GlobalPlacementData.position, GlobalPlacementData.rotation);
-            //spawnedScene.transform.localScale = PlacementData.scale;
+            spawnedScene.transform.localScale = GlobalPlacementData.scale;
             spawnedScene.transform.Rotate(0, 180, 0);
         }
     }

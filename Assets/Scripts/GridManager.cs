@@ -40,8 +40,19 @@ public class GridManager : MonoBehaviour
 
     void CreateGrid()
     {
-        float mapWidth = mapArea.transform.localScale.x;
-        float mapHeight = mapArea.transform.localScale.z;
+        MeshFilter mf = mapArea.GetComponentInChildren<MeshFilter>();
+        if (mf == null)
+        {
+            Debug.LogError("Nenhum MeshFilter encontrado no mapArea!");
+            return;
+        }
+
+        // Tamanho original do mesh local (sem escala)
+        Vector3 originalSize = mf.sharedMesh.bounds.size;
+        Vector3 finalScale = mapArea.transform.lossyScale;
+
+        float mapWidth = originalSize.x * finalScale.x;
+        float mapHeight = originalSize.z * finalScale.z;
 
         cellSize = mapWidth / gridSizeX;
 
@@ -74,8 +85,8 @@ public class GridManager : MonoBehaviour
         {
             Vector3 position = GetRandomGridPosition();
             GameObject tree = Instantiate(treePrefab, position, Quaternion.identity);
-            
-            tree.transform.localScale = GlobalPlacementData.scale;
+
+            // tree.transform.localScale = GlobalPlacementData.scale; // Apply placement scale compensation.
             
             if (tree == null)
             {
