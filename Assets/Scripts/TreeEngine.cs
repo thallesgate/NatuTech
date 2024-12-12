@@ -3,22 +3,21 @@ using UnityEngine;
 public class TreeEngine : MonoBehaviour
 {
     public int maxHealth = 100;
-    private int currentHealth;
+    public int currentHealth;
 
     private DamageIndicator damageIndicator;
 
     void Start()
     {
         currentHealth = maxHealth;
-
         damageIndicator = GetComponent<DamageIndicator>();
 
-        // Se não existir, adiciona o componente
         if (damageIndicator == null)
         {
             damageIndicator = gameObject.AddComponent<DamageIndicator>();
         }
     }
+
     public void Initialize(int health)
     {
         maxHealth = health;
@@ -44,14 +43,8 @@ public class TreeEngine : MonoBehaviour
     void DestroyTree()
     {
         Debug.Log(gameObject.name + " foi destruída!");
-
-        // Notifica o TurnManager que esta árvore foi removida
-        TurnManager turnManager = FindFirstObjectByType<TurnManager>();
-        if (turnManager != null)
-        {
-            turnManager.RemoveTree(gameObject);
-        }
-
+        // Remova a chamada do TurnManager aqui. Não chame turnManager.RemoveTree(gameObject).
+        // Apenas destrua o objeto.
         Destroy(gameObject);
     }
 }

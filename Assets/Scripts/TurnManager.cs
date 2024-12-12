@@ -255,6 +255,7 @@ public class TurnManager : MonoBehaviour
     void ApplySmokeDamageToTrees()
     {
         int damage = 5; // Quantidade de dano causada pela fumaça
+        List<GameObject> destroyedTrees = new List<GameObject>();
 
         foreach (GameObject tree in trees)
         {
@@ -263,9 +264,28 @@ public class TurnManager : MonoBehaviour
                 TreeEngine treeEngine = tree.GetComponent<TreeEngine>();
                 if (treeEngine != null)
                 {
+                    bool wasAliveBefore = treeEngine.currentHealth > 0;
                     treeEngine.TakeDamage(damage);
+
+                    // Se a árvore foi destruída
+                    if (wasAliveBefore && treeEngine.currentHealth <= 0)
+                    {
+                        destroyedTrees.Add(tree);
+                    }
                 }
             }
+        }
+
+        // Remove as árvores destruídas
+        foreach (var destroyedTree in destroyedTrees)
+        {
+            RemoveTree(destroyedTree);
+        }
+
+        // Após remover as árvores destruídas, cheque se a lista está vazia
+        if (trees.Count == 0 && !isGameOver)
+        {
+            GameOver("GAME OVER! As árvores foram destruídas");
         }
 
         Debug.Log("A fumaça tóxica causou dano às árvores.");
