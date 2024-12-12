@@ -31,7 +31,6 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2223807645499520874}
-  - {fileID: 4075374205108110451}
   - {fileID: 4533914831721811511}
   - {fileID: 3222899331968054636}
   m_Father: {fileID: 3635594456187938828}
@@ -243,14 +242,14 @@ RectTransform:
   m_GameObject: {fileID: 4719985703874319968}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.7999877, z: 1.7999877}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7297909178566699886}
+  m_Father: {fileID: 3635594456187938828}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1446.7401}
+  m_AnchoredPosition: {x: 0, y: 291.65}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &687620758319847144
@@ -716,6 +715,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4075374205108110451}
   - {fileID: 7297909178566699886}
   m_Father: {fileID: 5109628092187236037}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -879,7 +879,5 @@ MonoBehaviour:
   - ... ou assim!
   - "\xC9 s\xF3 isso! Divirta-se!"
   delayBeforeInput: 1
-  audioSource: {fileID: 0}
-  tapSound: {fileID: 0}
   nextScenePrefab: {fileID: 1740094875460627994, guid: 1f2013eb6da7ddc4dbe6e1941fe2d7ed,
     type: 3}

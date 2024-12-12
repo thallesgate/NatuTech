@@ -56,7 +56,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  sceneToLoadPrefab: {fileID: 1740094875460627994, guid: 1f2013eb6da7ddc4dbe6e1941fe2d7ed,
+  sceneToLoadPrefab: {fileID: 8670170179133529470, guid: 40609c3624117384ab54660d9ecc7a95,
     type: 3}
   animator: {fileID: 1546418066929195941}
   animatorTrigger: EaseOutTrigger

@@ -21,8 +21,9 @@ public class InstructionsARSceneController : MonoBehaviour
     public float delayBeforeInput = 1f;
 
     [Header("Audio")]
-    public AudioSource audioSource;
-    public AudioClip tapSound;
+    private AudioController audioController;
+    [SerializeField] private string tapSound = "ScreenTap";
+    [SerializeField] private string finalSound = "Start";
 
     [Header("Scene Prefab")]
     [SerializeField] private GameObject nextScenePrefab;
@@ -33,7 +34,7 @@ public class InstructionsARSceneController : MonoBehaviour
 
     private void Start()
     {
-
+        audioController = FindFirstObjectByType<AudioController>();
         if (instructionImages.Length == 0 || instructionTexts.Length == 0 || instructionsAnimator == null)
         {
             Debug.LogError("Missing required components or data!");
@@ -52,7 +53,7 @@ public class InstructionsARSceneController : MonoBehaviour
     {
         if (!isSkipped)
         {
-            PlayTapSound();
+            audioController.PlaySound(tapSound);
             PlayAnimation("InstructionsEaseOut");
 
             // Wait for the animation to finish easing out before proceeding
@@ -82,13 +83,6 @@ public class InstructionsARSceneController : MonoBehaviour
         }
     }
 
-    private void PlayTapSound()
-    {
-        if (audioSource != null && tapSound != null)
-        {
-            audioSource.PlayOneShot(tapSound);
-        }
-    }
     private System.Collections.IEnumerator WaitAndAdvanceInstruction()
     {
         yield return new WaitForSeconds( 0.5f); // Adjust if ease-out animation duration changes
@@ -106,6 +100,7 @@ public class InstructionsARSceneController : MonoBehaviour
         {
             // Trigger despawn animation
             Debug.Log("Despawn.");
+            audioController.PlaySound(finalSound);
             PlayAnimation("InstructionsDespawn");
 
             //Fallback
@@ -118,6 +113,7 @@ public class InstructionsARSceneController : MonoBehaviour
         //DisableInput(); // Disable input to prevent conflicts
         Debug.Log("Skip!");
         isSkipped = true;
+        audioController.PlaySound(finalSound);
         PlayAnimation("InstructionsDespawn");
         Debug.Log("Skipped!");
     }

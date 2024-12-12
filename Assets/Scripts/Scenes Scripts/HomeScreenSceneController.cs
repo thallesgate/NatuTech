@@ -17,12 +17,15 @@ public class HomeScreenSceneController : MonoBehaviour
 
     private bool isAnimatorExited = false;
 
+    private AudioController audioController;
+    [SerializeField] private string tapSound = "Start";
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        audioController = FindFirstObjectByType<AudioController>();
         tap = InputSystem.actions.FindAction("Spawn Object");
         StartCoroutine(EnableInputAfterDelay());
-
         //tap.canceled += OnClick;
     }
     void OnDestroy()
@@ -41,6 +44,7 @@ public class HomeScreenSceneController : MonoBehaviour
         //if (tap.ReadValue<bool>())
         if(context.phase == InputActionPhase.Performed)
         {
+            audioController.PlaySound(tapSound);
             tap.Disable();
             if(animator != null)
             {
