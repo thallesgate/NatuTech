@@ -49,10 +49,14 @@ public class GridManager : MonoBehaviour
 
         // Tamanho original do mesh local (sem escala)
         Vector3 originalSize = mf.sharedMesh.bounds.size;
-        Vector3 finalScale = mapArea.transform.lossyScale;
+        Vector3 finalScale = mapArea.transform.localScale; // mapArea.transform.lossyScale;
 
-        float mapWidth = originalSize.x * finalScale.x;
-        float mapHeight = originalSize.z * finalScale.z;
+
+        float mapWidth = finalScale.x * GlobalPlacementData.scale.x;
+        float mapHeight = finalScale.z * GlobalPlacementData.scale.z;
+
+        //float mapWidth = originalSize.x * finalScale.x;
+        //float mapHeight = originalSize.z * finalScale.z;
 
         cellSize = mapWidth / gridSizeX;
 

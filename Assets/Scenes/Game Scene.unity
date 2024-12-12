@@ -185,6 +185,24 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  - name: OrbeFogo
+    clip: {fileID: 0}
+    category: 0
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: 
+    clip: {fileID: 0}
+    category: 0
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: 
+    clip: {fileID: 0}
+    category: 0
+    volume: 1
+    pitch: 1
+    loop: 0
   - name: 
     clip: {fileID: 0}
     category: 0
