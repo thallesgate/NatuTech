@@ -11,7 +11,7 @@ public class InstructionsARSceneController : MonoBehaviour
     public TextMeshProUGUI instructionsText;
     public Image instructionsImage;
     public Button skipButton;
-    [SerializeField] private InputAction tap;
+    public Button nextButton;
 
     [Header("Instruction Data")]
     public Sprite[] instructionImages;
@@ -20,14 +20,19 @@ public class InstructionsARSceneController : MonoBehaviour
     [Header("Timing")]
     public float delayBeforeInput = 1f;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip tapSound;
+
+    [Header("Scene Prefab")]
     [SerializeField] private GameObject nextScenePrefab;
 
     private int currentInstructionIndex = 0;
     private bool inputEnabled = false;
+    private bool isSkipped = false;
 
     private void Start()
     {
-        tap = InputSystem.actions.FindAction("Spawn Object");
 
         if (instructionImages.Length == 0 || instructionTexts.Length == 0 || instructionsAnimator == null)
         {
@@ -39,36 +44,21 @@ public class InstructionsARSceneController : MonoBehaviour
         SetInstruction(0);
         PlayAnimation("InstructionsEaseIn");
 
-        // Enable input after a delay
-        Invoke(nameof(EnableInput), delayBeforeInput);
-
         // Assign skip button action
         skipButton.onClick.AddListener(SkipInstructions);
+        nextButton.onClick.AddListener(NextInstruction);
     }
-
-    private void EnableInput()
+    private void NextInstruction()
     {
-        inputEnabled = true;
-        tap.Enable();
-        tap.performed += OnClick;
-    }
+        if (!isSkipped)
+        {
+            PlayTapSound();
+            PlayAnimation("InstructionsEaseOut");
 
-    private void DisableInput()
-    {
-        inputEnabled = false;
-        tap.performed -= OnClick;
-    }
-
-    private void OnClick(InputAction.CallbackContext context)
-    {
-        if (!inputEnabled || !context.performed) return;
-
-        DisableInput(); // Prevent multiple taps
-        PlayAnimation("InstructionsEaseOut");
-
-        // Wait for the animation to finish easing out before proceeding
-        StartCoroutine(WaitAndAdvanceInstruction());
-        Debug.Log("Tap!!");
+            // Wait for the animation to finish easing out before proceeding
+            StartCoroutine(WaitAndAdvanceInstruction());
+            Debug.Log("Tap!!");
+        }
     }
 
     private void SetInstruction(int index)
@@ -92,6 +82,13 @@ public class InstructionsARSceneController : MonoBehaviour
         }
     }
 
+    private void PlayTapSound()
+    {
+        if (audioSource != null && tapSound != null)
+        {
+            audioSource.PlayOneShot(tapSound);
+        }
+    }
     private System.Collections.IEnumerator WaitAndAdvanceInstruction()
     {
         yield return new WaitForSeconds( 0.5f); // Adjust if ease-out animation duration changes
@@ -103,7 +100,6 @@ public class InstructionsARSceneController : MonoBehaviour
             // Show next instruction
             SetInstruction(currentInstructionIndex);
             PlayAnimation("InstructionsEaseIn");
-            Invoke(nameof(EnableInput), delayBeforeInput);
             Debug.Log("Next Instruction.");
         }
         else
@@ -119,15 +115,17 @@ public class InstructionsARSceneController : MonoBehaviour
     // Skip button functionality
     public void SkipInstructions()
     {
-        DisableInput(); // Disable input to prevent conflicts
+        //DisableInput(); // Disable input to prevent conflicts
+        Debug.Log("Skip!");
+        isSkipped = true;
         PlayAnimation("InstructionsDespawn");
+        Debug.Log("Skipped!");
     }
     // Called at the end of the despawn animation via Animation Event
     public void OnInstructionsARAnimatorExit()
     {
         Debug.Log("Instructions UI has despawned. Transitioning to game...");
         // Additional logic for transitioning to the game can be added here
-        DisableInput();
         Instantiate(nextScenePrefab);
         Destroy(gameObject);
     }
