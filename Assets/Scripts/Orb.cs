@@ -69,7 +69,7 @@ public class Orb : MonoBehaviour
         if (orbType == OrbType.Air)
         {
             // Encontra a instância do ThrazEngine
-            ThrazEngine thrazEngine = FindObjectOfType<ThrazEngine>();
+            ThrazEngine thrazEngine = FindFirstObjectByType<ThrazEngine>();
             if (thrazEngine != null)
             {
                 thrazEngine.RemoveToxicSmoke();

@@ -50,14 +50,14 @@ MonoBehaviour:
     enabled: 1
     orbPrefab: {fileID: 4527907997627854323, guid: 1553c57c52dc2db45a27e71f1f984661,
       type: 3}
-    damage: 10
-    statusEffect: 0
-    effectDuration: 0
+    damage: 20
+    statusEffect: 1
+    effectDuration: 2
   - orbType: 1
     enabled: 1
     orbPrefab: {fileID: 4527907997627854323, guid: 5870c67e60834924a89748ce7a563ec8,
       type: 3}
-    damage: 10
+    damage: 20
     statusEffect: 0
     effectDuration: 0
   - orbType: 2
@@ -65,13 +65,13 @@ MonoBehaviour:
     orbPrefab: {fileID: 4527907997627854323, guid: 1ad26a0aaa1892945a236f5bba342430,
       type: 3}
     damage: 10
-    statusEffect: 0
-    effectDuration: 0
+    statusEffect: 3
+    effectDuration: 1
   - orbType: 3
     enabled: 1
     orbPrefab: {fileID: 4527907997627854323, guid: 1b2eb9c429523af4d89417208961d80b,
       type: 3}
-    damage: 10
+    damage: 15
     statusEffect: 0
     effectDuration: 0
   placementIndicator: {fileID: 0}

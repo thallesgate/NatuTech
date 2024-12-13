@@ -119,6 +119,162 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &986510065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 986510066}
+  - component: {fileID: 986510067}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &986510066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986510065}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1358112791}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &986510067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986510065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 862c224ab0153e74787a59e6a6c8d4b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterMixer: {fileID: 24100000, guid: b7b105a31f9a9a9449c559804cfdc7a7, type: 2}
+  musicMixerGroup: {fileID: 394812748093807435, guid: b7b105a31f9a9a9449c559804cfdc7a7,
+    type: 2}
+  actionMixerGroup: {fileID: 5679593572374351535, guid: b7b105a31f9a9a9449c559804cfdc7a7,
+    type: 2}
+  npcMixerGroup: {fileID: 2268143756767250948, guid: b7b105a31f9a9a9449c559804cfdc7a7,
+    type: 2}
+  uiMixerGroup: {fileID: 513126304074539688, guid: b7b105a31f9a9a9449c559804cfdc7a7,
+    type: 2}
+  sounds:
+  - name: ScreenTap
+    clip: {fileID: 8300000, guid: 16fba6d30ed741d4a9fdd6e79ee2f3ac, type: 3}
+    category: 3
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Start
+    clip: {fileID: 8300000, guid: 6f064c8021c099c46bbd00508b1c246b, type: 3}
+    category: 3
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Victory
+    clip: {fileID: 8300000, guid: 15f57ce413b250249a2c13b7e2e76f1a, type: 3}
+    category: 3
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: SelectOrbFogo
+    clip: {fileID: 8300000, guid: bd705ecbc5c1a564da02153949b26d38, type: 3}
+    category: 3
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: SelectOrbTerra
+    clip: {fileID: 8300000, guid: 2eaa57050cd0b1e49b9b4599cd069240, type: 3}
+    category: 3
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: SelectOrbAr
+    clip: {fileID: 8300000, guid: 6ccdce438731e6b48893d03456bd21c5, type: 3}
+    category: 3
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: SelectOrbAgua
+    clip: {fileID: 8300000, guid: 7fa3860502e2a3f43ab0555e6ab120c1, type: 3}
+    category: 3
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: LaunchOrbFogo
+    clip: {fileID: 8300000, guid: 7d25b0265677f084e8c1a9765cd00260, type: 3}
+    category: 1
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: LaunchOrbTerra
+    clip: {fileID: 8300000, guid: e8b10c0f87eba6144b4e4c499239abf3, type: 3}
+    category: 1
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: LaunchOrbAr
+    clip: {fileID: 8300000, guid: 078445cf09bc26240b35fca8edaed7b8, type: 3}
+    category: 1
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: LaunchOrbAgua
+    clip: {fileID: 8300000, guid: 01239dec5d9910f41b83bf3b9c1093fc, type: 3}
+    category: 1
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: HitOrbFogo
+    clip: {fileID: 8300000, guid: 510f490222f3790468299d8238a55ac1, type: 3}
+    category: 1
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: HitOrbTerra
+    clip: {fileID: 8300000, guid: b564e8cb1b5fd024997052443edcc139, type: 3}
+    category: 0
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: HitOrbAr
+    clip: {fileID: 8300000, guid: 6241db4a3a4c41d4a8c25cb40f4a1708, type: 3}
+    category: 1
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: HitOrbAgua
+    clip: {fileID: 8300000, guid: 8da7f59ff531ac34591d7d347ce4a357, type: 3}
+    category: 1
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: DroneSpawn
+    clip: {fileID: 8300000, guid: 0ec82bafded451645a42d7830d627f23, type: 3}
+    category: 1
+    volume: 1
+    pitch: 1
+    loop: 0
+--- !u!4 &1358112791 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4135079058438190618, guid: c95aeec7237fdaf418574cfec414831c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8976375631078606106}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1659873581
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,12 +554,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9205920141013479956, guid: c8dd4667d6910e94397d92e1ecaa84c2,
-        type: 3}
-      propertyPath: sceneToLoadPrefab
-      value: 
-      objectReference: {fileID: 8670170179133529470, guid: 40609c3624117384ab54660d9ecc7a95,
-        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -417,10 +567,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1250323480762339244, guid: c95aeec7237fdaf418574cfec414831c,
+    - target: {fileID: 1032812631401250175, guid: c95aeec7237fdaf418574cfec414831c,
         type: 3}
-      propertyPath: near clip plane
-      value: 0.05
+      propertyPath: m_TagString
+      value: UISource
       objectReference: {fileID: 0}
     - target: {fileID: 3424024963942143343, guid: c95aeec7237fdaf418574cfec414831c,
         type: 3}
@@ -472,14 +622,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7347524011275667476, guid: c95aeec7237fdaf418574cfec414831c,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 394812748093807435, guid: b7b105a31f9a9a9449c559804cfdc7a7,
+        type: 2}
     - target: {fileID: 8198073549492656228, guid: c95aeec7237fdaf418574cfec414831c,
         type: 3}
       propertyPath: m_Name
       value: AR Setup
       objectReference: {fileID: 0}
+    - target: {fileID: 8796898707669584769, guid: c95aeec7237fdaf418574cfec414831c,
+        type: 3}
+      propertyPath: m_Name
+      value: Music Audio Source
+      objectReference: {fileID: 0}
+    - target: {fileID: 8796898707669584769, guid: c95aeec7237fdaf418574cfec414831c,
+        type: 3}
+      propertyPath: m_TagString
+      value: MusicSource
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4135079058438190618, guid: c95aeec7237fdaf418574cfec414831c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 986510066}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c95aeec7237fdaf418574cfec414831c, type: 3}
 --- !u!1660057539 &9223372036854775807

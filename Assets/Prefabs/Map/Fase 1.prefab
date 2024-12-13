@@ -26,7 +26,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.5121573, y: 0.0059999824, z: -0.18673855}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6653136607491391747}
@@ -745,6 +745,43 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8939505584897860657, guid: d61f89251f7f85b438f624afe42befba,
+        type: 3}
+      propertyPath: gridManager
+      value: 
+      objectReference: {fileID: 5445928438740283405}
+    - target: {fileID: 8939505584897860657, guid: d61f89251f7f85b438f624afe42befba,
+        type: 3}
+      propertyPath: turnManager
+      value: 
+      objectReference: {fileID: 7604955237272087615}
+    - target: {fileID: 8939505584897860657, guid: d61f89251f7f85b438f624afe42befba,
+        type: 3}
+      propertyPath: toxicSmokeConfig.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8939505584897860657, guid: d61f89251f7f85b438f624afe42befba,
+        type: 3}
+      propertyPath: toxicSmokeConfig.mapArea
+      value: 
+      objectReference: {fileID: 8321437450490557573}
+    - target: {fileID: 8939505584897860657, guid: d61f89251f7f85b438f624afe42befba,
+        type: 3}
+      propertyPath: summonableEnemiesConfig.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8939505584897860657, guid: d61f89251f7f85b438f624afe42befba,
+        type: 3}
+      propertyPath: protectionDroneConfig.dronePrefab
+      value: 
+      objectReference: {fileID: 3129762590396416369, guid: 5458fe322efc55546a9b91db1c53e550,
+        type: 3}
+    - target: {fileID: 8939505584897860657, guid: d61f89251f7f85b438f624afe42befba,
+        type: 3}
+      propertyPath: summonableEnemiesConfig.summonableEnemies.Array.data[0].enemyPrefab
+      value: 
+      objectReference: {fileID: 1190281116304184144, guid: 60052f8a7a48008478256b59b37067bd,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -756,6 +793,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2267246390395753511}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7167866260836216854 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8939505584897860657, guid: d61f89251f7f85b438f624afe42befba,
+    type: 3}
+  m_PrefabInstance: {fileID: 2267246390395753511}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63355d6e1ff877a4f85ad20e5dcc9ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2270440828424374031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1145,20 +1194,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapArea: {fileID: 8321437450490557573}
-  gridSizeX: 20
-  gridSizeY: 20
-  treePrefab: {fileID: 2249466876737058051, guid: e4391dacc8473014495abc520c2054a1,
-    type: 3}
-  housePrefab: {fileID: 461187320110382972, guid: 9b23f22af17fe404ea3bb699ae93de24,
-    type: 3}
-  enemyPrefab: {fileID: 6172684627179200154, guid: b50f5466dc8b66441a57e529c581b122,
+  gridSizeX: 10
+  gridSizeY: 10
+  treePrefab: {fileID: 6474014285947860516, guid: b4e0dc459c9a6ca4a897bff41a9f6df4,
     type: 3}
   turnManager: {fileID: 7604955237272087615}
   showGridLines: 1
   enemies: []
-  qtd_casa: 1
-  qtd_arvore: 3
-  qtd_inimigos: 1
+  qtd_arvore: 6
+  treeHealth: 30
 --- !u!1001 &3899019281169109634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1172,6 +1216,11 @@ PrefabInstance:
       propertyPath: gridManager
       value: 
       objectReference: {fileID: 5445928438740283405}
+    - target: {fileID: 6887731291868020413, guid: a3fcfdbbe4bbe1146a80a561d951b6b6,
+        type: 3}
+      propertyPath: thrazEngine
+      value: 
+      objectReference: {fileID: 7167866260836216854}
     - target: {fileID: 7204101173554276537, guid: a3fcfdbbe4bbe1146a80a561d951b6b6,
         type: 3}
       propertyPath: m_Name
@@ -1539,11 +1588,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2935171144526788630, guid: d45960fd02efef84e96e4124e0ef2693,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3291208565876859000}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d45960fd02efef84e96e4124e0ef2693, type: 3}
 --- !u!4 &6653136607491391747 stripped
 Transform:
@@ -1557,33 +1602,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6611422651479084179}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3291208565876859000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8321437450490557573}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7595c207ea527824fa40b8dbf0663e32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapArea: {fileID: 8321437450490557573}
-  gridSizeX: 10
-  gridSizeY: 10
-  treePrefab: {fileID: 2249466876737058051, guid: e4391dacc8473014495abc520c2054a1,
-    type: 3}
-  housePrefab: {fileID: 461187320110382972, guid: 9b23f22af17fe404ea3bb699ae93de24,
-    type: 3}
-  enemyPrefab: {fileID: 6172684627179200154, guid: b50f5466dc8b66441a57e529c581b122,
-    type: 3}
-  turnManager: {fileID: 0}
-  showGridLines: 1
-  enemies: []
-  qtd_casa: 1
-  qtd_arvore: 3
-  qtd_inimigos: 1
 --- !u!1001 &7026294582536321137
 PrefabInstance:
   m_ObjectHideFlags: 0

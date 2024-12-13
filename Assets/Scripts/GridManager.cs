@@ -40,8 +40,23 @@ public class GridManager : MonoBehaviour
 
     void CreateGrid()
     {
-        float mapWidth = mapArea.transform.localScale.x;
-        float mapHeight = mapArea.transform.localScale.z;
+        MeshFilter mf = mapArea.GetComponentInChildren<MeshFilter>();
+        if (mf == null)
+        {
+            Debug.LogError("Nenhum MeshFilter encontrado no mapArea!");
+            return;
+        }
+
+        // Tamanho original do mesh local (sem escala)
+        Vector3 originalSize = mf.sharedMesh.bounds.size;
+        Vector3 finalScale = mapArea.transform.localScale; // mapArea.transform.lossyScale;
+
+
+        float mapWidth = finalScale.x * GlobalPlacementData.scale.x;
+        float mapHeight = finalScale.z * GlobalPlacementData.scale.z;
+
+        //float mapWidth = originalSize.x * finalScale.x;
+        //float mapHeight = originalSize.z * finalScale.z;
 
         cellSize = mapWidth / gridSizeX;
 
@@ -72,8 +87,16 @@ public class GridManager : MonoBehaviour
 
         for (int i = 0; i < treeCount; i++)
         {
-            Vector3 position = GetRandomGridPosition();
-            GameObject tree = Instantiate(treePrefab, position, Quaternion.identity);
+            Vector3 randomPosition = GetRandomGridPosition();
+
+<<<<<<< Updated upstream
+            tree.transform.localScale = GlobalPlacementData.scale; // Apply placement scale compensation.
+            //tree.transform.SetParent(mapArea.transform);
+=======
+            GameObject tree = Instantiate(treePrefab, randomPosition, Quaternion.identity);
+            tree.transform.localScale = GlobalPlacementData.scale; // Apply placement scale compensation.
+            
+>>>>>>> Stashed changes
             if (tree == null)
             {
                 Debug.LogError("Instância de árvore falhou!");
@@ -91,7 +114,14 @@ public class GridManager : MonoBehaviour
                     Debug.LogError("TreeEngine não encontrado no prefab da árvore!");
                 }
             }
-            tree.transform.SetParent(mapArea.transform);
+<<<<<<< Updated upstream
+
+            
+=======
+            //Vector3 treeSavedPosition = tree.transform.position;
+            tree.transform.SetParent(mapArea.transform, false);
+            tree.transform.localPosition = mapArea.transform.InverseTransformPoint(randomPosition);
+>>>>>>> Stashed changes
         }
     }
 
