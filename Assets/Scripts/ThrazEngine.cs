@@ -226,6 +226,7 @@ public class ThrazEngine : MonoBehaviour
 
             GameObject droneObject = Instantiate(protectionDroneConfig.dronePrefab, transform.position, Quaternion.identity);
             droneObject.transform.SetParent(gameObject.transform);
+            //droneObject.transform.localScale = droneObject.transform.localScale * GlobalPlacementData.scale;
 
             ProtectionDrone drone = droneObject.GetComponent<ProtectionDrone>();
             if (drone != null)
