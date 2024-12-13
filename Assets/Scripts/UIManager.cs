@@ -13,8 +13,18 @@ public class UIManager : MonoBehaviour
     public Button earthOrbButton;
     public Button airOrbButton;
     public GameObject prefabToSpawn;
+
+    // Sons
+    private AudioController audioController;
+    [SerializeField] private string SelectFogo = "SelectOrbFogo";
+    [SerializeField] private string SelectTerra = "SelectOrbTerra";
+    [SerializeField] private string SelectAr = "SelectOrbAr";
+    [SerializeField] private string SelectAgua = "SelectOrbAgua";
+
     void Start()
     {
+        audioController = FindFirstObjectByType<AudioController>();
+
         // Adiciona os event listeners aos botões
         if (fireOrbButton != null)
         {
@@ -83,6 +93,7 @@ public class UIManager : MonoBehaviour
         if (orbManager != null)
         {
             orbManager.SetCurrentOrbType(OrbType.Fire);
+            audioController.PlaySound(SelectFogo);
             Debug.Log("Orbe selecionado: Fire");
         }
         else
@@ -96,6 +107,7 @@ public class UIManager : MonoBehaviour
         if (orbManager != null)
         {
             orbManager.SetCurrentOrbType(OrbType.Water);
+            audioController.PlaySound(SelectAgua);
             Debug.Log("Orbe selecionado: Water");
         }
         else
@@ -109,6 +121,7 @@ public class UIManager : MonoBehaviour
         if (orbManager != null)
         {
             orbManager.SetCurrentOrbType(OrbType.Earth);
+            audioController.PlaySound(SelectTerra);
             Debug.Log("Orbe selecionado: Earth");
         }
         else
@@ -122,6 +135,7 @@ public class UIManager : MonoBehaviour
         if (orbManager != null)
         {
             orbManager.SetCurrentOrbType(OrbType.Air);
+            audioController.PlaySound(SelectAr);
             Debug.Log("Orbe selecionado: Air");
         }
         else

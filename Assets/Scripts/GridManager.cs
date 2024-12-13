@@ -90,8 +90,8 @@ public class GridManager : MonoBehaviour
             Vector3 position = GetRandomGridPosition();
             GameObject tree = Instantiate(treePrefab, position, Quaternion.identity);
 
-            // tree.transform.localScale = GlobalPlacementData.scale; // Apply placement scale compensation.
-            
+            tree.transform.localScale = GlobalPlacementData.scale; // Apply placement scale compensation.
+            //tree.transform.SetParent(mapArea.transform);
             if (tree == null)
             {
                 Debug.LogError("Instância de árvore falhou!");
@@ -109,7 +109,8 @@ public class GridManager : MonoBehaviour
                     Debug.LogError("TreeEngine não encontrado no prefab da árvore!");
                 }
             }
-            tree.transform.SetParent(mapArea.transform);
+
+            
         }
     }
 

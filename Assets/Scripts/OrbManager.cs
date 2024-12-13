@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.EventSystems;
+using System;
 
 public enum OrbType
 {
@@ -62,8 +63,21 @@ public class OrbManager : MonoBehaviour
 
     private bool isOrbLaunched = false;
 
+    // Sons
+    private AudioController audioController;
+
+    [SerializeField] private string launchFogo = "LaunchOrbFogo";
+    [SerializeField] private string launchTerra = "LaunchOrbTerra";
+    [SerializeField] private string launchAr = "LaunchOrbFogo";
+    [SerializeField] private string launchAgua = "LaunchOrbFogo";
+
+
+
+
     void Start()
     {
+        audioController = FindFirstObjectByType<AudioController>();
+
         tap.action.started += OnTap;
         tap.action.Enable();
 
@@ -248,6 +262,8 @@ public class OrbManager : MonoBehaviour
                     currentSettings.effectDuration,
                     OnOrbFinished
                 );
+
+                PlaySoundLancamento(currentOrbType);
             }
             else
             {
@@ -255,6 +271,31 @@ public class OrbManager : MonoBehaviour
             }
         }
     }
+
+    private void PlaySoundLancamento(OrbType orbType)
+    {
+
+        switch (orbType)
+        {
+            case OrbType.Fire:
+                audioController.PlaySound(launchFogo);
+                break;
+            case OrbType.Water:
+                audioController.PlaySound(launchAgua);
+                break;
+            case OrbType.Earth:
+                audioController.PlaySound(launchTerra);
+                break;
+            case OrbType.Air:
+                audioController.PlaySound(launchAr);
+                break;
+            default:
+                Debug.Log("OrbType não identificado!");
+                break;
+        }
+
+    }
+
 
     private void OnOrbFinished()
     {

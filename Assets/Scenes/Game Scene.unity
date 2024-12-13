@@ -185,27 +185,87 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
-  - name: OrbeFogo
-    clip: {fileID: 0}
+  - name: Victory
+    clip: {fileID: 8300000, guid: 15f57ce413b250249a2c13b7e2e76f1a, type: 3}
+    category: 3
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: SelectOrbFogo
+    clip: {fileID: 8300000, guid: bd705ecbc5c1a564da02153949b26d38, type: 3}
+    category: 3
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: SelectOrbTerra
+    clip: {fileID: 8300000, guid: 2eaa57050cd0b1e49b9b4599cd069240, type: 3}
+    category: 3
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: SelectOrbAr
+    clip: {fileID: 8300000, guid: 6ccdce438731e6b48893d03456bd21c5, type: 3}
+    category: 3
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: SelectOrbAgua
+    clip: {fileID: 8300000, guid: 7fa3860502e2a3f43ab0555e6ab120c1, type: 3}
+    category: 3
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: LaunchOrbFogo
+    clip: {fileID: 8300000, guid: 7d25b0265677f084e8c1a9765cd00260, type: 3}
+    category: 1
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: LaunchOrbTerra
+    clip: {fileID: 8300000, guid: e8b10c0f87eba6144b4e4c499239abf3, type: 3}
+    category: 1
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: LaunchOrbAr
+    clip: {fileID: 8300000, guid: 078445cf09bc26240b35fca8edaed7b8, type: 3}
+    category: 1
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: LaunchOrbAgua
+    clip: {fileID: 8300000, guid: 01239dec5d9910f41b83bf3b9c1093fc, type: 3}
+    category: 1
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: HitOrbFogo
+    clip: {fileID: 8300000, guid: 510f490222f3790468299d8238a55ac1, type: 3}
+    category: 1
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: HitOrbTerra
+    clip: {fileID: 8300000, guid: b564e8cb1b5fd024997052443edcc139, type: 3}
     category: 0
     volume: 1
     pitch: 1
     loop: 0
-  - name: 
-    clip: {fileID: 0}
-    category: 0
+  - name: HitOrbAr
+    clip: {fileID: 8300000, guid: 6241db4a3a4c41d4a8c25cb40f4a1708, type: 3}
+    category: 1
     volume: 1
     pitch: 1
     loop: 0
-  - name: 
-    clip: {fileID: 0}
-    category: 0
+  - name: HitOrbAgua
+    clip: {fileID: 8300000, guid: 8da7f59ff531ac34591d7d347ce4a357, type: 3}
+    category: 1
     volume: 1
     pitch: 1
     loop: 0
-  - name: 
-    clip: {fileID: 0}
-    category: 0
+  - name: DroneSpawn
+    clip: {fileID: 8300000, guid: 0ec82bafded451645a42d7830d627f23, type: 3}
+    category: 1
     volume: 1
     pitch: 1
     loop: 0
