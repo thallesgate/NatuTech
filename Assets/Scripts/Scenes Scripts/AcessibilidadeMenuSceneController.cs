@@ -47,4 +47,8 @@ public class AcessibilidadeMenuSceneController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public void OnClickAudio()
+    {
+        audioController.PlaySound(tapSound);
+    }
 }

@@ -70,8 +70,13 @@ public class PlacementSceneController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private string animatorTrigger = "MapPlacementEaseOut";
     [SerializeField] private GameObject flashbangPrefab;
+
+    [Header("Audio")]
+    private AudioController audioController;
+    [SerializeField] private string tapSound = "Start";
     void Start()
     {
+        audioController = FindFirstObjectByType<AudioController>();
         arPlaneManager = FindFirstObjectByType<ARPlaneManager>();
         if (arPlaneManager != null)
         {
@@ -349,6 +354,7 @@ public class PlacementSceneController : MonoBehaviour
         {
             if (CanPlace())
             {
+                audioController.PlaySound(tapSound);
                 InstantiateFlashbang();
                 tap.Disable();
                 StorePlacementData();
