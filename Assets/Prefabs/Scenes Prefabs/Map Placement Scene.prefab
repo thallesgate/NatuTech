@@ -86,9 +86,9 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  sceneToLoadPrefab: {fileID: 3091330995790222088, guid: 595d188e5644b384d9ce1bb7e264997b,
+  sceneToLoadPrefab: {fileID: 6299304923313349057, guid: b2a47927f6bf1704f9a622ca76c630a2,
     type: 3}
-  requiredMappedArea: 1
+  requiredMappedArea: 0.5
   mappingProgressBar: {fileID: 0}
   mappingProgressText: {fileID: 0}
   animator: {fileID: 6362886793554995092}

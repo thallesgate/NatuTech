@@ -373,9 +373,10 @@ public class PlacementSceneController : MonoBehaviour
 
     void StorePlacementData()
     {
+        Quaternion rotationAdjustment = Quaternion.Euler(0, 180, 0);
         Debug.Log("Placement Manager: Stored Placement Data!");
         GlobalPlacementData.position = indicatorInstance.transform.position;
-        GlobalPlacementData.rotation = indicatorInstance.transform.rotation;
+        GlobalPlacementData.rotation = indicatorInstance.transform.rotation * rotationAdjustment;
         GlobalPlacementData.scale = indicatorInstance.transform.localScale;
     }
 
@@ -385,7 +386,6 @@ public class PlacementSceneController : MonoBehaviour
         {
             GameObject spawnedScene = Instantiate(sceneToLoadPrefab, GlobalPlacementData.position, GlobalPlacementData.rotation);
             spawnedScene.transform.localScale = GlobalPlacementData.scale;
-            spawnedScene.transform.Rotate(0, 180, 0);
         }
     }
     void InstantiateFlashbang()

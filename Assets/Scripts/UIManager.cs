@@ -88,7 +88,7 @@ public class UIManager : MonoBehaviour
     }
 
     // Métodos chamados quando os botões são clicados
-    private void OnFireButtonClicked()
+    public void OnFireButtonClicked()
     {
         if (orbManager != null)
         {
@@ -102,7 +102,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void OnWaterButtonClicked()
+    public void OnWaterButtonClicked()
     {
         if (orbManager != null)
         {
@@ -116,7 +116,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void OnEarthButtonClicked()
+    public void OnEarthButtonClicked()
     {
         if (orbManager != null)
         {
@@ -130,7 +130,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void OnAirButtonClicked()
+    public void OnAirButtonClicked()
     {
         if (orbManager != null)
         {
