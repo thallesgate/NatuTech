@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.WSA;
 
 public class Orb : MonoBehaviour
 {
@@ -20,6 +21,14 @@ public class Orb : MonoBehaviour
 
     private bool isMoving = false;
 
+    // Sons
+    private AudioController audioController;
+
+    [SerializeField] private string HitFogo = "HitOrbFogo";
+    [SerializeField] private string HitTerra = "HitOrbTerra";
+    [SerializeField] private string HitAr = "HitOrbAr";
+    [SerializeField] private string HitAgua = "HitOrbAgua";
+
     // Adicione um SphereCollider e marque como Trigger no próprio prefab do orbe.
 
     public void Initialize(OrbType type, int dmg, Vector3 startPos, Vector3 endPos, float arcH, float duration, StatusEffect effect, int effectTurns, Action callback)
@@ -35,6 +44,11 @@ public class Orb : MonoBehaviour
         onOrbFinished = callback;
 
         isMoving = true;
+    }
+
+    void Start()
+    {
+        audioController = FindFirstObjectByType<AudioController>();
     }
 
     void Update()
@@ -93,6 +107,9 @@ public class Orb : MonoBehaviour
         {
             Debug.Log("Orbe colidiu com: " + other.gameObject.name);
 
+            // Som
+            PlaySoundHit(orbType);
+
             drone.TakeDamage(damage);
             Debug.Log("Drone de proteção foi atingido pelo orbe.");
 
@@ -114,6 +131,9 @@ public class Orb : MonoBehaviour
             thraz.TakeDamage(damage);
             Debug.Log("Thraz foi atingido pelo orbe.");
 
+            // Som
+            PlaySoundHit(orbType);
+
             // Efeito de partículas e destruição do orbe
             if (particleEffectPrefab != null)
             {
@@ -133,6 +153,9 @@ public class Orb : MonoBehaviour
             enemy.ApplyStatusEffect(statusEffect, effectDuration);
             Debug.Log("Inimigo atingido: " + enemy.gameObject.name);
 
+            // Som
+            PlaySoundHit(orbType);
+
             // Efeito de partículas e destruição do orbe
             if (particleEffectPrefab != null)
             {
@@ -145,6 +168,33 @@ public class Orb : MonoBehaviour
         }
     }
 
+    private void PlaySoundHit(OrbType orbType)
+    {
+        Debug.Log("Esse é o ORBTYPE: " + orbType);
+        switch (orbType)
+        {
+            case OrbType.Fire:
+                audioController.PlaySound(HitFogo);
+                Debug.Log("SOM DE HIT Fogo");
+                break;
+            case OrbType.Water:
+                audioController.PlaySound(HitAgua);
+                Debug.Log("SOM DE HIT Water");
+                break;
+            case OrbType.Earth:
+                audioController.PlaySound(HitTerra);
+                Debug.Log("SOM DE HIT Earth");
+                break;
+            case OrbType.Air:
+                audioController.PlaySound(HitAr);
+                Debug.Log("SOM DE HIT Air");
+                break;
+            default:
+                Debug.Log("OrbType não identificado!");
+                break;
+        }
+
+    }
 
     private Vector3 CalculateBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2)
     {

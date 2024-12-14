@@ -68,8 +68,8 @@ public class OrbManager : MonoBehaviour
 
     [SerializeField] private string launchFogo = "LaunchOrbFogo";
     [SerializeField] private string launchTerra = "LaunchOrbTerra";
-    [SerializeField] private string launchAr = "LaunchOrbFogo";
-    [SerializeField] private string launchAgua = "LaunchOrbFogo";
+    [SerializeField] private string launchAr = "LaunchOrbAr";
+    [SerializeField] private string launchAgua = "LaunchOrbAgua";
 
 
 

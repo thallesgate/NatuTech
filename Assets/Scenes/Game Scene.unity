@@ -466,6 +466,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5449181487174628935, guid: c95aeec7237fdaf418574cfec414831c,
+        type: 3}
+      propertyPath: sounds.Array.data[2].name
+      value: VictorySong
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449181487174628935, guid: c95aeec7237fdaf418574cfec414831c,
+        type: 3}
+      propertyPath: sounds.Array.data[2].category
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449181487174628935, guid: c95aeec7237fdaf418574cfec414831c,
+        type: 3}
+      propertyPath: sounds.Array.data[12].category
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7347524011275667476, guid: c95aeec7237fdaf418574cfec414831c,
         type: 3}
       propertyPath: OutputAudioMixerGroup

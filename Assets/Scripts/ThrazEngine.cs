@@ -74,8 +74,16 @@ public class ThrazEngine : MonoBehaviour
 
     public List<AbilityConfig> abilitiesConfig;
 
+    // Sons
+    private AudioController audioController;
+
+    [SerializeField] private string DroneSpawn = "DroneSpawn";
+    [SerializeField] private string Victory = "VictorySong";
     void Start()
     {
+
+        audioController = FindFirstObjectByType<AudioController>();
+
         currentHealth = maxHealth;
         UpdateHealthUI();
 
@@ -239,6 +247,7 @@ public class ThrazEngine : MonoBehaviour
                 Debug.LogError("ProtectionDrone script não encontrado no prefab do drone.");
             }
         }
+        audioController.PlaySound(DroneSpawn);
 
         lastDroneSummonTurn = currentRound;
 
@@ -398,6 +407,8 @@ public class ThrazEngine : MonoBehaviour
         if (turnManager != null)
         {
             turnManager.GameOver("Thraz foi derrotado!");
+
+            audioController.PlaySound(Victory);
         }
         else
         {
