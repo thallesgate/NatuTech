@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1867782417911235822
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639247ca83abc874e893eb93af2b5e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 0
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Water_River
+  m_Shader: {fileID: -6465566751694194690, guid: 82e3a7bae83b44c4d9fb59dc409dfc0f, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2950
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _Absortion_Amount: 0.02
+    - _BUILTIN_QueueControl: 0
+    - _BUILTIN_QueueOffset: -50
+    - _FlowAmount: 4.31
+    - _FlowPower: 0.18
+    - _FlowSpeed: 3.17
+    - _FoamAmount: 0.5
+    - _FoamCutOff: 3.97
+    - _FoamScale: 73.43
+    - _FoamSpeed: -0.01
+    - _NormalPower: 0.03
+    - _Opacity: 1
+    - _Power: 0.00015
+    - _RippleAmount: 57.23
+    - _RipplePower: 10.13
+    - _Speed: 1.02
+    - _speed: 2.39
+    m_Colors:
+    - _Absortion_Color: {r: 0.08235294, g: 0.13725491, b: 0.35686275, a: 0}
+    - _FoamColor: {r: 0.03137255, g: 0.078431375, b: 0.25490198, a: 1}
+    - _Orientation: {r: 0, g: 0.2, b: 0, a: 0}
+    - _RippleColor: {r: 0.43137255, g: 0.60784316, b: 0.7529412, a: 0}
+    - _Water_Color: {r: 0.023529412, g: 0.30980393, b: 0.47058824, a: 1}
+  m_BuildTextureStacks: []
