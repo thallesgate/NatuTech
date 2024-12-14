@@ -326,6 +326,7 @@ public class ThrazEngine : MonoBehaviour
 
         GameObject newEnemy = Instantiate(enemyToSummon.enemyPrefab, spawnPosition, Quaternion.identity);
         newEnemy.transform.localScale *= 0.1f;
+        newEnemy.transform.localScale = new Vector3(newEnemy.transform.localScale.x * GlobalPlacementData.scale.x, newEnemy.transform.localScale.y * GlobalPlacementData.scale.y, newEnemy.transform.localScale.z * GlobalPlacementData.scale.z); // Apply placement scale compensation.
         newEnemy.transform.SetParent(gridManager.mapArea.transform);
 
         EnemyBase enemyEngine = newEnemy.GetComponent<EnemyBase>();

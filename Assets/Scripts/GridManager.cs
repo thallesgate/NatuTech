@@ -90,7 +90,7 @@ public class GridManager : MonoBehaviour
             Vector3 randomPosition = GetRandomGridPosition();
 
             GameObject tree = Instantiate(treePrefab, randomPosition, Quaternion.identity);
-            tree.transform.localScale = GlobalPlacementData.scale; // Apply placement scale compensation.
+            tree.transform.localScale = new Vector3(tree.transform.localScale.x * GlobalPlacementData.scale.x, tree.transform.localScale.y * GlobalPlacementData.scale.y, tree.transform.localScale.z * GlobalPlacementData.scale.z); // Apply placement scale compensation.
 
             if (tree == null)
             {
@@ -110,7 +110,7 @@ public class GridManager : MonoBehaviour
                 }
             }
             //Vector3 treeSavedPosition = tree.transform.position;
-            tree.transform.SetParent(mapArea.transform, false);
+            //tree.transform.SetParent(mapArea.transform, false);
             //tree.transform.localPosition = mapArea.transform.InverseTransformPoint(randomPosition);
 
         }
