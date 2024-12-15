@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4750939742532146}
-  - component: {fileID: 114466795492284082}
+  - component: {fileID: 5939939326512365494}
   - component: {fileID: 3925544536286692946}
   m_Layer: 0
   m_Name: CVDFilter
@@ -33,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114466795492284082
+--- !u!114 &5939939326512365494
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4fc4faa7309614a945596151b15e6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profiles: {fileID: 11400000, guid: 2e19d6e1252e29147be830dcaa63abf0, type: 2}
   currentType: 0
 --- !u!114 &3925544536286692946
 MonoBehaviour:
@@ -62,4 +63,4 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 0}
+  sharedProfile: {fileID: 11400000, guid: 888c19b7c930c1a41b0a0427a3b276ef, type: 2}

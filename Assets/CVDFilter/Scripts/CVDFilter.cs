@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEditor;
-using System.Reflection;
 
 namespace SOG.CVDFilter
 {
@@ -12,12 +10,13 @@ namespace SOG.CVDFilter
     {
         Volume postProcessVolume;
 
-        CVDProfilesSO profiles;
-        [SerializeField] public VisionTypeNames currentType;
-        public VisionTypeInfo SelectedVisionType { get; private set; }
+        [SerializeField]
+        private CVDProfilesSO profiles; // Manually assign the ScriptableObject in the Inspector.
 
-        const string soFileName = "CVDProfiles";
-        const string soSearchTerm = "t:ScriptableObject " + soFileName;
+        [SerializeField]
+        public VisionTypeNames currentType;
+
+        public VisionTypeInfo SelectedVisionType { get; private set; }
 
         void Reset()
         {
@@ -31,32 +30,17 @@ namespace SOG.CVDFilter
             ChangeProfile();
         }
 
-
         void Setup()
         {
-            AssignProfileSO();
             ConfigureVolume();
-        }
 
-        void AssignProfileSO()
-        {
-#if UNITY_EDITOR
-            string[] guid = AssetDatabase.FindAssets(soSearchTerm);
-            if (guid.Length < 1)
+            if (profiles == null)
             {
-                Debug.LogErrorFormat("[{0}] ({1}): Error - Unable to locate file \"{2}\". "
-                + "There should be a single ScriptableObject called \"{2}.asset\" in CVDFilter > Scripts", GetType().Name, MethodBase.GetCurrentMethod().Name, soFileName);
+                Debug.LogErrorFormat("[{0}] ({1}): Error - Please assign the CVDProfilesSO in the Inspector.", GetType().Name, nameof(Setup));
                 return;
             }
 
-            profiles = AssetDatabase.LoadAssetAtPath<CVDProfilesSO>(AssetDatabase.GUIDToAssetPath(guid[0]));
             SelectedVisionType = profiles.VisionTypes[0];
-
-            if (guid.Length > 1)
-            {
-                Debug.LogWarningFormat("[{0}] ({1}): Warning - Multiple {2} found. \"{3}\" has been loaded.", GetType().Name, MethodBase.GetCurrentMethod().Name, soFileName, profiles.name);
-            }
-#endif
         }
 
         void ConfigureVolume()
@@ -69,13 +53,12 @@ namespace SOG.CVDFilter
         {
             if (profiles == null)
             {
-                Debug.LogErrorFormat("[{0}] ({1}): Error - Unable to locate {2}.", GetType().Name, MethodBase.GetCurrentMethod().Name, soFileName);
+                Debug.LogErrorFormat("[{0}] ({1}): Error - Please assign the CVDProfilesSO in the Inspector.", GetType().Name, nameof(ChangeProfile));
                 return;
             }
 
             SelectedVisionType = profiles.VisionTypes[(int)currentType];
             postProcessVolume.profile = SelectedVisionType.profile;
-            return;
         }
     }
 
