@@ -20,7 +20,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2038061862254227862
 Transform:
@@ -127,7 +127,7 @@ MonoBehaviour:
   damage: 0
   statusEffect: 0
   effectDuration: 0
-  particleEffectPrefab: {fileID: 12417722430379846, guid: 559abaa5d9b0c694cbb28da1ecb2e36e,
+  particleEffectPrefab: {fileID: 2906712463143907063, guid: f3a6a21696ed0e54f8d25142e2582571,
     type: 3}
   HitFogo: HitOrbFogo
   HitTerra: HitOrbTerra

@@ -221,6 +221,11 @@ public abstract class EnemyBase : MonoBehaviour
             activeFireEffect = Instantiate(fireEffectPrefab, transform.position, Quaternion.identity, transform);
             // Ajusta a posição do efeito, se necessário
             activeFireEffect.transform.localPosition = Vector3.zero;
+            
+            // Aplica a escala de acordo com GlobalPlacementData, mas reduz um pouco (por exemplo para metade)
+            float reductionFactor = 0.1f; // Ajuste conforme necessário
+            Vector3 adjustedScale = GlobalPlacementData.scale * reductionFactor;
+            activeFireEffect.transform.localScale = adjustedScale;
 
             // Ajusta a rotação no eixo X para -90 graus
             activeFireEffect.transform.localEulerAngles = new Vector3(-90f, 0f, 0f);

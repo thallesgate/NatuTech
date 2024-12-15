@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4527907997627854323}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.46471366, y: 0.18450254, z: 0}
   m_LocalScale: {x: 0.025, y: 0.025, z: 0.025}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -127,7 +127,7 @@ MonoBehaviour:
   damage: 10
   statusEffect: 1
   effectDuration: 0
-  particleEffectPrefab: {fileID: 12417722430379846, guid: 559abaa5d9b0c694cbb28da1ecb2e36e,
+  particleEffectPrefab: {fileID: 7152082489103592148, guid: c402782fbc45f8c4981b11f93ab12a6a,
     type: 3}
   HitFogo: HitOrbFogo
   HitTerra: HitOrbTerra

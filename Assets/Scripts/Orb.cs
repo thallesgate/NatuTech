@@ -73,11 +73,7 @@ public class Orb : MonoBehaviour
     {
         isMoving = false;
 
-        // Instanciar o efeito de partículas no ponto de impacto
-        if (particleEffectPrefab != null)
-        {
-            Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
-        }
+        CreateHitEffect(particleEffectPrefab, orbType);
 
         // Verifica se o orbe é do tipo Ar
         if (orbType == OrbType.Air)
@@ -113,11 +109,7 @@ public class Orb : MonoBehaviour
             drone.TakeDamage(damage);
             Debug.Log("Drone de proteção foi atingido pelo orbe.");
 
-            // Efeito de partículas e destruição do orbe
-            if (particleEffectPrefab != null)
-            {
-                Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
-            }
+            CreateHitEffect(particleEffectPrefab, orbType);
 
             onOrbFinished?.Invoke();
             Destroy(gameObject);
@@ -134,11 +126,7 @@ public class Orb : MonoBehaviour
             // Som
             PlaySoundHit(orbType);
 
-            // Efeito de partículas e destruição do orbe
-            if (particleEffectPrefab != null)
-            {
-                Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
-            }
+            CreateHitEffect(particleEffectPrefab, orbType);
 
             onOrbFinished?.Invoke();
             Destroy(gameObject);
@@ -156,17 +144,59 @@ public class Orb : MonoBehaviour
             // Som
             PlaySoundHit(orbType);
 
-            // Efeito de partículas e destruição do orbe
-            if (particleEffectPrefab != null)
-            {
-                Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
-            }
+            CreateHitEffect(particleEffectPrefab, orbType);
 
             onOrbFinished?.Invoke();
             Destroy(gameObject);
             return;
         }
     }
+
+
+
+    private void CreateHitEffect(GameObject particleEffectPrefab, OrbType orbType)
+    {
+
+        if (particleEffectPrefab != null)
+        {
+            GameObject effectInstance = Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
+
+            switch (orbType)
+        {
+            case OrbType.Fire:
+                audioController.PlaySound(HitFogo);
+                Debug.Log("SOM DE HIT Fogo");
+                break;
+            case OrbType.Water:
+                audioController.PlaySound(HitAgua);
+                Debug.Log("SOM DE HIT Water");
+                break;
+            case OrbType.Earth:
+                audioController.PlaySound(HitTerra);
+                Debug.Log("SOM DE HIT Earth");
+                break;
+            case OrbType.Air:
+                audioController.PlaySound(HitAr);
+                Debug.Log("SOM DE HIT Air");
+                break;
+            default:
+                Debug.Log("OrbType não identificado!");
+                break;
+        }
+
+            // Aplica a escala de acordo com GlobalPlacementData, mas reduz um pouco
+            float reductionFactor = 0.1f; // Ajuste conforme necessário
+            Vector3 adjustedScale = GlobalPlacementData.scale * reductionFactor;
+            effectInstance.transform.localScale = adjustedScale;
+
+            // Ajusta a escala dos filhos
+            foreach (Transform child in effectInstance.transform)
+            {
+                child.localScale = adjustedScale; // Aplica o mesmo ajuste nos filhos
+            }
+        }
+    }
+
 
     private void PlaySoundHit(OrbType orbType)
     {

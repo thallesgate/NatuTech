@@ -192,8 +192,14 @@ public class ThrazEngine : MonoBehaviour
         activeSmoke = Instantiate(toxicSmokeConfig.smokePrefab, toxicSmokeConfig.mapArea.transform.position, Quaternion.identity);
         activeSmoke.transform.SetParent(toxicSmokeConfig.mapArea.transform, false);
         activeSmoke.transform.localRotation = Quaternion.Euler(-90f, 0f, 0f);
-        activeSmoke.transform.localPosition = Vector3.zero;
-        activeSmoke.transform.localScale = Vector3.one;
+
+        // Define a posição local em Y = 2.5
+        activeSmoke.transform.localPosition = new Vector3(0f, 2.5f, 0f);
+
+        // Aplica a escala de acordo com GlobalPlacementData, mas reduz um pouco (por exemplo para metade)
+        float reductionFactor = 0.05f; // Ajuste conforme necessário
+        Vector3 adjustedScale = GlobalPlacementData.scale * reductionFactor;
+        activeSmoke.transform.localScale = adjustedScale;
 
         Debug.Log("Thraz liberou fumaça tóxica.");
     }
@@ -233,7 +239,12 @@ public class ThrazEngine : MonoBehaviour
             float angle = Random.Range(0f, 360f);
 
             GameObject droneObject = Instantiate(protectionDroneConfig.dronePrefab, transform.position, Quaternion.identity);
-            droneObject.transform.SetParent(gameObject.transform);
+            
+            // Aplica a escala de acordo com GlobalPlacementData, mas reduz um pouco (por exemplo para metade)
+            float reductionFactor = 0.03f; // Ajuste conforme necessário
+            Vector3 adjustedScale = GlobalPlacementData.scale * reductionFactor;
+            droneObject.transform.localScale = adjustedScale;
+
             //droneObject.transform.localScale = droneObject.transform.localScale * GlobalPlacementData.scale;
 
             ProtectionDrone drone = droneObject.GetComponent<ProtectionDrone>();
