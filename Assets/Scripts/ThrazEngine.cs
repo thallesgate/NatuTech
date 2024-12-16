@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ThrazEngine : MonoBehaviour
 {
     public int maxHealth = 100;
-    private int currentHealth;
+    public int currentHealth;
     public bool isInvincible = false;
 
     private DamageIndicator damageIndicator;

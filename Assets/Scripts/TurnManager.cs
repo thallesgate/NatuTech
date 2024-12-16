@@ -20,6 +20,7 @@ public class TurnManager : MonoBehaviour
     private GameObject thraz;
     private Queue<TurnType> turnQueue;
     private bool isGameOver = false;
+    public GameObject mapSelectionScenePrefab;
 
     public float roundTime = 1f;
     // UI
@@ -76,15 +77,27 @@ public class TurnManager : MonoBehaviour
         trees = new List<GameObject>(GameObject.FindGameObjectsWithTag("Tree"));
         thraz = GameObject.FindGameObjectWithTag("Thraz");
 
+        // DERROTA
         if (thraz == null && enemies.Count == 0 && !isGameOver && roundCounter > 0)
         {
+            if (mapSelectionScenePrefab != null)
+            {
+                GameObject sceneInstance = Instantiate(mapSelectionScenePrefab, GlobalPlacementData.position, GlobalPlacementData.rotation);
+                sceneInstance.transform.localScale *= GlobalPlacementData.scale.x;
+            }
+
             audioController.PlaySound(Victory);
             GameOver("Thraz foi derrotado!");
         }
 
-        // cheque se a lista de arvores está vazia
+        // VITÓRIA
         if (trees.Count == 0 && !isGameOver && roundCounter > 0)
         {
+            if (mapSelectionScenePrefab != null) {
+
+                GameObject sceneInstance = Instantiate(mapSelectionScenePrefab, GlobalPlacementData.position, GlobalPlacementData.rotation);
+                sceneInstance.transform.localScale *= GlobalPlacementData.scale.x;
+            }
             audioController.PlaySound(Defeat);
             GameOver("GAME OVER! As árvores foram destruídas");
         }
@@ -274,28 +287,11 @@ public class TurnManager : MonoBehaviour
         Debug.Log(message);
         isGameOver = true;
 
-        GameObject faseObject = GameObject.FindGameObjectWithTag("Fase");
-        List<GameObject> trees = new List<GameObject>(GameObject.FindGameObjectsWithTag("Tree"));
+        DestroyObjectsWithTag.DestroyObject("Fase");
+        DestroyObjectsWithTag.DestroyObjects("Tree");
+        DestroyObjectsWithTag.DestroyObjects("Efeitos");
+        DestroyObjectsWithTag.DestroyObjects("TrajectoryPoint");
 
-        //Debug.Log("Quantidade de Arvores no RESET: " + trees);
-        if (faseObject != null)
-        {
-            for (int i = 0; i < trees.Count; i++)
-            {
-                if (trees[i] != null)
-                {
-                    Destroy(trees[i]);
-                }
-            }
-
-            Destroy(faseObject);
-
-            // SPAWNE O MENU AQUI
-        }
-        else
-        {
-            Debug.Log("Fase not found man..");
-        }
 
         // Exibe a mensagem de fim de jogo na tela
         if (gameOverText != null)
