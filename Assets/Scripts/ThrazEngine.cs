@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ThrazEngine : MonoBehaviour
 {
     public int maxHealth = 100;
-    private int currentHealth;
+    public int currentHealth;
     public bool isInvincible = false;
 
     private DamageIndicator damageIndicator;
@@ -74,15 +74,9 @@ public class ThrazEngine : MonoBehaviour
 
     public List<AbilityConfig> abilitiesConfig;
 
-    // Sons
-    private AudioController audioController;
-
-    [SerializeField] private string DroneSpawn = "DroneSpawn";
-    [SerializeField] private string Victory = "VictorySong";
+    
     void Start()
     {
-
-        audioController = FindFirstObjectByType<AudioController>();
 
         currentHealth = maxHealth;
         UpdateHealthUI();
@@ -258,8 +252,6 @@ public class ThrazEngine : MonoBehaviour
                 Debug.LogError("ProtectionDrone script não encontrado no prefab do drone.");
             }
         }
-        audioController.PlaySound(DroneSpawn);
-
         lastDroneSummonTurn = currentRound;
 
         Debug.Log("Thraz invocou drones de proteção.");
@@ -413,17 +405,11 @@ public class ThrazEngine : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Thraz foi derrotado!");
+        Debug.Log("THRAZ MORREU RAPAZ");
 
-        if (turnManager != null)
+        if (activeSmoke != null)
         {
-            turnManager.GameOver("Thraz foi derrotado!");
-
-            audioController.PlaySound(Victory);
-        }
-        else
-        {
-            Debug.LogError("TurnManager não encontrado. Não é possível terminar o jogo.");
+            Destroy(activeSmoke);
         }
 
         Destroy(gameObject);

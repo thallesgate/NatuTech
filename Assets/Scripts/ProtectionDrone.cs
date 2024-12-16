@@ -12,6 +12,18 @@ public class ProtectionDrone : MonoBehaviour
     public float VelocidadeOrbita = 50f; // Velocidade de rotação em graus por segundo
     private float angle;               // Ângulo atual do drone em relação ao Thraz
 
+    // Sons
+    private AudioController audioController;
+
+    [SerializeField] private string DroneSpawn = "DroneSpawn";
+    [SerializeField] private string DroneDeath = "DroneDeath";
+    private void Start()
+    {
+        audioController = FindFirstObjectByType<AudioController>();
+
+        audioController.PlaySound(DroneSpawn);
+    }
+
     public void Initialize(ThrazEngine thraz, float initialAngle)
     {
         thrazEngine = thraz;
@@ -69,6 +81,7 @@ public class ProtectionDrone : MonoBehaviour
 
         if (thrazEngine != null)
         {
+            audioController.PlaySound(DroneDeath);
             thrazEngine.RemoveDrone(this);
         }
 

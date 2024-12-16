@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 199791721206961466}
   m_Layer: 0
   m_Name: FireExplosionSmall
-  m_TagString: Untagged
+  m_TagString: Efeitos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19475,6 +19475,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SmallExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152082489103592148, guid: c402782fbc45f8c4981b11f93ab12a6a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7154578048037942664, guid: c402782fbc45f8c4981b11f93ab12a6a,
         type: 3}

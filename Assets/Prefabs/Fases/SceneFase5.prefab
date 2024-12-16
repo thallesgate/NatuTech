@@ -2334,6 +2334,11 @@ PrefabInstance:
       propertyPath: thrazEngine
       value: 
       objectReference: {fileID: 2803321162208251559}
+    - target: {fileID: 1343037896240823246, guid: e3c3674611606d54e81c63b4361b9150,
+        type: 3}
+      propertyPath: currentPhase
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8081336868519401503, guid: e3c3674611606d54e81c63b4361b9150,
         type: 3}
       propertyPath: m_LocalPosition.x

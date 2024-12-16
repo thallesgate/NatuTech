@@ -5,9 +5,20 @@ using System.Collections;
 public class RetroescavadeiraEnemy : EnemyBase
 {
     private float originalMovementStep;
+    
+    // Sons
+    private AudioController audioController;
+    [SerializeField] private string spawnSound = "EscavadeiraSpawnSound";
+    [SerializeField] private string moveSound = "EscavadeiraMoveSound";
+    [SerializeField] private string attackTreeSound = "AttackTreeSound"; 
+
 
     void Start()
     {
+        audioController = FindFirstObjectByType<AudioController>();
+
+        audioController.PlaySound(spawnSound);
+
         base.Start();
         originalMovementStep = movementStep;
     }
@@ -67,6 +78,7 @@ public class RetroescavadeiraEnemy : EnemyBase
             TreeEngine treeEngine = targetTree.GetComponent<TreeEngine>();
             if (treeEngine != null)
             {
+                audioController.PlaySound(attackTreeSound);
                 treeEngine.TakeDamage(attackDamage);
                 Debug.Log("Retroescavadeira atacou a árvore causando " + attackDamage + " de dano.");
             }
@@ -131,6 +143,7 @@ public class RetroescavadeiraEnemy : EnemyBase
             Vector3 nextPosition = gridPositions[enemyGridIndex.x, enemyGridIndex.y];
 
             // Inicia a coroutine para movimentação suave
+            audioController.PlaySound(moveSound);
             StartCoroutine(MoveToPosition(nextPosition));
 
             // Após mover o inimigo, registre o GridIndex

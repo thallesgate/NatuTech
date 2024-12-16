@@ -9,6 +9,8 @@ public class Orb : MonoBehaviour
     public StatusEffect statusEffect = StatusEffect.None;
     public int effectDuration = 0;
 
+    public float deleteDelay = 0.5f;
+
     private Vector3 startPosition;
     private Vector3 endPosition;
     private float arcHeight;
@@ -91,7 +93,7 @@ public class Orb : MonoBehaviour
         onOrbFinished?.Invoke();
 
         // Destroi o orbe
-        Destroy(gameObject,0.5f);
+        Destroy(gameObject, deleteDelay + 0.01f);
     }
 
     // Método chamado quando o orbe colide com outro objeto
@@ -193,6 +195,8 @@ public class Orb : MonoBehaviour
             {
                 child.localScale = adjustedScale; // Aplica o mesmo ajuste nos filhos
             }
+
+            Destroy(effectInstance, deleteDelay);
         }
     }
 

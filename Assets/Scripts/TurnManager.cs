@@ -17,8 +17,10 @@ public class TurnManager : MonoBehaviour
     public ThrazEngine thrazEngine;
     private List<EnemyBase> enemies;
     private List<GameObject> trees;
+    private GameObject thraz;
     private Queue<TurnType> turnQueue;
     private bool isGameOver = false;
+    public GameObject mapSelectionScenePrefab;
 
     public float roundTime = 1f;
     // UI
@@ -40,8 +42,15 @@ public class TurnManager : MonoBehaviour
     // Variável para controlar se o jogador já agiu no turno
     public bool HasPlayerActed { get; private set; } = false;
 
+    // Sons
+    private AudioController audioController;
+    [SerializeField] private string Victory = "VictorySong";
+    [SerializeField] private string Defeat = "DefeatSong";
+
     void Start()
-    { 
+    {
+        audioController = FindFirstObjectByType<AudioController>();
+
         enemies = new List<EnemyBase>(FindObjectsByType<EnemyBase>(FindObjectsSortMode.None));
         trees = new List<GameObject>(GameObject.FindGameObjectsWithTag("Tree"));
 
@@ -62,11 +71,34 @@ public class TurnManager : MonoBehaviour
         StartCoroutine(NextTurn());
     }
 
-    private void Update()
+    void VictoryOrDefeat()
     {
-        // cheque se a lista de arvores está vazia
-        if (trees.Count == 0 && !isGameOver)
+        enemies = new List<EnemyBase>(FindObjectsByType<EnemyBase>(FindObjectsSortMode.None));
+        trees = new List<GameObject>(GameObject.FindGameObjectsWithTag("Tree"));
+        thraz = GameObject.FindGameObjectWithTag("Thraz");
+
+        // DERROTA
+        if (thraz == null && enemies.Count == 0 && !isGameOver && roundCounter > 0)
         {
+            if (mapSelectionScenePrefab != null)
+            {
+                GameObject sceneInstance = Instantiate(mapSelectionScenePrefab, GlobalPlacementData.position, GlobalPlacementData.rotation);
+                sceneInstance.transform.localScale *= GlobalPlacementData.scale.x;
+            }
+
+            audioController.PlaySound(Victory);
+            GameOver("Thraz foi derrotado!");
+        }
+
+        // VITÓRIA
+        if (trees.Count == 0 && !isGameOver && roundCounter > 0)
+        {
+            if (mapSelectionScenePrefab != null) {
+
+                GameObject sceneInstance = Instantiate(mapSelectionScenePrefab, GlobalPlacementData.position, GlobalPlacementData.rotation);
+                sceneInstance.transform.localScale *= GlobalPlacementData.scale.x;
+            }
+            audioController.PlaySound(Defeat);
             GameOver("GAME OVER! As árvores foram destruídas");
         }
     }
@@ -131,6 +163,8 @@ public class TurnManager : MonoBehaviour
 
     IEnumerator ThrazTurn()
     {
+        VictoryOrDefeat();
+
         Debug.Log("Turno do Thraz");
 
         if (thrazEngine != null)
@@ -143,6 +177,8 @@ public class TurnManager : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
+        VictoryOrDefeat();
+
         Debug.Log("Turno dos inimigos");
 
         // Usando um loop 'for' inverso para evitar modificar a lista durante a iteração
@@ -163,6 +199,8 @@ public class TurnManager : MonoBehaviour
 
     IEnumerator PlayerTurn()
     {
+        VictoryOrDefeat();
+
         Debug.Log("Turno do Jogador");
 
         // Resetamos a sinalização do fim do turno do jogador
@@ -248,6 +286,12 @@ public class TurnManager : MonoBehaviour
     {
         Debug.Log(message);
         isGameOver = true;
+
+        DestroyObjectsWithTag.DestroyObject("Fase");
+        DestroyObjectsWithTag.DestroyObjects("Tree");
+        DestroyObjectsWithTag.DestroyObjects("Efeitos");
+        DestroyObjectsWithTag.DestroyObjects("TrajectoryPoint");
+
 
         // Exibe a mensagem de fim de jogo na tela
         if (gameOverText != null)
