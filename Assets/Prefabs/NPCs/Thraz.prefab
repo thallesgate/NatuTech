@@ -325,6 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   isInvincible: 0
   protectionDroneConfig:
     enabled: 0
@@ -364,6 +365,12 @@ MonoBehaviour:
     priority: 3
   - abilityType: 1
     priority: 1
+  animator: {fileID: 1049418767023697549}
+  danoTrigger: DanoTrigger
+  spawnTrigger: SpawnTrigger
+  deathTrigger: DeathTrigger
+  droneSpawnTrigger: DroneSpawnTrigger
+  droneDanoTrigger: DroneDanoTrigger
 --- !u!114 &9023664753930305705
 MonoBehaviour:
   m_ObjectHideFlags: 0

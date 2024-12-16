@@ -22,11 +22,13 @@ public class MapScreenSceneController : MonoBehaviour
         public GameObject prefab;
         public int levelNumber;
         public string selectAnimationTrigger;
+        public string temaMusical;
     }
 
     [SerializeField] private List<LevelPrefab> levels = new List<LevelPrefab>();
 
     private GameObject nextScene;
+    private string nextMusic;
     private bool isClickOutActive = false;
     private int lastSelectedMap = -1;
 
@@ -45,22 +47,22 @@ public class MapScreenSceneController : MonoBehaviour
             return;
         }
 
-        if (selection != lastSelectedMap)
+        // Reset ClickOut state
+        isClickOutActive = false;
+
+        // Prevent retriggering the same map's animation
+        if (selection == lastSelectedMap)
         {
-            // Trigger ClickOut if switching maps
-            if (lastSelectedMap != -1)
-            {
-                TriggerClickOut();
-            }
+            Debug.Log("MapScreenController: Same map selected again, ignoring trigger.");
+            return;
         }
 
-        // Update selection
         lastSelectedMap = selection;
-        isClickOutActive = false;
 
         audioController.PlaySound(tapSound);
         LevelPrefab selectedLevel = levels[selection];
         nextScene = selectedLevel.prefab;
+        nextMusic = selectedLevel.temaMusical;
 
         if (animator != null && !string.IsNullOrEmpty(selectedLevel.selectAnimationTrigger))
         {
@@ -75,7 +77,7 @@ public class MapScreenSceneController : MonoBehaviour
     public void OnMapConfirm()
     {
         audioController.PlaySound(tapSound);
-
+        audioController.PlaySound(nextMusic);
         if (animator != null)
         {
             animator.SetTrigger(easeOutTrigger);
@@ -100,11 +102,6 @@ public class MapScreenSceneController : MonoBehaviour
     }
 
     public void OnClickOut()
-    {
-        TriggerClickOut();
-    }
-
-    private void TriggerClickOut()
     {
         if (isClickOutActive)
         {

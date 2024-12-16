@@ -122,7 +122,8 @@ public class InstructionsARSceneController : MonoBehaviour
     {
         Debug.Log("Instructions UI has despawned. Transitioning to game...");
         // Additional logic for transitioning to the game can be added here
-        Instantiate(nextScenePrefab);
+        GameObject spawnedScene = Instantiate(nextScenePrefab, GlobalPlacementData.position, GlobalPlacementData.rotation);
+        spawnedScene.transform.localScale = GlobalPlacementData.scale;
         Destroy(gameObject);
     }
 }

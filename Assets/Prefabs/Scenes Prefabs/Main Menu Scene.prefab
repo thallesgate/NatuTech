@@ -791,7 +791,7 @@ MonoBehaviour:
   animator: {fileID: 652513406365655477}
   animatorTrigger: FadeOutTrigger
   tapSound: ScreenTap
-  playScenePrefab: {fileID: 6299304923313349057, guid: 7728373e9ee2f5049a2c39d26519e308,
+  playScenePrefab: {fileID: 8670170179133529470, guid: e26650ec220341b45915378ec23641d2,
     type: 3}
   settingsScenePrefab: {fileID: 9202801843538774576, guid: be1e08ec58b458448a825d9e3294d279,
     type: 3}
