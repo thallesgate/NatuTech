@@ -78,7 +78,6 @@ public class ThrazEngine : MonoBehaviour
     private AudioController audioController;
 
     [SerializeField] private string DroneSpawn = "DroneSpawn";
-    [SerializeField] private string Victory = "VictorySong";
     void Start()
     {
 
@@ -413,19 +412,6 @@ public class ThrazEngine : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Thraz foi derrotado!");
-
-        if (turnManager != null)
-        {
-            turnManager.GameOver("Thraz foi derrotado!");
-
-            audioController.PlaySound(Victory);
-        }
-        else
-        {
-            Debug.LogError("TurnManager não encontrado. Não é possível terminar o jogo.");
-        }
-
         Destroy(gameObject);
     }
 

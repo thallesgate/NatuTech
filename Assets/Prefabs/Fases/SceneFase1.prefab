@@ -2251,7 +2251,7 @@ PrefabInstance:
     - target: {fileID: 1343037896240823246, guid: e3c3674611606d54e81c63b4361b9150,
         type: 3}
       propertyPath: currentPhase
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8081336868519401503, guid: e3c3674611606d54e81c63b4361b9150,
         type: 3}
@@ -2508,6 +2508,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Thraz
       objectReference: {fileID: 0}
+    - target: {fileID: 4187872134296608978, guid: cd825844b4a71d1438faeb2a3b6c3fac,
+        type: 3}
+      propertyPath: m_TagString
+      value: Thraz
+      objectReference: {fileID: 0}
     - target: {fileID: 5445928438740283405, guid: cd825844b4a71d1438faeb2a3b6c3fac,
         type: 3}
       propertyPath: enemyPrefab
@@ -2529,6 +2534,11 @@ PrefabInstance:
       propertyPath: turnText
       value: 
       objectReference: {fileID: 7225170635967295227}
+    - target: {fileID: 7604955237272087615, guid: cd825844b4a71d1438faeb2a3b6c3fac,
+        type: 3}
+      propertyPath: roundTime
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7604955237272087615, guid: cd825844b4a71d1438faeb2a3b6c3fac,
         type: 3}
       propertyPath: gameOverText

@@ -12,6 +12,7 @@ TagManager:
   - NPCSource
   - ActionSource
   - MusicSource
+  - Thraz
   layers:
   - Default
   - TransparentFX
