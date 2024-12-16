@@ -62,6 +62,15 @@ public class TurnManager : MonoBehaviour
         StartCoroutine(NextTurn());
     }
 
+    private void Update()
+    {
+        // cheque se a lista de arvores está vazia
+        if (trees.Count == 0 && !isGameOver)
+        {
+            GameOver("GAME OVER! As árvores foram destruídas");
+        }
+    }
+
     IEnumerator NextTurn()
     {
         while (!isGameOver)
@@ -233,11 +242,6 @@ public class TurnManager : MonoBehaviour
     public void RemoveTree(GameObject tree)
     {
         trees.Remove(tree);
-
-        if (trees.Count == 0)
-        {
-            GameOver("GAME OVER! As árvores foram destruídas");
-        }
     }
 
     public void GameOver(string message)

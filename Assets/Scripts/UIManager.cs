@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
+using TreeEditor;
 
 public class UIManager : MonoBehaviour
 {
@@ -156,9 +158,21 @@ public class UIManager : MonoBehaviour
     public void OnResetButtonClicked()
     {
         GameObject faseObject = GameObject.FindGameObjectWithTag("Fase");
+        List<GameObject> trees = new List<GameObject>(GameObject.FindGameObjectsWithTag("Tree"));
+
+        //Debug.Log("Quantidade de Arvores no RESET: " + trees);
         if (faseObject != null)
-        {
+        {   
+            for (int i = 0; i < trees.Count; i++)
+            {
+                if (trees[i] != null)
+                {
+                    Destroy(trees[i]);
+                }
+            }
+            
             Destroy(faseObject);
+
             if (prefabToSpawn != null)
             {
                 Instantiate(prefabToSpawn, Vector3.zero, Quaternion.identity);

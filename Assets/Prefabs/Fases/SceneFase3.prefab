@@ -1449,13 +1449,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4694361661424536718}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0092, y: 0.242, z: -0.1949}
+  m_LocalRotation: {x: 0.057700638, y: -0, z: -0, w: 0.99833393}
+  m_LocalPosition: {x: -0.0092, y: 0.235, z: -0.19490002}
   m_LocalScale: {x: -0.26, y: 0.0013333332, z: 0.11}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6293023713933818268}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 6.616, y: 0, z: 0}
 --- !u!33 &3698717597828652694
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2825,6 +2825,11 @@ PrefabInstance:
         type: 3}
       propertyPath: enemies.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3554922475214207592, guid: cd825844b4a71d1438faeb2a3b6c3fac,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.189
       objectReference: {fileID: 0}
     - target: {fileID: 4187872134296608978, guid: cd825844b4a71d1438faeb2a3b6c3fac,
         type: 3}

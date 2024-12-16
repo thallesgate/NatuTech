@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbType: 2
   damage: 0
-  statusEffect: 0
+  statusEffect: 3
   effectDuration: 0
   particleEffectPrefab: {fileID: 2906712463143907063, guid: f3a6a21696ed0e54f8d25142e2582571,
     type: 3}

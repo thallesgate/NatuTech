@@ -127,7 +127,7 @@ MonoBehaviour:
   damage: 0
   statusEffect: 0
   effectDuration: 0
-  particleEffectPrefab: {fileID: 12417722430379846, guid: 559abaa5d9b0c694cbb28da1ecb2e36e,
+  particleEffectPrefab: {fileID: 1025285306637258, guid: 8ff51d2dad8899946aded2c37b24c348,
     type: 3}
   HitFogo: HitOrbFogo
   HitTerra: HitOrbTerra

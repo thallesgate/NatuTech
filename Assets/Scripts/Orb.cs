@@ -91,7 +91,7 @@ public class Orb : MonoBehaviour
         onOrbFinished?.Invoke();
 
         // Destroi o orbe
-        Destroy(gameObject,0.1f);
+        Destroy(gameObject,0.5f);
     }
 
     // Método chamado quando o orbe colide com outro objeto
@@ -157,6 +157,8 @@ public class Orb : MonoBehaviour
     private void CreateHitEffect(GameObject particleEffectPrefab, OrbType orbType)
     {
 
+        float reductionFactor = 0.1f; // Ajuste conforme necessário
+
         if (particleEffectPrefab != null)
         {
             GameObject effectInstance = Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
@@ -164,28 +166,25 @@ public class Orb : MonoBehaviour
             switch (orbType)
         {
             case OrbType.Fire:
-                audioController.PlaySound(HitFogo);
-                Debug.Log("SOM DE HIT Fogo");
-                break;
+                    reductionFactor = 0.2f; // Ajuste conforme necessário
+                    break;
             case OrbType.Water:
-                audioController.PlaySound(HitAgua);
-                Debug.Log("SOM DE HIT Water");
-                break;
+                    reductionFactor = 0.1f; // Ajuste conforme necessário
+                    effectInstance.transform.rotation = Quaternion.Euler(new Vector3(-90f, 0, 0));
+                    break;
             case OrbType.Earth:
-                audioController.PlaySound(HitTerra);
-                Debug.Log("SOM DE HIT Earth");
-                break;
+                    reductionFactor = 0.1f; // Ajuste conforme necessário
+                    effectInstance.transform.rotation = Quaternion.Euler(new Vector3(-90f, 0, 0));
+                    break;
             case OrbType.Air:
-                audioController.PlaySound(HitAr);
-                Debug.Log("SOM DE HIT Air");
-                break;
+                    reductionFactor = 0.06f; // Ajuste conforme necessário
+                    break;
             default:
-                Debug.Log("OrbType não identificado!");
-                break;
+                    Debug.Log("OrbType não identificado!");
+                    break;
         }
 
             // Aplica a escala de acordo com GlobalPlacementData, mas reduz um pouco
-            float reductionFactor = 0.1f; // Ajuste conforme necessário
             Vector3 adjustedScale = GlobalPlacementData.scale * reductionFactor;
             effectInstance.transform.localScale = adjustedScale;
 
@@ -205,19 +204,15 @@ public class Orb : MonoBehaviour
         {
             case OrbType.Fire:
                 audioController.PlaySound(HitFogo);
-                Debug.Log("SOM DE HIT Fogo");
                 break;
             case OrbType.Water:
                 audioController.PlaySound(HitAgua);
-                Debug.Log("SOM DE HIT Water");
                 break;
             case OrbType.Earth:
                 audioController.PlaySound(HitTerra);
-                Debug.Log("SOM DE HIT Earth");
                 break;
             case OrbType.Air:
                 audioController.PlaySound(HitAr);
-                Debug.Log("SOM DE HIT Air");
                 break;
             default:
                 Debug.Log("OrbType não identificado!");
