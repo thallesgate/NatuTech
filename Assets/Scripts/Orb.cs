@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.WSA;
 
 public class Orb : MonoBehaviour
 {
@@ -20,6 +21,14 @@ public class Orb : MonoBehaviour
 
     private bool isMoving = false;
 
+    // Sons
+    private AudioController audioController;
+
+    [SerializeField] private string HitFogo = "HitOrbFogo";
+    [SerializeField] private string HitTerra = "HitOrbTerra";
+    [SerializeField] private string HitAr = "HitOrbAr";
+    [SerializeField] private string HitAgua = "HitOrbAgua";
+
     // Adicione um SphereCollider e marque como Trigger no próprio prefab do orbe.
 
     public void Initialize(OrbType type, int dmg, Vector3 startPos, Vector3 endPos, float arcH, float duration, StatusEffect effect, int effectTurns, Action callback)
@@ -35,6 +44,11 @@ public class Orb : MonoBehaviour
         onOrbFinished = callback;
 
         isMoving = true;
+    }
+
+    void Start()
+    {
+        audioController = FindFirstObjectByType<AudioController>();
     }
 
     void Update()
@@ -59,11 +73,7 @@ public class Orb : MonoBehaviour
     {
         isMoving = false;
 
-        // Instanciar o efeito de partículas no ponto de impacto
-        if (particleEffectPrefab != null)
-        {
-            Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
-        }
+        CreateHitEffect(particleEffectPrefab, orbType);
 
         // Verifica se o orbe é do tipo Ar
         if (orbType == OrbType.Air)
@@ -81,7 +91,7 @@ public class Orb : MonoBehaviour
         onOrbFinished?.Invoke();
 
         // Destroi o orbe
-        Destroy(gameObject,0.1f);
+        Destroy(gameObject,0.5f);
     }
 
     // Método chamado quando o orbe colide com outro objeto
@@ -93,14 +103,13 @@ public class Orb : MonoBehaviour
         {
             Debug.Log("Orbe colidiu com: " + other.gameObject.name);
 
+            // Som
+            PlaySoundHit(orbType);
+
             drone.TakeDamage(damage);
             Debug.Log("Drone de proteção foi atingido pelo orbe.");
 
-            // Efeito de partículas e destruição do orbe
-            if (particleEffectPrefab != null)
-            {
-                Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
-            }
+            CreateHitEffect(particleEffectPrefab, orbType);
 
             onOrbFinished?.Invoke();
             Destroy(gameObject);
@@ -114,11 +123,10 @@ public class Orb : MonoBehaviour
             thraz.TakeDamage(damage);
             Debug.Log("Thraz foi atingido pelo orbe.");
 
-            // Efeito de partículas e destruição do orbe
-            if (particleEffectPrefab != null)
-            {
-                Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
-            }
+            // Som
+            PlaySoundHit(orbType);
+
+            CreateHitEffect(particleEffectPrefab, orbType);
 
             onOrbFinished?.Invoke();
             Destroy(gameObject);
@@ -133,11 +141,10 @@ public class Orb : MonoBehaviour
             enemy.ApplyStatusEffect(statusEffect, effectDuration);
             Debug.Log("Inimigo atingido: " + enemy.gameObject.name);
 
-            // Efeito de partículas e destruição do orbe
-            if (particleEffectPrefab != null)
-            {
-                Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
-            }
+            // Som
+            PlaySoundHit(orbType);
+
+            CreateHitEffect(particleEffectPrefab, orbType);
 
             onOrbFinished?.Invoke();
             Destroy(gameObject);
@@ -145,6 +152,74 @@ public class Orb : MonoBehaviour
         }
     }
 
+
+
+    private void CreateHitEffect(GameObject particleEffectPrefab, OrbType orbType)
+    {
+
+        float reductionFactor = 0.1f; // Ajuste conforme necessário
+
+        if (particleEffectPrefab != null)
+        {
+            GameObject effectInstance = Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
+
+            switch (orbType)
+        {
+            case OrbType.Fire:
+                    reductionFactor = 0.2f; // Ajuste conforme necessário
+                    break;
+            case OrbType.Water:
+                    reductionFactor = 0.1f; // Ajuste conforme necessário
+                    effectInstance.transform.rotation = Quaternion.Euler(new Vector3(-90f, 0, 0));
+                    break;
+            case OrbType.Earth:
+                    reductionFactor = 0.1f; // Ajuste conforme necessário
+                    effectInstance.transform.rotation = Quaternion.Euler(new Vector3(-90f, 0, 0));
+                    break;
+            case OrbType.Air:
+                    reductionFactor = 0.06f; // Ajuste conforme necessário
+                    break;
+            default:
+                    Debug.Log("OrbType não identificado!");
+                    break;
+        }
+
+            // Aplica a escala de acordo com GlobalPlacementData, mas reduz um pouco
+            Vector3 adjustedScale = GlobalPlacementData.scale * reductionFactor;
+            effectInstance.transform.localScale = adjustedScale;
+
+            // Ajusta a escala dos filhos
+            foreach (Transform child in effectInstance.transform)
+            {
+                child.localScale = adjustedScale; // Aplica o mesmo ajuste nos filhos
+            }
+        }
+    }
+
+
+    private void PlaySoundHit(OrbType orbType)
+    {
+        Debug.Log("Esse é o ORBTYPE: " + orbType);
+        switch (orbType)
+        {
+            case OrbType.Fire:
+                audioController.PlaySound(HitFogo);
+                break;
+            case OrbType.Water:
+                audioController.PlaySound(HitAgua);
+                break;
+            case OrbType.Earth:
+                audioController.PlaySound(HitTerra);
+                break;
+            case OrbType.Air:
+                audioController.PlaySound(HitAr);
+                break;
+            default:
+                Debug.Log("OrbType não identificado!");
+                break;
+        }
+
+    }
 
     private Vector3 CalculateBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2)
     {

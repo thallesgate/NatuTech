@@ -767,6 +767,12 @@ PrefabInstance:
       objectReference: {fileID: 8321437450490557573}
     - target: {fileID: 8939505584897860657, guid: d61f89251f7f85b438f624afe42befba,
         type: 3}
+      propertyPath: toxicSmokeConfig.smokePrefab
+      value: 
+      objectReference: {fileID: 1269120730060968, guid: 595343542d835b94db9516d07972345e,
+        type: 3}
+    - target: {fileID: 8939505584897860657, guid: d61f89251f7f85b438f624afe42befba,
+        type: 3}
       propertyPath: summonableEnemiesConfig.enabled
       value: 1
       objectReference: {fileID: 0}

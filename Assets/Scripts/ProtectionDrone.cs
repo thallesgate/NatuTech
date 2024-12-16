@@ -37,8 +37,8 @@ public class ProtectionDrone : MonoBehaviour
         float rad = Mathf.Deg2Rad * angle;
 
         // Calcula a posição do drone
-        Vector3 offset = new Vector3(Mathf.Cos(rad), 0f, Mathf.Sin(rad)) * raioOrbita;
-        Vector3 targetPosition = thrazEngine.transform.position + offset + Vector3.up * alturaVoo;
+        Vector3 offset = new Vector3(Mathf.Cos(rad), 0f, Mathf.Sin(rad)) * raioOrbita * GlobalPlacementData.scale.y;
+        Vector3 targetPosition = thrazEngine.transform.position + offset + Vector3.up * alturaVoo * GlobalPlacementData.scale.y;
         transform.position = targetPosition;
 
         // Calcula a direção do movimento (derivada da posição em relação ao ângulo)

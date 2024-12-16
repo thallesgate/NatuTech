@@ -89,14 +89,9 @@ public class GridManager : MonoBehaviour
         {
             Vector3 randomPosition = GetRandomGridPosition();
 
-<<<<<<< Updated upstream
-            tree.transform.localScale = GlobalPlacementData.scale; // Apply placement scale compensation.
-            //tree.transform.SetParent(mapArea.transform);
-=======
             GameObject tree = Instantiate(treePrefab, randomPosition, Quaternion.identity);
-            tree.transform.localScale = GlobalPlacementData.scale; // Apply placement scale compensation.
-            
->>>>>>> Stashed changes
+            tree.transform.localScale = new Vector3(tree.transform.localScale.x * GlobalPlacementData.scale.x, tree.transform.localScale.y * GlobalPlacementData.scale.y, tree.transform.localScale.z * GlobalPlacementData.scale.z); // Apply placement scale compensation.
+
             if (tree == null)
             {
                 Debug.LogError("Instância de árvore falhou!");
@@ -114,14 +109,10 @@ public class GridManager : MonoBehaviour
                     Debug.LogError("TreeEngine não encontrado no prefab da árvore!");
                 }
             }
-<<<<<<< Updated upstream
-
-            
-=======
             //Vector3 treeSavedPosition = tree.transform.position;
-            tree.transform.SetParent(mapArea.transform, false);
-            tree.transform.localPosition = mapArea.transform.InverseTransformPoint(randomPosition);
->>>>>>> Stashed changes
+            //tree.transform.SetParent(mapArea.transform, false);
+            //tree.transform.localPosition = mapArea.transform.InverseTransformPoint(randomPosition);
+
         }
     }
 

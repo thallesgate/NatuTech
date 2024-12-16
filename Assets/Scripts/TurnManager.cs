@@ -20,6 +20,7 @@ public class TurnManager : MonoBehaviour
     private Queue<TurnType> turnQueue;
     private bool isGameOver = false;
 
+    public float roundTime = 1f;
     // UI
     public TextMeshProUGUI turnText;
     public TextMeshProUGUI gameOverText; // Texto para exibir a mensagem de fim de jogo
@@ -61,6 +62,15 @@ public class TurnManager : MonoBehaviour
         StartCoroutine(NextTurn());
     }
 
+    private void Update()
+    {
+        // cheque se a lista de arvores está vazia
+        if (trees.Count == 0 && !isGameOver)
+        {
+            GameOver("GAME OVER! As árvores foram destruídas");
+        }
+    }
+
     IEnumerator NextTurn()
     {
         while (!isGameOver)
@@ -96,7 +106,7 @@ public class TurnManager : MonoBehaviour
 
             turnQueue.Enqueue(currentTurn);
 
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(roundTime);
         }
     }
 
@@ -128,7 +138,7 @@ public class TurnManager : MonoBehaviour
             thrazEngine.StartTurn();
         }
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(roundTime);
     }
 
     IEnumerator EnemyTurn()
@@ -144,7 +154,7 @@ public class TurnManager : MonoBehaviour
                 enemy.StartTurn(trees);
             }
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(roundTime/2f);
         }
 
         // Remover inimigos destruídos após a iteração
@@ -232,11 +242,6 @@ public class TurnManager : MonoBehaviour
     public void RemoveTree(GameObject tree)
     {
         trees.Remove(tree);
-
-        if (trees.Count == 0)
-        {
-            GameOver("GAME OVER! As árvores foram destruídas");
-        }
     }
 
     public void GameOver(string message)
