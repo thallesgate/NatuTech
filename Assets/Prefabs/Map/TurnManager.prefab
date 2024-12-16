@@ -45,3 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridManager: {fileID: 0}
+  thrazEngine: {fileID: 0}
+  mapSelectionScenePrefab: {fileID: 6299304923313349057, guid: 7728373e9ee2f5049a2c39d26519e308,
+    type: 3}
+  roundTime: 1
+  turnText: {fileID: 0}
+  gameOverText: {fileID: 0}
+  Victory: VictorySong
+  Defeat: DefeatSong

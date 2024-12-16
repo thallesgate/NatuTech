@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cbc9cc4306c5e354696618b95ff4388d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 193819
+  packageName: CVD Filter (URP)
+  packageVersion: 2.0.0
+  assetPath: Assets/CVDFilter/_Prefabs/CVDFilter.prefab
+  uploadId: 507914

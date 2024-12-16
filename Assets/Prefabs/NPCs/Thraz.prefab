@@ -81,7 +81,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
         type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8597977848336004441, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
         type: 3}
@@ -167,6 +167,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Thraz
       objectReference: {fileID: 0}
     - target: {fileID: 1436034013943334812, guid: c23ffef3c41e0bf4fb85ed14ccf27a5b,
         type: 3}
@@ -359,8 +364,6 @@ MonoBehaviour:
     priority: 3
   - abilityType: 1
     priority: 1
-  DroneSpawn: DroneSpawn
-  Victory: VictorySong
 --- !u!114 &9023664753930305705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,7 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee13576f6645724459eea7286cbed2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createParticlePrefab: {fileID: 3826420434364979677, guid: a9ab61279125bd349979b3f9a42f0d5e,
+  createParticlePrefab: {fileID: 198000010585806678, guid: c77160266b00a684391565cdf899bb3c,
     type: 3}
-  destroyParticlePrefab: {fileID: 4183308335039930855, guid: 4a543bc1db7cf0b45ac217af2e87dba3,
+  destroyParticlePrefab: {fileID: 198000010585806678, guid: c77160266b00a684391565cdf899bb3c,
     type: 3}
