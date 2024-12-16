@@ -793,6 +793,7 @@ MonoBehaviour:
   tapSound: ScreenTap
   playScenePrefab: {fileID: 8670170179133529470, guid: e26650ec220341b45915378ec23641d2,
     type: 3}
+  applyScale: 1
   settingsScenePrefab: {fileID: 9202801843538774576, guid: be1e08ec58b458448a825d9e3294d279,
     type: 3}
 --- !u!1 &7331261616686596724

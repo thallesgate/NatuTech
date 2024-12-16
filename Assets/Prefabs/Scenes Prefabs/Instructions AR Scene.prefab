@@ -883,3 +883,5 @@ MonoBehaviour:
   finalSound: Start
   nextScenePrefab: {fileID: 1740094875460627994, guid: 1f2013eb6da7ddc4dbe6e1941fe2d7ed,
     type: 3}
+  applyScale: 0
+  canvas: {fileID: 8728707870577476267}

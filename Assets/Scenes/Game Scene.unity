@@ -501,12 +501,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9205920141013479956, guid: c8dd4667d6910e94397d92e1ecaa84c2,
-        type: 3}
-      propertyPath: sceneToLoadPrefab
-      value: 
-      objectReference: {fileID: 8670170179133529470, guid: 40609c3624117384ab54660d9ecc7a95,
-        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -529,6 +523,11 @@ PrefabInstance:
         type: 3}
       propertyPath: currentType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250323480762339244, guid: c95aeec7237fdaf418574cfec414831c,
+        type: 3}
+      propertyPath: far clip plane
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1250323480762339244, guid: c95aeec7237fdaf418574cfec414831c,
         type: 3}
