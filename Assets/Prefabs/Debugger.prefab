@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   consoleText: {fileID: 839912755771126172}
-  maxMessages: 50
+  maxMessages: 20
 --- !u!1 &6432614966739510948
 GameObject:
   m_ObjectHideFlags: 0

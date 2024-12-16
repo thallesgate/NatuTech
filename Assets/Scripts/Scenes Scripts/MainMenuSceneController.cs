@@ -69,5 +69,9 @@ public class MainMenuSceneController : MonoBehaviour
             sceneInstance.transform.localScale *= GlobalPlacementData.scale.x;
             Destroy(gameObject);
         }
+        else
+        {
+            Debug.LogError("Next scene is null. Ensure a selection has been made.");
+        }
     }
 }
