@@ -46,6 +46,7 @@ public class TurnManager : MonoBehaviour
     private AudioController audioController;
     [SerializeField] private string Victory = "VictorySong";
     [SerializeField] private string Defeat = "DefeatSong";
+    public Animator animator;
 
     void Start()
     {
@@ -80,26 +81,26 @@ public class TurnManager : MonoBehaviour
         // DERROTA
         if (thraz == null && enemies.Count == 0 && !isGameOver && roundCounter > 0)
         {
-            if (mapSelectionScenePrefab != null)
-            {
-                GameObject sceneInstance = Instantiate(mapSelectionScenePrefab, GlobalPlacementData.position, GlobalPlacementData.rotation);
-                sceneInstance.transform.localScale *= GlobalPlacementData.scale.x;
-            }
+            // if (mapSelectionScenePrefab != null)
+            //{
+            //    GameObject sceneInstance = Instantiate(mapSelectionScenePrefab, GlobalPlacementData.position, GlobalPlacementData.rotation);
+            //    sceneInstance.transform.localScale *= GlobalPlacementData.scale.x;
+            //}
 
             audioController.PlaySound(Victory);
-            GameOver("Thraz foi derrotado!");
+            GameOver("Vitória! Thraz foi derrotado!");
         }
 
         // VITÓRIA
         if (trees.Count == 0 && !isGameOver && roundCounter > 0)
         {
-            if (mapSelectionScenePrefab != null) {
+            //if (mapSelectionScenePrefab != null) {
 
-                GameObject sceneInstance = Instantiate(mapSelectionScenePrefab, GlobalPlacementData.position, GlobalPlacementData.rotation);
-                sceneInstance.transform.localScale *= GlobalPlacementData.scale.x;
-            }
+             //   GameObject sceneInstance = Instantiate(mapSelectionScenePrefab, GlobalPlacementData.position, GlobalPlacementData.rotation);
+            //    sceneInstance.transform.localScale *= GlobalPlacementData.scale.x;
+            //}
             audioController.PlaySound(Defeat);
-            GameOver("GAME OVER! As árvores foram destruídas");
+            GameOver("GAME OVER! As árvores foram destruídas.");
         }
     }
 
@@ -286,19 +287,17 @@ public class TurnManager : MonoBehaviour
     {
         Debug.Log(message);
         isGameOver = true;
-
-        DestroyObjectsWithTag.DestroyObject("Fase");
-        DestroyObjectsWithTag.DestroyObjects("Tree");
-        DestroyObjectsWithTag.DestroyObjects("Efeitos");
-        DestroyObjectsWithTag.DestroyObjects("TrajectoryPoint");
-
-
         // Exibe a mensagem de fim de jogo na tela
         if (gameOverText != null)
         {
+            animator.SetTrigger("GameOverTrigger");
             gameOverText.text = message;
-            gameOverText.gameObject.SetActive(true);
         }
+
+        //DestroyObjectsWithTag.DestroyObjects("Tree");
+        //DestroyObjectsWithTag.DestroyObjects("Efeitos");
+        //DestroyObjectsWithTag.DestroyObjects("TrajectoryPoint");
+        //DestroyObjectsWithTag.DestroyObject("Fase");
     }
 
     void ApplySmokeDamageToTrees()
@@ -334,7 +333,7 @@ public class TurnManager : MonoBehaviour
         // Após remover as árvores destruídas, cheque se a lista está vazia
         if (trees.Count == 0 && !isGameOver)
         {
-            GameOver("GAME OVER! As árvores foram destruídas");
+            GameOver("GAME OVER! As natureza foi destruída!");
         }
 
         Debug.Log("A fumaça tóxica causou dano às árvores.");

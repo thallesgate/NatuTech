@@ -27,6 +27,8 @@ public class InstructionsARSceneController : MonoBehaviour
 
     [Header("Scene Prefab")]
     [SerializeField] private GameObject nextScenePrefab;
+    [SerializeField] private bool applyScale;
+    [SerializeField] private Canvas canvas;
 
     private int currentInstructionIndex = 0;
     private bool inputEnabled = false;
@@ -34,6 +36,7 @@ public class InstructionsARSceneController : MonoBehaviour
 
     private void Start()
     {
+        canvas.worldCamera = Camera.main;
         audioController = FindFirstObjectByType<AudioController>();
         if (instructionImages.Length == 0 || instructionTexts.Length == 0 || instructionsAnimator == null)
         {
@@ -122,7 +125,16 @@ public class InstructionsARSceneController : MonoBehaviour
     {
         Debug.Log("Instructions UI has despawned. Transitioning to game...");
         // Additional logic for transitioning to the game can be added here
-        Instantiate(nextScenePrefab);
+        if (applyScale)
+        {
+            GameObject spawnedScene = Instantiate(nextScenePrefab, GlobalPlacementData.position, GlobalPlacementData.rotation);
+            spawnedScene.transform.localScale = GlobalPlacementData.scale;
+        }
+        else
+        {
+            Instantiate(nextScenePrefab);
+        }
+
         Destroy(gameObject);
     }
 }

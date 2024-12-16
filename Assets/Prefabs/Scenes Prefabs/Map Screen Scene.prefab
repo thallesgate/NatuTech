@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2452874765926714214
 RectTransform:
   m_ObjectHideFlags: 0
@@ -637,7 +637,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7712629067495212925
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1521,7 +1521,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &759575220557076997
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2160,7 +2160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &914851492159064291
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2292,7 +2292,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6748445985444601860
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2561,7 +2561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3254282072368668717
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2703,7 +2703,7 @@ RectTransform:
   m_GameObject: {fileID: 4626801560738887035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
+  m_LocalScale: {x: 0.004, y: 0.004, z: 0.004}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8585719474077965678}
@@ -2722,7 +2722,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.75}
+  m_AnchoredPosition: {x: 0, y: 0.606}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5324182041794270385
@@ -3240,6 +3240,7 @@ GameObject:
   - component: {fileID: 5363489158539796826}
   - component: {fileID: 652513406365655477}
   - component: {fileID: 4663969096138675078}
+  - component: {fileID: 7624882839438687888}
   m_Layer: 0
   m_Name: Map Screen Scene
   m_TagString: Untagged
@@ -3303,47 +3304,70 @@ MonoBehaviour:
   tapSound: ScreenTap
   mainMenuPrefab: {fileID: 6299304923313349057, guid: b2a47927f6bf1704f9a622ca76c630a2,
     type: 3}
+  scaleFactor: 2
   levels:
   - prefab: {fileID: 3091330995790222088, guid: 595d188e5644b384d9ce1bb7e264997b,
       type: 3}
     levelNumber: 1
     selectAnimationTrigger: Select1
+    temaMusical: TemaCachoeira
   - prefab: {fileID: 3091330995790222088, guid: 4874bf09bc6291d45b296d78445b8436,
       type: 3}
     levelNumber: 2
     selectAnimationTrigger: Select2
+    temaMusical: TemaPassaros
   - prefab: {fileID: 3091330995790222088, guid: e84865af151b75e4ebb773d5bc3575f3,
       type: 3}
     levelNumber: 3
     selectAnimationTrigger: Select3
+    temaMusical: TemaVentos
   - prefab: {fileID: 3091330995790222088, guid: d4da0979b8115e84e9424f75bbb5ed39,
       type: 3}
     levelNumber: 4
     selectAnimationTrigger: Select4
+    temaMusical: TemaPassaros
   - prefab: {fileID: 3091330995790222088, guid: d098098294ec4994dab81841bff4b891,
       type: 3}
     levelNumber: 5
     selectAnimationTrigger: Select5
+    temaMusical: TemaVentos
   - prefab: {fileID: 3091330995790222088, guid: ed721df26c44a8c4695d3aa5caf710ed,
       type: 3}
     levelNumber: 6
     selectAnimationTrigger: Select6
+    temaMusical: TemaPassaros
   - prefab: {fileID: 3091330995790222088, guid: a5c63e69c6eed2844b4a2a32ed237f74,
       type: 3}
     levelNumber: 7
     selectAnimationTrigger: Select7
+    temaMusical: TemaVentos
   - prefab: {fileID: 3091330995790222088, guid: 5d8d1d80981a57f479734fc1f6e176f3,
       type: 3}
     levelNumber: 8
     selectAnimationTrigger: Select8
+    temaMusical: TemaVentos
   - prefab: {fileID: 3091330995790222088, guid: b8473affe2940d6409c2fa364a985f00,
       type: 3}
     levelNumber: 9
     selectAnimationTrigger: Select9
+    temaMusical: TemaVentos
   - prefab: {fileID: 3091330995790222088, guid: 6c19d0cbc2c5b4447a4c0f4491b0b185,
       type: 3}
     levelNumber: 10
     selectAnimationTrigger: Select10
+    temaMusical: Tema
+--- !u!114 &7624882839438687888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6299304923313349057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67868932ea764684b97d7a4177acbe47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6326105052020957194
 GameObject:
   m_ObjectHideFlags: 0
@@ -3763,7 +3787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &351036064083063642
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4027,7 +4051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1649287075824427898
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4697,7 +4721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4996578985471200135
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5038,7 +5062,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7798290316502913281
 RectTransform:
   m_ObjectHideFlags: 0

@@ -95,6 +95,7 @@ MonoBehaviour:
   animatorTrigger: MapPlacementEaseOut
   flashbangPrefab: {fileID: 3041632247848184878, guid: fae42f7d2fb3c5f4e82291e4ff0b854b,
     type: 3}
+  tapSound: Start
 --- !u!95 &6362886793554995092
 Animator:
   serializedVersion: 7
@@ -299,6 +300,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027067799200446100, guid: c6198a313280db740a8f7c27f51d652a,
+        type: 3}
+      propertyPath: m_text
+      value: "Hora de mapear uma superf\xEDcie!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027067799200446100, guid: c6198a313280db740a8f7c27f51d652a,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 62.35
       objectReference: {fileID: 0}
     - target: {fileID: 6412882793129618403, guid: c6198a313280db740a8f7c27f51d652a,
         type: 3}

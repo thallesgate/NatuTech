@@ -53,3 +53,4 @@ MonoBehaviour:
   gameOverText: {fileID: 0}
   Victory: VictorySong
   Defeat: DefeatSong
+  animator: {fileID: 0}

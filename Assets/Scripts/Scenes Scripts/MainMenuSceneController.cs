@@ -13,6 +13,7 @@ public class MainMenuSceneController : MonoBehaviour
 
     [Header("Scene Prefab")]
     [SerializeField] private GameObject playScenePrefab;
+    [SerializeField] private bool applyScale;
     [SerializeField] private GameObject settingsScenePrefab;
     private GameObject nextScene;
 
@@ -65,8 +66,16 @@ public class MainMenuSceneController : MonoBehaviour
     {
         if (nextScene != null)
         {
-            GameObject sceneInstance = Instantiate(nextScene, GlobalPlacementData.position, GlobalPlacementData.rotation);
-            sceneInstance.transform.localScale *= GlobalPlacementData.scale.x;
+            if (applyScale)
+            {
+                GameObject sceneInstance = Instantiate(nextScene, GlobalPlacementData.position, GlobalPlacementData.rotation);
+                sceneInstance.transform.localScale *= GlobalPlacementData.scale.x;
+            }
+            else
+            {
+                GameObject sceneInstance = Instantiate(nextScene);
+            }
+
             Destroy(gameObject);
         }
         else

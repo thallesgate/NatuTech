@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation;
 
 public class MapScreenSceneController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class MapScreenSceneController : MonoBehaviour
 
     [Header("Scene Prefabs")]
     [SerializeField] private GameObject mainMenuPrefab;
+    [SerializeField] private float scaleFactor = 2.0f;
 
     [System.Serializable]
     public class LevelPrefab
@@ -22,15 +24,18 @@ public class MapScreenSceneController : MonoBehaviour
         public GameObject prefab;
         public int levelNumber;
         public string selectAnimationTrigger;
+        public string temaMusical;
     }
 
     [SerializeField] private List<LevelPrefab> levels = new List<LevelPrefab>();
 
     private GameObject nextScene;
+    private string nextMusic;
     private bool isClickOutActive = false;
     private int lastSelectedMap = -1;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         audioController = FindFirstObjectByType<AudioController>();
@@ -45,22 +50,22 @@ public class MapScreenSceneController : MonoBehaviour
             return;
         }
 
-        if (selection != lastSelectedMap)
+        // Reset ClickOut state
+        isClickOutActive = false;
+
+        // Prevent retriggering the same map's animation
+        if (selection == lastSelectedMap)
         {
-            // Trigger ClickOut if switching maps
-            if (lastSelectedMap != -1)
-            {
-                TriggerClickOut();
-            }
+            Debug.Log("MapScreenController: Same map selected again, ignoring trigger.");
+            return;
         }
 
-        // Update selection
         lastSelectedMap = selection;
-        isClickOutActive = false;
 
         audioController.PlaySound(tapSound);
         LevelPrefab selectedLevel = levels[selection];
         nextScene = selectedLevel.prefab;
+        nextMusic = selectedLevel.temaMusical;
 
         if (animator != null && !string.IsNullOrEmpty(selectedLevel.selectAnimationTrigger))
         {
@@ -75,7 +80,7 @@ public class MapScreenSceneController : MonoBehaviour
     public void OnMapConfirm()
     {
         audioController.PlaySound(tapSound);
-
+        audioController.PlaySound(nextMusic);
         if (animator != null)
         {
             animator.SetTrigger(easeOutTrigger);
@@ -100,11 +105,6 @@ public class MapScreenSceneController : MonoBehaviour
     }
 
     public void OnClickOut()
-    {
-        TriggerClickOut();
-    }
-
-    private void TriggerClickOut()
     {
         if (isClickOutActive)
         {
@@ -133,6 +133,9 @@ public class MapScreenSceneController : MonoBehaviour
         if (nextScene != null)
         {
             GameObject sceneInstance = Instantiate(nextScene, GlobalPlacementData.position, GlobalPlacementData.rotation);
+            GlobalPlacementData.scale.x *= 2f;
+            GlobalPlacementData.scale.y *= 2f;
+            GlobalPlacementData.scale.z *= 2f;
             sceneInstance.transform.localScale *= GlobalPlacementData.scale.x;
             Destroy(gameObject);
         }

@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
-using TreeEditor;
 
 public class UIManager : MonoBehaviour
 {
@@ -145,26 +144,25 @@ public class UIManager : MonoBehaviour
             Debug.LogError("OrbManager não está atribuído no UIManager.");
         }
     }
-
-    public void OnQuitButtonClicked()
-    {
-        #if UNITY_EDITOR
-                Debug.Log("Game would quit if this were a built application.");
-        #else
-                // Quit the application
-                Application.Quit();
-        #endif
-    }
     public void OnResetButtonClicked()
     {
         //GameObject faseObject = GameObject.FindGameObjectWithTag("Fase");
         //List<GameObject> trees = new List<GameObject>(GameObject.FindGameObjectsWithTag("Tree"));
         //List<GameObject> efeitos = new List<GameObject>(GameObject.FindGameObjectsWithTag("Efeitos"));
 
-        DestroyObjectsWithTag.DestroyObject("Fase");
+        
         DestroyObjectsWithTag.DestroyObjects("Tree");
         DestroyObjectsWithTag.DestroyObjects("Efeitos");
         DestroyObjectsWithTag.DestroyObjects("TrajectoryPoint");
-        // THALLES: Spawne o mapa
+        DestroyObjectsWithTag.DestroyObjects("Drone");
+        audioController.PlaySound("Tema");
+        GlobalPlacementData.scale.x /= 2f;
+        GlobalPlacementData.scale.y /= 2f;
+        GlobalPlacementData.scale.z /= 2f;
+        GameObject sceneInstance = Instantiate(prefabToSpawn, GlobalPlacementData.position, GlobalPlacementData.rotation);
+        sceneInstance.transform.localScale *= GlobalPlacementData.scale.x;
+        DestroyObjectsWithTag.DestroyObject("Fase");
+
+        
     }
 }

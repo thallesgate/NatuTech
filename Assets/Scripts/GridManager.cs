@@ -52,9 +52,12 @@ public class GridManager : MonoBehaviour
         Vector3 finalScale = mapArea.transform.localScale; // mapArea.transform.lossyScale;
 
 
-        float mapWidth = finalScale.x * GlobalPlacementData.scale.x;
-        float mapHeight = finalScale.z * GlobalPlacementData.scale.z;
-
+        float mapWidth = finalScale.x * GlobalPlacementData.scale.x * 1.8f;
+        float mapHeight = finalScale.z * GlobalPlacementData.scale.z * 1.8f;
+        Debug.Log("GlobalPlacementData x: " + GlobalPlacementData.scale.x);
+        Debug.Log("GlobalPlacementData z: " + GlobalPlacementData.scale.z);
+        Debug.Log("mapWidth: " + mapWidth);
+        Debug.Log("mapHeight: " + mapHeight);
         //float mapWidth = originalSize.x * finalScale.x;
         //float mapHeight = originalSize.z * finalScale.z;
 

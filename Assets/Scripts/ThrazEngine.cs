@@ -73,11 +73,19 @@ public class ThrazEngine : MonoBehaviour
     }
 
     public List<AbilityConfig> abilitiesConfig;
+    private AudioController audioController;
 
-    
+    [Header("Animation")]
+    public Animator animator;
+    public string danoTrigger = "DanoTrigger";
+    public string spawnTrigger = "SpawnTrigger";
+    public string deathTrigger = "DeathTrigger";
+    public string droneSpawnTrigger = "DroneSpawnTrigger";
+    public string droneDanoTrigger = "DroneDanoTrigger";
+
     void Start()
     {
-
+        audioController = FindFirstObjectByType<AudioController>();
         currentHealth = maxHealth;
         UpdateHealthUI();
 
@@ -135,6 +143,7 @@ public class ThrazEngine : MonoBehaviour
 
     void ExecuteAbilities()
     {
+
         foreach (var abilityConfig in abilitiesConfig)
         {
             switch (abilityConfig.abilityType)
@@ -142,6 +151,7 @@ public class ThrazEngine : MonoBehaviour
                 case AbilityType.ReleaseToxicSmoke:
                     if (toxicSmokeConfig.enabled && CanReleaseToxicSmoke())
                     {
+                        animator.SetTrigger(spawnTrigger);
                         ReleaseToxicSmoke();
                         return;
                     }
@@ -150,6 +160,7 @@ public class ThrazEngine : MonoBehaviour
                 case AbilityType.SummonProtectionDrones:
                     if (protectionDroneConfig.enabled && CanSummonProtectionDrones())
                     {
+                        animator.SetTrigger(droneSpawnTrigger);
                         SummonProtectionDrones();
                         return;
                     }
@@ -158,6 +169,7 @@ public class ThrazEngine : MonoBehaviour
                 case AbilityType.SummonEnemy:
                     if (summonableEnemiesConfig.enabled && CanSummonEnemyAbility())
                     {
+                        animator.SetTrigger(spawnTrigger);
                         SummonEnemyAbility();
                         return;
                     }
@@ -381,6 +393,8 @@ public class ThrazEngine : MonoBehaviour
 
         if (protectionDroneConfig.enabled && activeDrones.Count > 0)
         {
+
+            animator.SetTrigger(droneDanoTrigger);
             Debug.Log("Drone intercepta o dano.");
             ProtectionDrone drone = activeDrones[0];
             drone.TakeDamage(damage);
@@ -389,6 +403,9 @@ public class ThrazEngine : MonoBehaviour
 
         currentHealth -= damage;
         Debug.Log("Thraz recebeu " + damage + " de dano. Vida restante: " + currentHealth);
+
+
+        animator.SetTrigger(danoTrigger);
 
         if (damageIndicator != null)
         {
@@ -399,7 +416,10 @@ public class ThrazEngine : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Die();
+            audioController.PlaySound("ThrazMorte");
+            animator.SetTrigger(deathTrigger);
+            
+            //Die();
         }
     }
 
@@ -414,7 +434,6 @@ public class ThrazEngine : MonoBehaviour
 
         Destroy(gameObject);
     }
-
     private void UpdateHealthUI()
     {
         if (healthText != null)
