@@ -879,5 +879,7 @@ MonoBehaviour:
   - ... ou assim!
   - "\xC9 s\xF3 isso! Divirta-se!"
   delayBeforeInput: 1
+  tapSound: ScreenTap
+  finalSound: Start
   nextScenePrefab: {fileID: 1740094875460627994, guid: 1f2013eb6da7ddc4dbe6e1941fe2d7ed,
     type: 3}
