@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 199791721206961466}
   m_Layer: 0
   m_Name: DustExplosionSmall
-  m_TagString: Untagged
+  m_TagString: Efeitos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19633,6 +19633,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SandParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906712463143907063, guid: f3a6a21696ed0e54f8d25142e2582571,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -176,5 +176,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   createParticlePrefab: {fileID: 3826420434364979677, guid: a9ab61279125bd349979b3f9a42f0d5e,
     type: 3}
-  destroyParticlePrefab: {fileID: 4183308335039930855, guid: 4a543bc1db7cf0b45ac217af2e87dba3,
+  destroyParticlePrefab: {fileID: 9059508026441520423, guid: 20ff124b3ffd4c74eb6b0a79c22d0fb2,
     type: 3}

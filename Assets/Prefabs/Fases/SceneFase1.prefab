@@ -2379,6 +2379,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8659662795037624185, guid: 90a4327b1a2e5fd45938eb67b0750311,
         type: 3}
+      propertyPath: dragDelta
+      value: 
+      objectReference: {fileID: -3603844561257126198, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
+    - target: {fileID: 8659662795037624185, guid: 90a4327b1a2e5fd45938eb67b0750311,
+        type: 3}
       propertyPath: mapPrefab
       value: 
       objectReference: {fileID: 6104324078795530791}
@@ -2397,6 +2403,12 @@ PrefabInstance:
       propertyPath: placementIndicator
       value: 
       objectReference: {fileID: 9120844063452190802}
+    - target: {fileID: 8659662795037624185, guid: 90a4327b1a2e5fd45938eb67b0750311,
+        type: 3}
+      propertyPath: dragCurrentPosition
+      value: 
+      objectReference: {fileID: -7530398834462728267, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
     - target: {fileID: 8659662795037624185, guid: 90a4327b1a2e5fd45938eb67b0750311,
         type: 3}
       propertyPath: orbSettingsList.Array.data[0].effectDamage
@@ -2537,7 +2549,7 @@ PrefabInstance:
     - target: {fileID: 7604955237272087615, guid: cd825844b4a71d1438faeb2a3b6c3fac,
         type: 3}
       propertyPath: roundTime
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7604955237272087615, guid: cd825844b4a71d1438faeb2a3b6c3fac,
         type: 3}

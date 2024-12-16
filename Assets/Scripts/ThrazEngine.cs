@@ -74,14 +74,9 @@ public class ThrazEngine : MonoBehaviour
 
     public List<AbilityConfig> abilitiesConfig;
 
-    // Sons
-    private AudioController audioController;
-
-    [SerializeField] private string DroneSpawn = "DroneSpawn";
+    
     void Start()
     {
-
-        audioController = FindFirstObjectByType<AudioController>();
 
         currentHealth = maxHealth;
         UpdateHealthUI();
@@ -257,8 +252,6 @@ public class ThrazEngine : MonoBehaviour
                 Debug.LogError("ProtectionDrone script não encontrado no prefab do drone.");
             }
         }
-        audioController.PlaySound(DroneSpawn);
-
         lastDroneSummonTurn = currentRound;
 
         Debug.Log("Thraz invocou drones de proteção.");
@@ -412,6 +405,7 @@ public class ThrazEngine : MonoBehaviour
 
     private void Die()
     {
+        Debug.Log("THRAZ MORREU RAPAZ");
         Destroy(gameObject);
     }
 

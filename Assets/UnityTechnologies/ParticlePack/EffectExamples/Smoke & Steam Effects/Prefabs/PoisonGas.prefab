@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 199945756000676788}
   m_Layer: 0
   m_Name: PoisonGas
-  m_TagString: Untagged
+  m_TagString: Efeitos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9704,6 +9704,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Gas (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116972142108353945, guid: d7c028f89ce0c63488ef2e7fd259aaf5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6118579288900933667, guid: d7c028f89ce0c63488ef2e7fd259aaf5,
         type: 3}

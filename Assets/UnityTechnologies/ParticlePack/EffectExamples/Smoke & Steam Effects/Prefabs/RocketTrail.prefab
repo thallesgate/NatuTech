@@ -24340,7 +24340,7 @@ GameObject:
   - component: {fileID: 199153692182852034}
   m_Layer: 0
   m_Name: RocketTrail
-  m_TagString: Untagged
+  m_TagString: Efeitos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

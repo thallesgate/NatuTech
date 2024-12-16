@@ -76,14 +76,19 @@ public class TurnManager : MonoBehaviour
         trees = new List<GameObject>(GameObject.FindGameObjectsWithTag("Tree"));
         thraz = GameObject.FindGameObjectWithTag("Thraz");
 
-        if (thraz == null && enemies.Count == 0 && !isGameOver)
+        Debug.Log("enemies: " + enemies.Count);
+        Debug.Log("trees: " + trees.Count);
+        Debug.Log("isGameOver: " + isGameOver);
+        Debug.Log("roundCounter: " + roundCounter);
+
+        if (thraz == null && enemies.Count == 0 && !isGameOver && roundCounter > 0)
         {
             audioController.PlaySound(Victory);
             GameOver("Thraz foi derrotado!");
         }
 
         // cheque se a lista de arvores está vazia
-        if (trees.Count == 0 && !isGameOver)
+        if (trees.Count == 0 && !isGameOver && roundCounter > 0)
         {
             audioController.PlaySound(Defeat);
             GameOver("GAME OVER! As árvores foram destruídas");
@@ -164,7 +169,7 @@ public class TurnManager : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
-        VictoryOrDefeat();
+        //VictoryOrDefeat();
 
         Debug.Log("Turno dos inimigos");
 
@@ -273,6 +278,29 @@ public class TurnManager : MonoBehaviour
     {
         Debug.Log(message);
         isGameOver = true;
+
+        GameObject faseObject = GameObject.FindGameObjectWithTag("Fase");
+        List<GameObject> trees = new List<GameObject>(GameObject.FindGameObjectsWithTag("Tree"));
+
+        //Debug.Log("Quantidade de Arvores no RESET: " + trees);
+        if (faseObject != null)
+        {
+            for (int i = 0; i < trees.Count; i++)
+            {
+                if (trees[i] != null)
+                {
+                    Destroy(trees[i]);
+                }
+            }
+
+            Destroy(faseObject);
+
+            // SPAWNE O MENU AQUI
+        }
+        else
+        {
+            Debug.Log("Fase not found man..");
+        }
 
         // Exibe a mensagem de fim de jogo na tela
         if (gameOverText != null)

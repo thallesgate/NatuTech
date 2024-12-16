@@ -13,6 +13,7 @@ TagManager:
   - ActionSource
   - MusicSource
   - Thraz
+  - Efeitos
   layers:
   - Default
   - TransparentFX
