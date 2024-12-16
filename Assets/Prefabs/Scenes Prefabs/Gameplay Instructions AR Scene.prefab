@@ -798,6 +798,7 @@ GameObject:
   - component: {fileID: 5109628092187236037}
   - component: {fileID: 7249671898963916910}
   - component: {fileID: 962362792602635212}
+  - component: {fileID: 9073380009097251790}
   m_Layer: 0
   m_Name: Gameplay Instructions AR Scene
   m_TagString: Untagged
@@ -889,3 +890,15 @@ MonoBehaviour:
     type: 3}
   applyScale: 1
   canvas: {fileID: 8728707870577476267}
+--- !u!114 &9073380009097251790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8670170179133529470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67868932ea764684b97d7a4177acbe47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

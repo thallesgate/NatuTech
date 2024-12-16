@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3670917058845881950}
+  - component: {fileID: 3013640256335411159}
   m_Layer: 0
   m_Name: SceneFase10
   m_TagString: Fase
@@ -36,6 +37,18 @@ Transform:
   - {fileID: 6087873020381299640}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3013640256335411159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3091330995790222088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67868932ea764684b97d7a4177acbe47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &60746346536857803
 PrefabInstance:
   m_ObjectHideFlags: 0

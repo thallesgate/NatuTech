@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3670917058845881950}
+  - component: {fileID: 6352441800100195170}
   m_Layer: 0
   m_Name: SceneFase6
   m_TagString: Fase
@@ -51,6 +52,18 @@ Transform:
   - {fileID: 5564971615101199794}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6352441800100195170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3091330995790222088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67868932ea764684b97d7a4177acbe47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4123084428620183207
 GameObject:
   m_ObjectHideFlags: 0
@@ -2400,6 +2413,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.404
       objectReference: {fileID: 0}
+    - target: {fileID: 4843133434476715845, guid: cd825844b4a71d1438faeb2a3b6c3fac,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1ce6260dd84813d49a48ab096f3b37d1, type: 2}
     - target: {fileID: 5445928438740283405, guid: cd825844b4a71d1438faeb2a3b6c3fac,
         type: 3}
       propertyPath: enemyPrefab

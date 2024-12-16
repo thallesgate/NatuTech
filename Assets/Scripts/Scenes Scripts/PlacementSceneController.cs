@@ -78,6 +78,7 @@ public class PlacementSceneController : MonoBehaviour
     {
         audioController = FindFirstObjectByType<AudioController>();
         arPlaneManager = FindFirstObjectByType<ARPlaneManager>();
+
         if (arPlaneManager != null)
         {
             Debug.Log("Placement Scene Controller: ARPlaneManager found and Set to Active!");
