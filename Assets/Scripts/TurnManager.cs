@@ -76,11 +76,6 @@ public class TurnManager : MonoBehaviour
         trees = new List<GameObject>(GameObject.FindGameObjectsWithTag("Tree"));
         thraz = GameObject.FindGameObjectWithTag("Thraz");
 
-        Debug.Log("enemies: " + enemies.Count);
-        Debug.Log("trees: " + trees.Count);
-        Debug.Log("isGameOver: " + isGameOver);
-        Debug.Log("roundCounter: " + roundCounter);
-
         if (thraz == null && enemies.Count == 0 && !isGameOver && roundCounter > 0)
         {
             audioController.PlaySound(Victory);
@@ -169,7 +164,7 @@ public class TurnManager : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
-        //VictoryOrDefeat();
+        VictoryOrDefeat();
 
         Debug.Log("Turno dos inimigos");
 

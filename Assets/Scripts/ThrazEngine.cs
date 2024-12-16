@@ -406,6 +406,12 @@ public class ThrazEngine : MonoBehaviour
     private void Die()
     {
         Debug.Log("THRAZ MORREU RAPAZ");
+
+        if (activeSmoke != null)
+        {
+            Destroy(activeSmoke);
+        }
+
         Destroy(gameObject);
     }
 
