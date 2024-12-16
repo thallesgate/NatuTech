@@ -3296,6 +3296,42 @@ MonoBehaviour:
       type: 3}
     levelNumber: 1
     selectAnimationTrigger: Select1
+  - prefab: {fileID: 3091330995790222088, guid: 4874bf09bc6291d45b296d78445b8436,
+      type: 3}
+    levelNumber: 2
+    selectAnimationTrigger: Select2
+  - prefab: {fileID: 3091330995790222088, guid: e84865af151b75e4ebb773d5bc3575f3,
+      type: 3}
+    levelNumber: 3
+    selectAnimationTrigger: Select3
+  - prefab: {fileID: 3091330995790222088, guid: d4da0979b8115e84e9424f75bbb5ed39,
+      type: 3}
+    levelNumber: 4
+    selectAnimationTrigger: Select4
+  - prefab: {fileID: 3091330995790222088, guid: d098098294ec4994dab81841bff4b891,
+      type: 3}
+    levelNumber: 5
+    selectAnimationTrigger: Select5
+  - prefab: {fileID: 3091330995790222088, guid: ed721df26c44a8c4695d3aa5caf710ed,
+      type: 3}
+    levelNumber: 6
+    selectAnimationTrigger: Select6
+  - prefab: {fileID: 3091330995790222088, guid: a5c63e69c6eed2844b4a2a32ed237f74,
+      type: 3}
+    levelNumber: 7
+    selectAnimationTrigger: Select7
+  - prefab: {fileID: 3091330995790222088, guid: 5d8d1d80981a57f479734fc1f6e176f3,
+      type: 3}
+    levelNumber: 8
+    selectAnimationTrigger: Select8
+  - prefab: {fileID: 3091330995790222088, guid: b8473affe2940d6409c2fa364a985f00,
+      type: 3}
+    levelNumber: 9
+    selectAnimationTrigger: Select9
+  - prefab: {fileID: 3091330995790222088, guid: 6c19d0cbc2c5b4447a4c0f4491b0b185,
+      type: 3}
+    levelNumber: 10
+    selectAnimationTrigger: Select10
 --- !u!1 &6326105052020957194
 GameObject:
   m_ObjectHideFlags: 0

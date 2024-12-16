@@ -45,17 +45,18 @@ public class MapScreenSceneController : MonoBehaviour
             return;
         }
 
-        // Reset ClickOut state
-        isClickOutActive = false;
-
-        // Prevent retriggering the same map's animation
-        if (selection == lastSelectedMap)
+        if (selection != lastSelectedMap)
         {
-            Debug.Log("MapScreenController: Same map selected again, ignoring trigger.");
-            return;
+            // Trigger ClickOut if switching maps
+            if (lastSelectedMap != -1)
+            {
+                TriggerClickOut();
+            }
         }
 
+        // Update selection
         lastSelectedMap = selection;
+        isClickOutActive = false;
 
         audioController.PlaySound(tapSound);
         LevelPrefab selectedLevel = levels[selection];
@@ -99,6 +100,11 @@ public class MapScreenSceneController : MonoBehaviour
     }
 
     public void OnClickOut()
+    {
+        TriggerClickOut();
+    }
+
+    private void TriggerClickOut()
     {
         if (isClickOutActive)
         {
