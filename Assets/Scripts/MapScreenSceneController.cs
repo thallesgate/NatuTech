@@ -16,6 +16,7 @@ public class MapScreenSceneController : MonoBehaviour
 
     [Header("Scene Prefabs")]
     [SerializeField] private GameObject mainMenuPrefab;
+    [SerializeField] private float scaleFactor = 2.0f;
 
     [System.Serializable]
     public class LevelPrefab
@@ -132,6 +133,9 @@ public class MapScreenSceneController : MonoBehaviour
         if (nextScene != null)
         {
             GameObject sceneInstance = Instantiate(nextScene, GlobalPlacementData.position, GlobalPlacementData.rotation);
+            GlobalPlacementData.scale.x *= 2f;
+            GlobalPlacementData.scale.y *= 2f;
+            GlobalPlacementData.scale.z *= 2f;
             sceneInstance.transform.localScale *= GlobalPlacementData.scale.x;
             Destroy(gameObject);
         }

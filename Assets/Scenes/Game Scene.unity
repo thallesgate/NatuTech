@@ -522,6 +522,21 @@ PrefabInstance:
       propertyPath: targetTag
       value: Tree
       objectReference: {fileID: 0}
+    - target: {fileID: 5449181487174628935, guid: c95aeec7237fdaf418574cfec414831c,
+        type: 3}
+      propertyPath: sounds.Array.data[2].category
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449181487174628935, guid: c95aeec7237fdaf418574cfec414831c,
+        type: 3}
+      propertyPath: sounds.Array.data[3].category
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449181487174628935, guid: c95aeec7237fdaf418574cfec414831c,
+        type: 3}
+      propertyPath: sounds.Array.data[25].category
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6994352294363191079, guid: c95aeec7237fdaf418574cfec414831c,
         type: 3}
       propertyPath: m_IsActive

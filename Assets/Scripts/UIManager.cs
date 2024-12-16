@@ -154,7 +154,11 @@ public class UIManager : MonoBehaviour
         DestroyObjectsWithTag.DestroyObjects("Tree");
         DestroyObjectsWithTag.DestroyObjects("Efeitos");
         DestroyObjectsWithTag.DestroyObjects("TrajectoryPoint");
+        DestroyObjectsWithTag.DestroyObjects("Drone");
         audioController.PlaySound("Tema");
+        GlobalPlacementData.scale.x /= 2f;
+        GlobalPlacementData.scale.y /= 2f;
+        GlobalPlacementData.scale.z /= 2f;
         GameObject sceneInstance = Instantiate(prefabToSpawn, GlobalPlacementData.position, GlobalPlacementData.rotation);
         sceneInstance.transform.localScale *= GlobalPlacementData.scale.x;
         DestroyObjectsWithTag.DestroyObject("Fase");
